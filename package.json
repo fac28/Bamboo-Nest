@@ -5,13 +5,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .js,.ts",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "autoprefixer": "10.4.15",
     "geist": "^1.0.0",
+    "husky": "^8.0.3",
     "next": "latest",
     "postcss": "8.4.29",
     "react": "18.2.0",
@@ -27,6 +29,7 @@
     "encoding": "^0.1.13",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.0",
     "prettier": "^3.1.0",
     "typescript": "^5.3.2"
   }
