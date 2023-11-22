@@ -1,8 +1,8 @@
-import Header from '@/components/Header';
-import CategoryCard from '@/components/CategoryCard';
-import Link from 'next/link';
-import { Button } from '@nextui-org/react';
-import Image from 'next/image';
+import Header from '@/components/Header'
+import CategoryCard from '@/components/CategoryCard'
+import Link from 'next/link'
+import { Button } from '@nextui-org/react'
+import Image from 'next/image'
 import AuthButton from '@/components/AuthButton'
 
 export default async function Index() {
@@ -11,7 +11,7 @@ export default async function Index() {
     { title: 'Toys' },
     { title: 'Clothes' },
     { title: 'Buggies' },
-  ];
+  ]
   return (
     <>
       <Header />
@@ -50,5 +50,5 @@ export default async function Index() {
       </div>
       <footer></footer>
     </>
-  );
+  )
 }

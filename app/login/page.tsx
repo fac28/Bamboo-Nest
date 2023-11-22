@@ -10,7 +10,6 @@ export default async function Login({
 }: {
   searchParams: { message: string }
 }) {
-
   const signIn = async (formData: FormData) => {
     'use server'
 
@@ -38,12 +37,12 @@ export default async function Login({
     data: { user },
   } = await supabase.auth.getUser()
 
-  return user?(
-  <div>
-    <AuthButton/>
-    <UpdateForm/>
-  </div>): (
-
+  return user ? (
+    <div>
+      <AuthButton />
+      <UpdateForm />
+    </div>
+  ) : (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
         href="/"
@@ -99,10 +98,9 @@ export default async function Login({
         )}
       </form>
 
-      <p>Not with us?
-        <Link href='/signup'>
-         create an account
-        </Link>
+      <p>
+        Not with us?
+        <Link href="/signup">create an account</Link>
       </p>
     </div>
   )
