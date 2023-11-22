@@ -1,6 +1,9 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 
+const itemQuery =
+  'name,price,description,brand,delivery,collection, age(age_category), categories(category_name), conditions(condition,description)'
+
 export default async function listing({
   params,
 }: {
@@ -12,22 +15,27 @@ export default async function listing({
   const supabase = createClient(cookieStore)
   const { data, error } = await supabase
     .from('items')
-    .select('*')
+    .select(itemQuery)
     .eq('item_id', params.id)
-  const item = data && data[0]
+  const { name, price, description, brand, delivery, collection } =
+    data && data[0]
+  const age = data && data[0].age.age_category
+  const condition = data && data[0].conditions.condition
+  const conditionDescription = data && data[0].conditions.description
+  const category = data && data[0].categories.category_name
   return (
     <>
-      <h1>{item.name}</h1>
-      <h2>Price £{item.price}</h2>
-      <p>{item.description}</p>
-      <p>age category {item.age_category}</p>
-      <p>brand {item.brand}</p>
+      <h1>{name}</h1>
+      <h2>Price £{price}</h2>
+      <p>{description}</p>
+      <p>Age category: {age}</p>
+      <p>Brand: {brand}</p>
       <p>
-        Postage options: {item.delivery && `post`}{' '}
-        {item.collection && `collect`}
+        Postage options: {delivery && `post`} {collection && `collect`}
       </p>
-      <p>Item condition {item.condition}</p>
-      <p>Item category {item.category_id}</p>
+      <p>Item condition: {condition}</p>
+      <p>Item condition expanded: {conditionDescription}</p>
+      <p>Item category: {category}</p>
     </>
   )
 }
