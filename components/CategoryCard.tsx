@@ -1,11 +1,11 @@
-import { Card, CardHeader } from '@nextui-org/react';
+import { Card, CardHeader } from '@nextui-org/react'
 
 interface CardTitle {
-  title: string;
+  title: string
 }
 
 interface CategoryCardProps {
-  cardTitle: CardTitle[];
+  cardTitle: CardTitle[]
 }
 
 export default function CategoryCard({ cardTitle }: CategoryCardProps) {
@@ -17,12 +17,12 @@ export default function CategoryCard({ cardTitle }: CategoryCardProps) {
           key={index}
         >
           <CardHeader className="flex items-center justify-center h-full">
-            <h4 className="text-primaryBlue font-medium text-large">
+            <h4 className="text-primaryBlue font-medium text-4xl">
               {item.title}
             </h4>
           </CardHeader>
         </Card>
       ))}
     </div>
-  );
+  )
 }
