@@ -1,62 +1,38 @@
 import Link from 'next/link'
-import { headers, cookies } from 'next/headers'
+import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import AuthButton from '@/components/AuthButton'
-import UpdateForm from '@/components/form/UpdateProfile'
 
-export default async function Login({
+export default async function UpdateForm({
   searchParams,
 }: {
   searchParams: { message: string }
 }) {
 
-
-  const signUp = async (formData: FormData) => {
+  const update = async (formData: FormData) => {
     'use server'
 
-    const origin = headers().get('origin')
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
     const firstName = formData.get('First Name') as string
     const lastName = formData.get('Last Name') as string
+
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${origin}/auth/callback`,
-      },
-    })
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-    if (error) {
-      return redirect('/login?message=Could not authenticate user')
-    }
-
-    supabase.from('users').upsert({
-      id: data?.user?.id,
+    await supabase.from('users').upsert({
+      id: user?.id,
       first_name: firstName,
       last_name: lastName,
     }
     ).select();
 
-    return redirect('/login?message=Check email to continue sign in process')
+    return redirect('/login?message=profile updated')
   }
 
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  return user? (
-    <div>
-      <AuthButton/>
-      <UpdateForm searchParams={searchParams}/>
-    </div>) :(
+  return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
         href="/"
@@ -82,25 +58,6 @@ export default async function Login({
       <form
         className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
       >
-        <label className="text-md" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
-        <label className="text-md" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
         <label htmlFor='First Name'>First Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
@@ -116,10 +73,10 @@ export default async function Login({
           required
         />
         <button
-          formAction={signUp}
+          formAction={update}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
         >
-          Sign Up
+          Update
         </button>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
