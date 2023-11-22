@@ -4,7 +4,6 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
 export default async function UpdateForm() {
-
   const update = async (formData: FormData) => {
     'use server'
 
@@ -18,12 +17,14 @@ export default async function UpdateForm() {
       data: { user },
     } = await supabase.auth.getUser()
 
-    await supabase.from('users').upsert({
-      id: user?.id,
-      first_name: firstName,
-      last_name: lastName,
-    }
-    ).select();
+    await supabase
+      .from('users')
+      .upsert({
+        id: user?.id,
+        first_name: firstName,
+        last_name: lastName,
+      })
+      .select()
 
     return redirect('/signup?message=profile updated')
   }
@@ -53,17 +54,15 @@ export default async function UpdateForm() {
 
       <h1>Update your profile</h1>
 
-      <form
-        className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
-      >
-        <label htmlFor='First Name'>First Name</label>
+      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+        <label htmlFor="First Name">First Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="First Name"
           placeholder="First Name"
           required
         />
-        <label htmlFor='Last Name'>Last Name</label>
+        <label htmlFor="Last Name">Last Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="Last Name"

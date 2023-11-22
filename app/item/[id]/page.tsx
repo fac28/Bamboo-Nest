@@ -4,7 +4,6 @@ import { cookies } from 'next/headers'
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description)'
 
-
 export default async function listing({
   params,
 }: {
@@ -20,7 +19,7 @@ export default async function listing({
       .from('items')
       .select(itemQuery)
       .eq('item_id', params.id)
-    console.log(error,data)
+    console.log(error, data)
     if (error || !data || data.length === 0) {
       // need to split data.length conditional into own if leading to 404
       throw new Error('Error fetching data')
