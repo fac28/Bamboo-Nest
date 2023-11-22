@@ -6,7 +6,8 @@
     "start": "next start",
     "lint": "eslint --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update": "supabase gen types typescript --project-id umgltemlffceoehkynug > database.types.ts"
   },
   "dependencies": {
     "@sentry/nextjs": "^7.81.1",
