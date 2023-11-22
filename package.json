@@ -10,6 +10,7 @@
     "update": "supabase gen types typescript --project-id umgltemlffceoehkynug > database.types.ts"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@sentry/nextjs": "^7.81.1",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
