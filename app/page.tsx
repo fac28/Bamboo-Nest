@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import AuthButton from '@/components/AuthButton'
 
 export default async function Index() {
 
@@ -9,6 +10,7 @@ export default async function Index() {
 
       <div>
         <Header />
+        <AuthButton />
         <main>
         </main>
       </div>
