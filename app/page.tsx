@@ -3,6 +3,7 @@ import CategoryCard from '@/components/CategoryCard';
 import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import Image from 'next/image';
+import AuthButton from '@/components/AuthButton'
 
 export default async function Index() {
   const cardTitle = [
@@ -14,7 +15,7 @@ export default async function Index() {
   return (
     <>
       <Header />
-
+      <AuthButton />
       <div className="relative h-96">
         <div className="absolute inset-0 flex items-center justify-center">
           <h2 className="z-10 text-center">
