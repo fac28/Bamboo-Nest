@@ -11,7 +11,6 @@ export default async function Login({
   searchParams: { message: string }
 }) {
 
-
   const signUp = async (formData: FormData) => {
     'use server'
 
@@ -55,7 +54,7 @@ export default async function Login({
   return user? (
     <div>
       <AuthButton/>
-      <UpdateForm searchParams={searchParams}/>
+      <UpdateForm/>
     </div>) :(
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
@@ -119,7 +118,7 @@ export default async function Login({
           formAction={signUp}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
         >
-          Sign Up
+          Register
         </button>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">

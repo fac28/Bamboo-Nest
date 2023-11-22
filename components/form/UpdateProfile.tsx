@@ -3,11 +3,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
-export default async function UpdateForm({
-  searchParams,
-}: {
-  searchParams: { message: string }
-}) {
+export default async function UpdateForm() {
 
   const update = async (formData: FormData) => {
     'use server'
@@ -29,7 +25,7 @@ export default async function UpdateForm({
     }
     ).select();
 
-    return redirect('/login?message=profile updated')
+    return redirect('/signup?message=profile updated')
   }
 
   return (
@@ -55,6 +51,8 @@ export default async function UpdateForm({
         Back
       </Link>
 
+      <h1>Update your profile</h1>
+
       <form
         className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
       >
@@ -78,11 +76,6 @@ export default async function UpdateForm({
         >
           Update
         </button>
-        {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {searchParams.message}
-          </p>
-        )}
       </form>
     </div>
   )
