@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import Image from 'next/image'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description)'
