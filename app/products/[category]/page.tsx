@@ -13,7 +13,7 @@ export default async function Page({
 
   return (
     <>
-      <h1>{params.category}</h1>
+      <h1>{params.category.toUpperCase()}</h1>
       <div className="grid grid-cols-3 gap-4">
         {items.map(item => (
           <div className="bg-white shadow-md rounded-md p-4" key={item.name}>
