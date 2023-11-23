@@ -10,7 +10,6 @@ export default async function Login({
 }: {
   searchParams: { message: string }
 }) {
-
   const signUp = async (formData: FormData) => {
     'use server'
 
@@ -34,12 +33,14 @@ export default async function Login({
       return redirect('/login?message=Could not authenticate user')
     }
 
-    supabase.from('users').upsert({
-      id: data?.user?.id,
-      first_name: firstName,
-      last_name: lastName,
-    }
-    ).select();
+    supabase
+      .from('users')
+      .upsert({
+        id: data?.user?.id,
+        first_name: firstName,
+        last_name: lastName,
+      })
+      .select()
 
     return redirect('/login?message=Check email to continue sign in process')
   }
@@ -51,11 +52,12 @@ export default async function Login({
     data: { user },
   } = await supabase.auth.getUser()
 
-  return user? (
+  return user ? (
     <div>
-      <AuthButton/>
-      <UpdateForm/>
-    </div>) :(
+      <AuthButton />
+      <UpdateForm />
+    </div>
+  ) : (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
         href="/"
@@ -78,9 +80,7 @@ export default async function Login({
         Back
       </Link>
 
-      <form
-        className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
-      >
+      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -100,14 +100,14 @@ export default async function Login({
           placeholder="••••••••"
           required
         />
-        <label htmlFor='First Name'>First Name</label>
+        <label htmlFor="First Name">First Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="First Name"
           placeholder="First Name"
           required
         />
-        <label htmlFor='Last Name'>Last Name</label>
+        <label htmlFor="Last Name">Last Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="Last Name"

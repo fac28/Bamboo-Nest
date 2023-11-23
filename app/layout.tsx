@@ -4,20 +4,21 @@ import { Providers } from './providers';
 import 'normalize.css/normalize.css';
 import Header from '@/components/Header'
 
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000';
+  : 'http://localhost:3000'
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: 'Bamboo Nest',
   description: 'leading baby clothing marketplace',
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" className={GeistSans.className}>
