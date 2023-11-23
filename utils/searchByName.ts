@@ -2,15 +2,18 @@
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 
-export default async function fetchCategories() {
+export default async function searchItem(name: string) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const { data, error } = await supabase.from('categories').select()
+  const { data, error } = await supabase
+    .from('items')
+    .select()
+    .ilike('name', `%${name}%`)
 
-  if (error) {
-    console.log(error)
+  if (!data || error) {
     return []
   }
+
   return data
 }
