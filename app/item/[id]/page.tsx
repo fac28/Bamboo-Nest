@@ -48,9 +48,9 @@ export default async function listing({
     const { data: publicUrl } = await supabase.storage
       .from('item-pictures')
       .getPublicUrl(`${imageName && imageName[0].name}`)
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     return (
       <>
         <h1>{name}</h1>
@@ -71,10 +71,7 @@ export default async function listing({
           height={500}
           alt={`image of ${name}`}
         />
-        <FavouriteButton
-          user={user?user.id:null}
-          itemID={item_id}
-        />
+        <FavouriteButton user={user ? user.id : null} itemID={item_id} />
       </>
     )
   } catch (error) {
