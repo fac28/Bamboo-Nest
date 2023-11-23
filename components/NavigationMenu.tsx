@@ -44,7 +44,7 @@ export default function NavigationMenu() {
                     : 'foreground'
               }
               className="w-full justify-center"
-              href="#"
+              href={index === 0 ? '/search' : index === 2 ? '/login' : '#'}
               size="lg"
             >
               {item}
