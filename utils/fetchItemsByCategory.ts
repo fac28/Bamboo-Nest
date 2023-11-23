@@ -5,17 +5,14 @@ export default async function fetchItemsByCategory(category: string) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  if(category.toLowerCase()==='all'){
-    const { data, error } = await supabase
-    .from('items')
-    .select()
+  if (category.toLowerCase() === 'all') {
+    const { data, error } = await supabase.from('items').select()
 
-  if (!data || error) {
-    return []
-  }
-  return data
-  }
-  else {
+    if (!data || error) {
+      return []
+    }
+    return data
+  } else {
     const { data, error } = await supabase
       .from('categories')
       .select(`items(*)`)
