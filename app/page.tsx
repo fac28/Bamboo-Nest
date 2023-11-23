@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import Image from 'next/image'
 // import AuthButton from '@/components/AuthButton'
-import Header from '@/components/Header'
+// import Header from '@/components/Header'
 
 export default async function Index() {
   const cardTitle = [
@@ -15,9 +15,7 @@ export default async function Index() {
   ]
   return (
     <>
-      {/* <NavigationMenu />
-      <AuthButton /> */}
-      <Header />
+      {/* <Header /> */}
       <div className="relative h-96">
         <div className="absolute inset-0 flex items-center justify-center mx-auto ">
           <h2 className="z-10 text-center text-black text-5xl w-1/2">
