@@ -11,7 +11,9 @@ export default async function Page() {
       <div className="grid grid-cols-2 gap-4">
         {categories.map(category => (
           <div className="bg-white shadow-md rounded-md p-4">
-            <Link href={`/products/${category.category_name}`}><h1 className="text-2xl font-bold">{category.category_name}</h1></Link>
+            <Link href={`/products/${category.category_name}`}>
+              <h1 className="text-2xl font-bold">{category.category_name}</h1>
+            </Link>
           </div>
         ))}
       </div>
