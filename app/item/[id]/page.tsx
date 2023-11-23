@@ -13,31 +13,39 @@ export default async function listing({
 }) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
-
   try {
     const { data, error } = await supabase
       .from('items')
       .select(itemQuery)
       .eq('item_id', params.id)
     if (error || !data || data.length === 0) {
-      // need to split data.length conditional into own if leading to 404
       throw new Error('Error fetching data')
     }
-    const { name, price, description, brand, delivery, collection } =
-      data && data[0]
-    const age = data && data[0]?.age?.age_category
-    const condition = data && data[0]?.conditions?.condition
-    const conditionDescription = data && data[0]?.conditions?.description
-    const category = data && data[0]?.categories?.category_name
-    const imageUUID = data && data[0]?.image_id
-    const allImages = await supabase.storage.from('item-pictures').list('')
-    const imageName =
-      allImages &&
-      allImages.data?.filter(singleImage => singleImage.id === imageUUID)
-    const publicUrl = await supabase.storage
+    const {
+      name,
+      price,
+      description,
+      brand,
+      delivery,
+      collection,
+      age: ageData,
+      conditions: conditionData,
+      categories: categoryData,
+      image_id,
+    } = data[0]
+    const age = ageData.age_category
+    const condition = conditionData.condition
+    const conditionDescription = conditionData.description
+    const category = categoryData.category_name
+    const { data: allImagesData } = await supabase.storage
+      .from('item-pictures')
+      .list('')
+    const imageName = allImagesData?.filter(
+      singleImage => singleImage.id === image_id,
+    )
+    const { data: publicUrl } = await supabase.storage
       .from('item-pictures')
       .getPublicUrl(`${imageName && imageName[0].name}`)
-    console.log(publicUrl)
     return (
       <>
         <h1>{name}</h1>
@@ -51,7 +59,13 @@ export default async function listing({
         <p>Item condition: {condition}</p>
         <p>Item condition expanded: {conditionDescription}</p>
         <p>Item category: {category}</p>
-        <img src={publicUrl.data.publicUrl} width={500} height={500} />
+        {/* All images should come from supabase url so might be better to use next Image and approve url */}
+        <img
+          src={publicUrl.publicUrl}
+          width={500}
+          height={500}
+          alt={`image of ${name}`}
+        />
       </>
     )
   } catch (error) {
