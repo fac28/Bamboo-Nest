@@ -1,6 +1,6 @@
 'use client'
 
-import togggleFavourite from "@/utils/handleFavouriteItem"
+import toggleFavourite from '@/utils/handleFavouriteItem'
 
 export default function FavouriteButton({
   user,
@@ -10,10 +10,14 @@ export default function FavouriteButton({
   itemID: string
 }) {
   return user ? (
-    <button onClick={() => togggleFavourite(user, itemID)}>
-      ADDD TO FAVOURITES
+    <button onClick={() => toggleFavourite(user, itemID)}>
+      ADD TO FAVOURITES
     </button>
   ) : (
-    <p>'not logged in'</p>
+    <button onClick={logInAlert}>ADD TO FAVOURITES</button>
   )
+}
+
+function logInAlert() {
+  alert('you must be logged in to perform this action')
 }
