@@ -32,7 +32,7 @@ export default function NavigationMenu() {
           // className="sm:hidden"
         />
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu className="justify-evenly">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
