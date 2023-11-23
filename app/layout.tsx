@@ -26,7 +26,7 @@ export default function RootLayout({
           <Providers>
             {/* {' '} */}
             <Header />
-            <div className="flex justify-center">{children}</div>
+            {children}
           </Providers>
         </main>
       </body>
