@@ -1,4 +1,4 @@
-import { Database } from "@/database.types"
+import { Database } from '@/database.types'
 export type User = {
   id: string
   aud: string
@@ -30,6 +30,6 @@ export type Category = Database['public']['Tables']['categories']['Row']
 export type Item = Database['public']['Tables']['items']['Row']
 
 export type ItemWithImage = Item & {
-  image: string;
-  id: number;
+  image: string
+  id: number
 }
