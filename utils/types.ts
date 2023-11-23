@@ -1,3 +1,4 @@
+import { Database } from '@/database.types'
 export type User = {
   id: string
   aud: string
@@ -23,4 +24,12 @@ export type User = {
   ]
   created_at: string
   updated_at: string
+}
+
+export type Category = Database['public']['Tables']['categories']['Row']
+export type Item = Database['public']['Tables']['items']['Row']
+
+export type ItemWithImage = Item & {
+  image: string
+  id: number
 }
