@@ -64,7 +64,6 @@ export default async function listing({
         <p>Item condition: {condition}</p>
         <p>Item condition expanded: {conditionDescription}</p>
         <p>Item category: {category}</p>
-        {/* All images should come from supabase url so might be better to use next Image and approve url */}
         <img
           src={publicUrl.publicUrl}
           width={500}

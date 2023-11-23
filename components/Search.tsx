@@ -10,7 +10,7 @@ export default function Search({
   placeholder: string
   onSearch: (term: string) => void
 }) {
-  const [searchTerm, setSearchTerm] = useState('') // Initialize a state variable for the search term
+  const [searchTerm, setSearchTerm] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
