@@ -3,7 +3,7 @@
 import React from 'react'
 import {
   Navbar,
-  NavbarBrand,
+  // NavbarBrand,
   NavbarContent,
   // NavbarItem,
   NavbarMenuToggle,
@@ -19,12 +19,12 @@ export default function NavigationMenu() {
   const menuItems = ['Search Items', 'Sell Item', 'Account', 'Contact', 'FAQs']
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="w-min">
+      {/* <NavbarContent>
         <NavbarBrand>
           <p className="font-bold text-inherit">Bamboo Nest</p>
         </NavbarBrand>
-      </NavbarContent>
+      </NavbarContent> */}
 
       <NavbarContent justify="end">
         <NavbarMenuToggle
@@ -43,7 +43,7 @@ export default function NavigationMenu() {
                     ? 'danger'
                     : 'foreground'
               }
-              className="w-full"
+              className="w-full justify-center"
               href="#"
               size="lg"
             >

@@ -33,7 +33,7 @@ export default async function Index() {
         />
       </div>
       <div className="max-w-5xl mx-auto ">
-        <div className="flex gap-4 w-500px p-8 border border-b-4 border-dotted border-b-primaryBlue">
+        <div className="flex gap-4 w-500px p-8 cust-dotted-border-bottom">
           <Button className="w-full p-16 bg-primaryBlue border-4 border-solid border-primaryBlue rounded-full">
             <Link href="/" className="text-white text-4xl">
               Buy

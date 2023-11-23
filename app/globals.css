@@ -8,14 +8,18 @@
   box-sizing: border-box;
 }
 
+.cust-dotted-border-bottom {
+  border-bottom: 6px dotted #0b56ff;
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 200 20% 98%;
-    --btn-background: 200 10% 91%;
+    --background: #ffffff;
+    --btn-background: #ffffff;
     --btn-background-hover: 200 10% 89%;
     --foreground: 200 50% 3%;
   }
