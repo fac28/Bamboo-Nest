@@ -1,3 +1,4 @@
+import FavouriteButton from '@/components/FavouriteButton'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 
@@ -22,6 +23,7 @@ export default async function listing({
       throw new Error('Error fetching data')
     }
     const {
+      item_id,
       name,
       price,
       description,
@@ -66,10 +68,11 @@ export default async function listing({
           height={500}
           alt={`image of ${name}`}
         />
+        <FavouriteButton  user={`05979b42-ac73-4b6a-888b-e5f569b0b5e2`} itemID={item_id}  />
       </>
     )
   } catch (error) {
     console.log(error)
     return <p>Error loading data</p>
   }
-}
+}  
