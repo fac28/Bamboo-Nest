@@ -34,7 +34,9 @@ async function togggleFavourite(user: string, itemID: string) {
       return
     }
     if (favouriteItems.includes(itemID)) {
-      const updatedFavouriteItems = favouriteItems.filter(item => item !== itemID)
+      const updatedFavouriteItems = favouriteItems.filter(
+        item => item !== itemID,
+      )
       console.log('remove item', { updatedFavouriteItems })
       updateSupabaseFavouriteItems(user, updatedFavouriteItems)
       return
@@ -42,7 +44,6 @@ async function togggleFavourite(user: string, itemID: string) {
     const updatedFavouriteItems = [...favouriteItems, itemID]
     console.log('add item', { updatedFavouriteItems })
     updateSupabaseFavouriteItems(user, updatedFavouriteItems)
-    
   } catch (error) {
     console.log(error)
   }
@@ -58,9 +59,9 @@ async function updateSupabaseFavouriteItems(
       .update({ favourite_items: updatedItems })
       .eq('id', user)
       .select()
-      if (error || !data) {
-        throw new Error('Error fetching data')
-      } 
+    if (error || !data) {
+      throw new Error('Error fetching data')
+    }
   } catch (error) {
     console.log(error)
   }
