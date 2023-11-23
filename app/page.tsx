@@ -17,7 +17,6 @@ export default async function Index() {
   ]
   return (
     <>
-      {/* <Header /> */}
       <div className="relative h-96">
         <div className="absolute inset-0 flex items-center justify-center mx-auto ">
           <h2 className="z-10 text-center text-black text-5xl w-1/2">

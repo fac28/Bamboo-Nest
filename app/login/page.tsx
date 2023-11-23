@@ -39,7 +39,6 @@ export default async function Login({
 
   return user ? (
     <div>
-      {/* <AuthButton /> */}
       <UpdateForm />
     </div>
   ) : (

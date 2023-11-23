@@ -24,7 +24,6 @@ export default function RootLayout({
       <body className="bg-white text-foreground">
         <main className="min-h-screen flex flex-col">
           <Providers>
-            {/* {' '} */}
             <Header />
             {children}
           </Providers>
