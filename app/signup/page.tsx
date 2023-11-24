@@ -55,7 +55,6 @@ export default async function Login({
   return user ? (
     <PageContainer>
       <div>
-        <AuthButton />
         <UpdateForm />
       </div>
     </PageContainer>
