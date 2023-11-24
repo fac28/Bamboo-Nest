@@ -19,10 +19,6 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
-/* .max-height-minus-header {
-  height: calc(100vh - 4rem);
-} */
-
 @layer base {
   :root {
     --background: #ffffff;

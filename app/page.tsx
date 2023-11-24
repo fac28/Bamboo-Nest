@@ -27,8 +27,6 @@ export default async function Index() {
           src="/tumbleweed.jpg"
           alt="Description of the image"
           fill={true}
-          // layout="fill"
-          // objectFit="cover"
         />
       </div>
       <div className="max-w-5xl mx-auto ">

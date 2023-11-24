@@ -8,10 +8,9 @@ export default async function PageContainer({
   return (
     <>
       <Image
-        src="/icecream.jpg" // Replace with the path to your background image
+        src="/icecream.jpg" 
         alt="Background Image"
-        layout="fill"
-        objectFit="cover"
+        fill={true}
       />
       <div className="w-full sm:max-w-md absolute inset-0 justify-center mx-auto flex items-center">
         {children}

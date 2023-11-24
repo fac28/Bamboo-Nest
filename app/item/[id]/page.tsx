@@ -1,6 +1,7 @@
 import FavouriteButton from '@/components/FavouriteButton'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
+import PageContainer from '@/components/PageContainer'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description)'
@@ -52,27 +53,29 @@ export default async function listing({
       data: { user },
     } = await supabase.auth.getUser()
     return (
-      <>
-        <h1>{name}</h1>
-        <h2>Price £{price}</h2>
-        <p>{description}</p>
-        <p>Age category: {age}</p>
-        <p>Brand: {brand}</p>
-        <p>
-          Postage options: {delivery && `post`} {collection && `collect`}
-        </p>
-        <p>Item condition: {condition}</p>
-        <p>Item condition expanded: {conditionDescription}</p>
-        <p>Item category: {category}</p>
-        {/* All images should come from supabase url so might be better to use next Image and approve url */}
-        <img
-          src={publicUrl.publicUrl}
-          width={500}
-          height={500}
-          alt={`image of ${name}`}
-        />
-        <FavouriteButton user={user ? user.id : null} itemID={item_id} />
-      </>
+      <PageContainer>
+        <div className="flex flex-col">
+          <h1>{name}</h1>
+          <h2>Price £{price}</h2>
+          <p>{description}</p>
+          <p>Age category: {age}</p>
+          <p>Brand: {brand}</p>
+          <p>
+            Postage options: {delivery && `post`} {collection && `collect`}
+          </p>
+          <p>Item condition: {condition}</p>
+          <p>Item condition expanded: {conditionDescription}</p>
+          <p>Item category: {category}</p>
+          {/* All images should come from supabase url so might be better to use next Image and approve url */}
+          <img
+            src={publicUrl.publicUrl}
+            width={500}
+            height={500}
+            alt={`image of ${name}`}
+          />
+          <FavouriteButton user={user ? user.id : null} itemID={item_id} />
+        </div>
+      </PageContainer>
     )
   } catch (error) {
     console.log(error)

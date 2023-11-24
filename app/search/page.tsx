@@ -1,5 +1,7 @@
 'use client'
 import Search from '@/components/Search'
+import PageContainer from '@/components/PageContainer'
+
 import fetchCategories from '@/utils/fetchCategories'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -33,7 +35,7 @@ export default function Page() {
   }, [])
 
   return (
-    <>
+    <PageContainer>
       <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
       {/* Pass the handleSearch function as a prop */}
       {searchResults.length === 0 && (
@@ -66,6 +68,6 @@ export default function Page() {
           </div>
         ))}
       </div>
-    </>
+    </PageContainer>
   )
 }
