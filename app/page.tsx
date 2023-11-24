@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import Image from 'next/image'
 
-// import AuthButton from '@/components/AuthButton'
 // import Header from '@/components/Header'
 
 export default async function Index() {
