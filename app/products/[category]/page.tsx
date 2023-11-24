@@ -1,6 +1,8 @@
 import fetchItemsByCategory from '@/utils/fetchItemsByCategory'
 import fetchImage from '@/utils/fetchImage'
 import PageContainer from '@/components/PageContainer'
+import Link from 'next/link'
+
 
 export default async function Page({
   params,

@@ -2,6 +2,8 @@ import FavouriteButton from '@/components/FavouriteButton'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import PageContainer from '@/components/PageContainer'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description)'
@@ -35,6 +37,7 @@ export default async function listing({
       conditions: conditionData,
       categories: categoryData,
       image_id,
+      seller_id,
     } = data[0]
     const age = ageData.age_category
     const condition = conditionData.condition
@@ -66,14 +69,16 @@ export default async function listing({
           <p>Item condition: {condition}</p>
           <p>Item condition expanded: {conditionDescription}</p>
           <p>Item category: {category}</p>
-          {/* All images should come from supabase url so might be better to use next Image and approve url */}
-          <img
+          <Image
             src={publicUrl.publicUrl}
             width={500}
             height={500}
             alt={`image of ${name}`}
           />
           <FavouriteButton user={user ? user.id : null} itemID={item_id} />
+          <Link href={`/seller/${seller_id}`}>
+            <h1 className="text-2xl font-bold">Seller: {seller_id}</h1>
+          </Link>
         </div>
       </PageContainer>
     )

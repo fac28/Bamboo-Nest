@@ -37,7 +37,6 @@ export default function Page() {
   return (
     <PageContainer>
       <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
-      {/* Pass the handleSearch function as a prop */}
       {searchResults.length === 0 && (
         <div className="grid grid-cols-2 gap-4">
           {categories.map(category => (
@@ -54,18 +53,17 @@ export default function Page() {
       )}
       <div className="mt-4">
         {searchResults.map(result => (
-          <div
-            key={result.id}
-            className="bg-white p-2 border rounded shadow mb-2"
-          >
-            <h2>{result.name}</h2>
-            <p>£{result.price}</p>
-            <img
-              src={result.image}
-              alt={result.name}
-              className="w-32 h-32 object-contain"
-            />
-          </div>
+          <Link href={`item/${result.item_id}`} key={result.id}>
+            <div className="bg-white p-2 border rounded shadow mb-2">
+              <h2>{result.name}</h2>
+              <p>£{result.price}</p>
+              <img
+                src={result.image}
+                alt={result.name}
+                className="w-32 h-32 object-contain"
+              />
+            </div>
+          </Link>
         ))}
       </div>
     </PageContainer>
