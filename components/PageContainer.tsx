@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default async function PageContainer({
+export default function PageContainer({
   children,
 }: {
   children: React.ReactNode
