@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { headers, cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import AuthButton from '@/components/AuthButton'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
 
@@ -56,7 +55,6 @@ export default async function Login({
   return user ? (
     <PageContainer>
       <div>
-        <AuthButton />
         <UpdateForm />
       </div>
     </PageContainer>
