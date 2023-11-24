@@ -24,7 +24,7 @@ export default async function Index() {
           </h2>
         </div>
         <Image
-          src="/tumbleweed.png"
+          src="/tumbleweed.jpg"
           alt="Description of the image"
           fill={true}
           // layout="fill"
