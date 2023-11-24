@@ -20,7 +20,8 @@ export default async function Page({
         <h1>{params.category.toUpperCase()}</h1>
         <div className="grid grid-cols-3 gap-4">
           {items.map(item => (
-            <div className="bg-white shadow-md rounded-md p-4" key={item.name}>
+            <Link href={`/item/${item.item_id}`} key={item.name}>
+            <div className="bg-white shadow-md rounded-md p-4">
               <h1 className="text-2xl font-bold">{item.name}</h1>
               <p className="text-xl">£{item.price}</p>
               <img
@@ -30,6 +31,7 @@ export default async function Page({
                 alt={`image of ${item.name}`}
               />
             </div>
+          </Link>
           ))}
         </div>
       </div>
