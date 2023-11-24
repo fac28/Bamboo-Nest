@@ -5,6 +5,7 @@ import { InputField } from '@/components/form/InputField'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import UploadImage from '@/components/UploadImage'
+import PageContainer from '@/components/PageContainer'
 
 export default async function Page() {
   const ageGroups = await fetchAgeGroups()
@@ -17,7 +18,7 @@ export default async function Page() {
   const userId = (user && user.data?.user?.id) || ''
 
   return (
-    <>
+    <PageContainer>
       <UploadImage />
       <InputField
         ageGroups={ageGroups}
@@ -25,6 +26,6 @@ export default async function Page() {
         conditions={conditions}
         seller={userId}
       />
-    </>
+    </PageContainer>
   )
 }

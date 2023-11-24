@@ -1,5 +1,7 @@
 'use client'
 import Search from '@/components/Search'
+import PageContainer from '@/components/PageContainer'
+
 import fetchCategories from '@/utils/fetchCategories'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -33,7 +35,7 @@ export default function Page() {
   }, [])
 
   return (
-    <>
+    <PageContainer>
       <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
       {searchResults.length === 0 && (
         <div className="grid grid-cols-2 gap-4">
@@ -64,6 +66,6 @@ export default function Page() {
           </Link>
         ))}
       </div>
-    </>
+    </PageContainer>
   )
 }

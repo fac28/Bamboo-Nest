@@ -16,7 +16,6 @@ export default async function Index() {
   ]
   return (
     <>
-      {/* <Header /> */}
       <div className="relative h-96">
         <div className="absolute inset-0 flex items-center justify-center mx-auto ">
           <h2 className="z-10 text-center text-black text-5xl w-1/2">
@@ -24,22 +23,20 @@ export default async function Index() {
           </h2>
         </div>
         <Image
-          src="/tumbleweed.png"
+          src="/tumbleweed.jpg"
           alt="Description of the image"
           fill={true}
-          // layout="fill"
-          // objectFit="cover"
         />
       </div>
       <div className="max-w-5xl mx-auto ">
         <div className="flex gap-4 w-500px p-8 cust-dotted-border-bottom">
           <Button className="w-full p-16 bg-primaryBlue border-4 border-solid border-primaryBlue rounded-full">
-            <Link href="/" className="text-white text-4xl">
+            <Link href="/search" className="text-white text-4xl">
               Buy
             </Link>
           </Button>
           <Button className="w-full p-16 bg-white border-4 border-solid border-primaryBlue rounded-full">
-            <Link href="/" className="text-primaryBlue text-4xl">
+            <Link href="/upload" className="text-primaryBlue text-4xl">
               Sell
             </Link>
           </Button>
