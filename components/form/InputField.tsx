@@ -2,25 +2,30 @@
 import { useState, useEffect } from 'react'
 import { Age, Category, Condition } from '@/utils/types'
 
-export function InputField({ageGroups, categories, conditions}:
-  {ageGroups: Age[], categories: Category[], conditions: Condition[]}) {
-  const [errorMessage, setErrorMessage] = useState('');
+export function InputField({
+  ageGroups,
+  categories,
+  conditions,
+}: {
+  ageGroups: Age[]
+  categories: Category[]
+  conditions: Condition[]
+}) {
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     // Use setTimeout to clear the error message after 3 seconds
     if (errorMessage) {
       const timeoutId = setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
+        setErrorMessage('')
+      }, 3000)
 
       // Cleanup the timeout if the component unmounts
-      return () => clearTimeout(timeoutId);
+      return () => clearTimeout(timeoutId)
     }
-  }, [errorMessage]);
-
+  }, [errorMessage])
 
   const submit = async (formData: FormData) => {
-
     const itemName = formData.get('item-name') as string
     const itemDescription = formData.get('item-description') as string
     const itemPrice = formData.get('item-price') as string
@@ -34,11 +39,11 @@ export function InputField({ageGroups, categories, conditions}:
     const itemPicture = formData.get('item-picture') as string
 
     if (!(canDeliver === 'on' || canCollect === 'on')) {
-      setErrorMessage('Please select at least one delivery option');
-      return;
+      setErrorMessage('Please select at least one delivery option')
+      return
     }
 
-    setErrorMessage('');
+    setErrorMessage('')
 
     const info = JSON.stringify({
       itemName,
@@ -116,12 +121,12 @@ export function InputField({ageGroups, categories, conditions}:
         </select>
         <label htmlFor="brand">Brand:</label>
         <input name="brand" id="brand" placeholder="Brand"></input>
-        <fieldset id='delivery'>
+        <fieldset id="delivery">
           <legend>Choose your delivery options</legend>
-            <input type="checkbox" name="can-deliver" id="can-deliver" />
-            <label htmlFor="can-deliver">Available for delivery</label>
-            <input type="checkbox" name="can-collect" id="can-collect" />
-            <label htmlFor="can-collect">Available for collection</label>
+          <input type="checkbox" name="can-deliver" id="can-deliver" />
+          <label htmlFor="can-deliver">Available for delivery</label>
+          <input type="checkbox" name="can-collect" id="can-collect" />
+          <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
         <label htmlFor="avatar">Upload an item picture:</label>
         <label htmlFor="location">Location:</label>
