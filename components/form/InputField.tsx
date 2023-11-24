@@ -1,76 +1,67 @@
-'use client'
-import { useState, useEffect } from 'react'
 import { Age, Category, Condition } from '@/utils/types'
+import { cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
+import { redirect } from 'next/navigation'
 
-export function InputField({
+export async function InputField({
   ageGroups,
   categories,
   conditions,
+  seller
 }: {
   ageGroups: Age[]
   categories: Category[]
   conditions: Condition[]
+  seller: string
 }) {
-  const [errorMessage, setErrorMessage] = useState('')
-
-  useEffect(() => {
-    // Use setTimeout to clear the error message after 3 seconds
-    if (errorMessage) {
-      const timeoutId = setTimeout(() => {
-        setErrorMessage('')
-      }, 3000)
-
-      // Cleanup the timeout if the component unmounts
-      return () => clearTimeout(timeoutId)
-    }
-  }, [errorMessage])
 
   const submit = async (formData: FormData) => {
-    const itemName = formData.get('item-name') as string
-    const itemDescription = formData.get('item-description') as string
-    const itemPrice = formData.get('item-price') as string
-    const ageGroup = formData.get('age-groups') as string
-    const category = formData.get('category') as string
-    const condition = formData.get('condition') as string
+    'use server'
+
+    const name = formData.get('item-name') as string
+    const description = formData.get('item-description') as string
+    const price = parseFloat(formData.get('item-price') as string)
+    const age_category = parseInt(formData.get('age-groups') as string)
+    const category_id = parseInt(formData.get('category') as string)
+    const condition = parseInt(formData.get('condition') as string)
     const brand = formData.get('brand') as string
-    const canDeliver = formData.get('can-deliver') as string
-    const canCollect = formData.get('can-collect') as string
-    const location = formData.get('location') as string
-    const itemPicture = formData.get('item-picture') as string
+    const delivery = formData.get('can-deliver')
+    delivery === 'on' ? true : false
+    const collection = formData.get('can-collect')
+    collection === 'on' ? true : false
 
-    if (!(canDeliver === 'on' || canCollect === 'on')) {
-      setErrorMessage('Please select at least one delivery option')
-      return
-    }
-
-    setErrorMessage('')
-
-    const info = JSON.stringify({
-      itemName,
-      itemDescription,
-      itemPrice,
-      ageGroup,
-      category,
+    const itemInfo = {
+      name,
+      description,
+      price,
+      age_category,
+      category_id,
       condition,
       brand,
-      canDeliver,
-      canCollect,
-      location,
-      itemPicture,
-    })
+      delivery,
+      collection,
+      seller_id: seller,
+    }
 
-    console.log(info)
+    const cookieStore = cookies()
+    const supabase = createClient(cookieStore)
+
+    const { error } = await supabase
+      .from('items')
+      .insert(itemInfo)
+      .select()
+
+    if (error) {
+      console.log(error)
+    }
+
+    return redirect('/search')
   }
 
   return (
     <div>
       <h1>Upload Item</h1>
-      {errorMessage && (
-        <div className="error" style={{ color: 'red' }}>
-          {errorMessage}
-        </div>
-      )}
-      <form className="grid grid-cols-1 gap-2" action={submit}>
+      <form className="grid grid-cols-1 gap-2">
         <label htmlFor="item-name">Item Name:</label>
         <input
           name="item-name"
@@ -128,16 +119,7 @@ export function InputField({
           <input type="checkbox" name="can-collect" id="can-collect" />
           <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
-        <label htmlFor="avatar">Upload an item picture:</label>
-        <label htmlFor="location">Location:</label>
-        <input name="location" id="location" placeholder="Location" required />
-        <input
-          type="file"
-          id="item-picture"
-          name="item-picture"
-          accept="image/png, image/jpeg"
-        />
-        <button>Submit</button>
+        <button type='submit' formAction={submit}>Submit</button>
       </form>
     </div>
   )
