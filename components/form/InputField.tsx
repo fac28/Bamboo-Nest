@@ -7,14 +7,13 @@ export async function InputField({
   ageGroups,
   categories,
   conditions,
-  seller
+  seller,
 }: {
   ageGroups: Age[]
   categories: Category[]
   conditions: Condition[]
   seller: string
 }) {
-
   const submit = async (formData: FormData) => {
     'use server'
 
@@ -46,10 +45,7 @@ export async function InputField({
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
 
-    const { error } = await supabase
-      .from('items')
-      .insert(itemInfo)
-      .select()
+    const { error } = await supabase.from('items').insert(itemInfo).select()
 
     if (error) {
       console.log(error)
@@ -119,7 +115,9 @@ export async function InputField({
           <input type="checkbox" name="can-collect" id="can-collect" />
           <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
-        <button type='submit' formAction={submit}>Submit</button>
+        <button type="submit" formAction={submit}>
+          Submit
+        </button>
       </form>
     </div>
   )

@@ -4,7 +4,7 @@ import fetchConditions from '@/utils/fetchConditions'
 import { InputField } from '@/components/form/InputField'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import UploadImage from "@/components/UploadImage"
+import UploadImage from '@/components/UploadImage'
 
 export default async function Page() {
   const ageGroups = await fetchAgeGroups()
@@ -14,7 +14,7 @@ export default async function Page() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   const user = await supabase.auth.getUser()
-  const userId = user && user.data?.user?.id || ''
+  const userId = (user && user.data?.user?.id) || ''
 
   return (
     <>
