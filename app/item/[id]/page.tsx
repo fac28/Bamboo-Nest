@@ -1,6 +1,7 @@
 import FavouriteButton from '@/components/FavouriteButton'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const itemQuery =
@@ -66,7 +67,7 @@ export default async function listing({
         <p>Item condition: {condition}</p>
         <p>Item condition expanded: {conditionDescription}</p>
         <p>Item category: {category}</p>
-        <img
+        <Image
           src={publicUrl.publicUrl}
           width={500}
           height={500}
@@ -74,7 +75,7 @@ export default async function listing({
         />
         <FavouriteButton user={user ? user.id : null} itemID={item_id} />
         <Link href={`/seller/${seller_id}`}>
-          <h1 className="text-2xl font-bold">{seller_id}</h1>
+          <h1 className="text-2xl font-bold">Seller: {seller_id}</h1>
         </Link>
       </>
     )

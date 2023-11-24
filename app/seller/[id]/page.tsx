@@ -1,5 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
+import Image from 'next/image'
 
 export default async function listing({
   params,
@@ -41,10 +42,12 @@ export default async function listing({
       <>
         <div>
           <h1>{fullName}</h1>
-          <img
+          <Image
             src={publicUrl.publicUrl}
             alt={`${fullName}'s avatar photo`}
-          ></img>
+            width={300}
+            height={300}
+          />
         </div>
         <p>{bio}</p>
         <div>
