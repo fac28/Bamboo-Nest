@@ -32,12 +32,12 @@ export default async function Index() {
       <div className="max-w-5xl mx-auto ">
         <div className="flex gap-4 w-500px p-8 cust-dotted-border-bottom">
           <Button className="w-full p-16 bg-primaryBlue border-4 border-solid border-primaryBlue rounded-full">
-            <Link href="/" className="text-white text-4xl">
+            <Link href="/search" className="text-white text-4xl">
               Buy
             </Link>
           </Button>
           <Button className="w-full p-16 bg-white border-4 border-solid border-primaryBlue rounded-full">
-            <Link href="/" className="text-primaryBlue text-4xl">
+            <Link href="/upload" className="text-primaryBlue text-4xl">
               Sell
             </Link>
           </Button>
