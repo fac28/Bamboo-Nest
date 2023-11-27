@@ -2,7 +2,6 @@ import Link from 'next/link'
 import PageContainer from '@/components/PageContainer'
 
 export default async function Login() {
-
   return (
     <PageContainer>
       <h1> Your Account </h1>
