@@ -8,7 +8,7 @@ export default async function listing({
   params,
 }: {
   params: {
-    section: string,
+    section: string
     message: string
   }
 }) {
@@ -19,29 +19,26 @@ export default async function listing({
     data: { user },
   } = await supabase.auth.getUser()
 
-
-  const sections : { [key: string]: string } = {
-    'details': 'Personal Details',
-    'favorites': 'Favorites',
-    'purchases': 'Purchases',
-    'sold': 'Sold'
+  const sections: { [key: string]: string } = {
+    details: 'Personal Details',
+    favorites: 'Favorites',
+    purchases: 'Purchases',
+    sold: 'Sold',
   }
 
-    return user ? (
-      <PageContainer>
-        <h1>Your Account</h1>
-        <h1>{sections[params.section]}</h1>
-        <div>
-          <UpdateForm />
-        </div>
-      </PageContainer>
-    ) :(
-      <PageContainer>
-        <h1>Your Account</h1>
-        <h1>{sections[params.section]}</h1>
-        <Link href={'/login'}>Log in to see your account details
-        </Link>
-
-      </PageContainer>
-    )
-  }
+  return user ? (
+    <PageContainer>
+      <h1>Your Account</h1>
+      <h1>{sections[params.section]}</h1>
+      <div>
+        <UpdateForm />
+      </div>
+    </PageContainer>
+  ) : (
+    <PageContainer>
+      <h1>Your Account</h1>
+      <h1>{sections[params.section]}</h1>
+      <Link href={'/login'}>Log in to see your account details</Link>
+    </PageContainer>
+  )
+}

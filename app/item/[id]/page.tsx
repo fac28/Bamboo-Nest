@@ -52,7 +52,6 @@ export default async function listing({
           />
 
           <Image
-
             src={image_path}
             width={300}
             height={300}
