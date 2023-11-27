@@ -57,28 +57,37 @@ export default async function listing({
     } = await supabase.auth.getUser()
     return (
       <PageContainer>
-        <div className="flex flex-col">
-          <h1>{name}</h1>
-          <h2>Price £{price}</h2>
-          <p>{description}</p>
+        <div className="flex flex-col gap-y-4">
+          <FavouriteButton
+            user={user ? user.id : null}
+            itemID={item_id}
+            className="self-end"
+          />
+
+          <Image
+            src={publicUrl.publicUrl}
+            width={300}
+            height={300}
+            alt={`image of ${name}`}
+            className="self-center rounded-lg"
+          />
+          <p>{brand}</p>
+          <div className="flex flex-wrap justify-between">
+            <p>{name}</p>
+            <p>£{price}</p>
+          </div>
+          <Link href={`/seller/${seller_id}`} className="self-center">
+            <p>Seller: {seller_id}</p>
+          </Link>
+          <p>Item condition: {condition}</p>
+          <p>Item condition expanded: {conditionDescription}</p>
           <p>Age category: {age}</p>
-          <p>Brand: {brand}</p>
+          <p>Item category: {category}</p>
+
           <p>
             Postage options: {delivery && `post`} {collection && `collect`}
           </p>
-          <p>Item condition: {condition}</p>
-          <p>Item condition expanded: {conditionDescription}</p>
-          <p>Item category: {category}</p>
-          <Image
-            src={publicUrl.publicUrl}
-            width={500}
-            height={500}
-            alt={`image of ${name}`}
-          />
-          <FavouriteButton user={user ? user.id : null} itemID={item_id} />
-          <Link href={`/seller/${seller_id}`}>
-            <h1 className="text-2xl font-bold">Seller: {seller_id}</h1>
-          </Link>
+          <p>{description}</p>
         </div>
       </PageContainer>
     )

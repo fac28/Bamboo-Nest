@@ -13,12 +13,13 @@
 }
 
 .vh-without-nav {
-  height: calc(100vh - 4rem);
+  min-height: calc(100vh - 4rem);
 }
 
 .margin-left-auto {
   margin-left: auto;
 }
+
 .cust-dotted-border-bottom {
   border-bottom: 6px dotted #0b56ff;
 }
