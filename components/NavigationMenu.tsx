@@ -16,7 +16,13 @@ import {
 export default function NavigationMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
-  const menuLinks = { 'Search Items': '/', 'Sell Item': '/upload', 'Account': '/signup', 'Contact': '/contact', 'FAQs': '/faqs'}
+  const menuLinks = {
+    'Search Items': '/',
+    'Sell Item': '/upload',
+    Account: '/signup',
+    Contact: '/contact',
+    FAQs: '/faqs',
+  }
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="w-min">
