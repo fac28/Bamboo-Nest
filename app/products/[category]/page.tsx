@@ -10,7 +10,11 @@ export default async function Page({
 }) {
   const items = await fetchItemsByCategory(decodeURIComponent(params.category))
   for (const item of items) {
+    if (item.image_path){
+      item.image = item.image_path
+    } else {
     item.image = await fetchImage(item.image_id)
+    }
   }
 
   return (
