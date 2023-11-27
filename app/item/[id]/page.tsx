@@ -33,11 +33,11 @@ export default async function listing({
       brand,
       delivery,
       collection,
-      age: {age_category:age },
-      conditions: {condition: condition, description: conditionDescription},
-      categories: {category_name: category},
+      age: { age_category: age },
+      conditions: { condition: condition, description: conditionDescription },
+      categories: { category_name: category },
       seller_id,
-      image_path
+      image_path,
     } = data[0]
     const {
       data: { user },

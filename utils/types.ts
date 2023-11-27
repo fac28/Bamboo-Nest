@@ -32,6 +32,7 @@ export type Item = Database['public']['Tables']['items']['Row']
 export type ItemWithImage = Item & {
   image: string
   id: number
+  image_path: string
 }
 
 export type Age = Database['public']['Tables']['age']['Row']
