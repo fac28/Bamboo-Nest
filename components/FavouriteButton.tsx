@@ -5,16 +5,20 @@ import toggleFavourite from '@/utils/handleFavouriteItem'
 export default function FavouriteButton({
   user,
   itemID,
+  className
 }: {
   user: string | null
   itemID: string
+  className?: string
 }) {
   return user ? (
-    <button onClick={() => toggleFavourite(user, itemID)}>
+    <button className={className} onClick={() => toggleFavourite(user, itemID)}>
       ADD TO FAVOURITES
     </button>
   ) : (
-    <button onClick={logInAlert}>ADD TO FAVOURITES</button>
+    <button className={className} onClick={logInAlert}>
+      ADD TO FAVOURITES
+    </button>
   )
 }
 

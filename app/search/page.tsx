@@ -43,7 +43,7 @@ export default function Page() {
           ))}
         </div>
       )}
-      <div className="mt-4">
+      <div className="mt-4 grid grid-cols-2 gap-4">
         {searchResults.map(result => (
           <Link href={`item/${result.item_id}`} key={result.id}>
             <div className="bg-white p-2 border rounded shadow mb-2">

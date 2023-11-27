@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export default function PageContainer({
   children,
@@ -7,8 +7,8 @@ export default function PageContainer({
 }) {
   return (
     <>
-      <Image src="/icecream.jpg" alt="Background Image" fill={true} />
-      <div className="w-full sm:max-w-md absolute inset-0 justify-center mx-auto flex items-center">
+      {/* <Image src="/icecream.jpg" alt="Background Image" fill={true} /> */}
+      <div className="w-full px-96 py-8 vh-without-nav justify-center mx-auto flex flex-wrap flex-col items-center global-background">
         {children}
       </div>
     </>

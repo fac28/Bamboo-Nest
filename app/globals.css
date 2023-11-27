@@ -8,9 +8,18 @@
   box-sizing: border-box;
 }
 
+.global-background {
+  background-image: url('/icecream.jpg');
+}
+
+.vh-without-nav {
+  min-height: calc(100vh - 4rem);
+}
+
 .margin-left-auto {
   margin-left: auto;
 }
+
 .cust-dotted-border-bottom {
   border-bottom: 6px dotted #0b56ff;
 }
