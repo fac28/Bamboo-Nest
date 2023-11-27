@@ -5,7 +5,7 @@ import toggleFavourite from '@/utils/handleFavouriteItem'
 export default function FavouriteButton({
   user,
   itemID,
-  className
+  className,
 }: {
   user: string | null
   itemID: string
