@@ -9,6 +9,7 @@ export default async function UpdateForm() {
 
     const firstName = formData.get('First Name') as string
     const lastName = formData.get('Last Name') as string
+    const bio = formData.get('Bio') as string
 
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
@@ -23,6 +24,7 @@ export default async function UpdateForm() {
         id: user?.id,
         first_name: firstName,
         last_name: lastName,
+        bio: bio,
       })
       .select()
 
@@ -68,6 +70,12 @@ export default async function UpdateForm() {
           name="Last Name"
           placeholder="Last Name"
           required
+        />
+        <label htmlFor="Bio">About Me</label>
+        <textarea
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="Bio"
+          placeholder="Write a little about yourself"
         />
         <button
           formAction={update}
