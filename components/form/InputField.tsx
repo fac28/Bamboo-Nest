@@ -17,6 +17,9 @@ export async function InputField({
   const submit = async (formData: FormData) => {
     'use server'
 
+    const image = formData.get('item-picture') as File
+    const imageName = image.name
+
     const name = formData.get('item-name') as string
     const description = formData.get('item-description') as string
     const price = parseFloat(formData.get('item-price') as string)
@@ -29,6 +32,17 @@ export async function InputField({
     const collection = formData.get('can-collect')
     collection === 'on' ? true : false
 
+    const cookieStore = cookies()
+    const supabase = createClient(cookieStore)
+
+    await supabase.storage
+      .from('item-pictures')
+      .upload(imageName, image, { upsert: true })
+
+    const { data: publicUrl } = await supabase.storage
+      .from('item-pictures')
+      .getPublicUrl(imageName)
+
     const itemInfo = {
       name,
       description,
@@ -40,15 +54,13 @@ export async function InputField({
       delivery,
       collection,
       seller_id: seller,
+      image_path: publicUrl.publicUrl,
     }
-
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
 
     const { error } = await supabase.from('items').insert(itemInfo).select()
 
     if (error) {
-      console.log(error)
+      console.error(error)
     }
 
     return redirect('/search')
@@ -115,6 +127,13 @@ export async function InputField({
           <input type="checkbox" name="can-collect" id="can-collect" />
           <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
+        <label htmlFor="item-picture">Select an item picture:</label>
+        <input
+          type="file"
+          id="item-picture"
+          name="item-picture"
+          accept="image/png, image/jpeg"
+        />
         <button type="submit" formAction={submit}>
           Submit
         </button>

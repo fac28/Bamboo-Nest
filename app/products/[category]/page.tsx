@@ -1,5 +1,4 @@
 import fetchItemsByCategory from '@/utils/fetchItemsByCategory'
-import fetchImage from '@/utils/fetchImage'
 import PageContainer from '@/components/PageContainer'
 import Link from 'next/link'
 
@@ -9,9 +8,6 @@ export default async function Page({
   params: { category: string }
 }) {
   const items = await fetchItemsByCategory(decodeURIComponent(params.category))
-  for (const item of items) {
-    item.image = await fetchImage(item.image_id)
-  }
 
   return (
     <PageContainer>
@@ -24,7 +20,7 @@ export default async function Page({
                 <h1 className="text-2xl font-bold">{item.name}</h1>
                 <p className="text-xl">£{item.price}</p>
                 <img
-                  src={item.image}
+                  src={item.image_path}
                   width={200}
                   height={200}
                   alt={`image of ${item.name}`}
