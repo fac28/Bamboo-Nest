@@ -8,7 +8,7 @@ export default function PageContainer({
   return (
     <>
       {/* <Image src="/icecream.jpg" alt="Background Image" fill={true} /> */}
-      <div className="w-full sm:max-w-md justify-center mx-auto flex flex-wrap items-center">
+      <div className="w-full sm:max-w-md justify-center mx-auto flex flex-wrap flex-col items-center">
         {children}
       </div>
     </>
