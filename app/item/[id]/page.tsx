@@ -33,25 +33,12 @@ export default async function listing({
       brand,
       delivery,
       collection,
-      age: ageData,
-      conditions: conditionData,
-      categories: categoryData,
-      image_id,
+      age: {age_category:age },
+      conditions: {condition: condition, description: conditionDescription},
+      categories: {category_name: category},
       seller_id,
+      image_path
     } = data[0]
-    const age = ageData.age_category
-    const condition = conditionData.condition
-    const conditionDescription = conditionData.description
-    const category = categoryData.category_name
-    const { data: allImagesData } = await supabase.storage
-      .from('item-pictures')
-      .list('')
-    const imageName = allImagesData?.filter(
-      singleImage => singleImage.id === image_id,
-    )
-    const { data: publicUrl } = await supabase.storage
-      .from('item-pictures')
-      .getPublicUrl(`${imageName && imageName[0].name}`)
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -70,7 +57,7 @@ export default async function listing({
           <p>Item condition expanded: {conditionDescription}</p>
           <p>Item category: {category}</p>
           <Image
-            src={publicUrl.publicUrl}
+            src={image_path}
             width={500}
             height={500}
             alt={`image of ${name}`}
