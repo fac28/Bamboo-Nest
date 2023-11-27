@@ -4,7 +4,6 @@ import fetchConditions from '@/utils/fetchConditions'
 import { InputField } from '@/components/form/InputField'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import UploadImage from '@/components/UploadImage'
 import PageContainer from '@/components/PageContainer'
 
 export default async function Page() {
@@ -19,7 +18,6 @@ export default async function Page() {
 
   return (
     <PageContainer>
-      <UploadImage />
       <InputField
         ageGroups={ageGroups}
         categories={categories}

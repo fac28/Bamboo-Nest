@@ -6,7 +6,6 @@ import fetchCategories from '@/utils/fetchCategories'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
-import fetchImage from '@/utils/fetchImage'
 import { Category, ItemWithImage } from '@/utils/types'
 
 export default function Page() {
@@ -15,13 +14,6 @@ export default function Page() {
 
   async function handleSearch(term: string) {
     const items = await searchItem(term)
-
-    await Promise.all(
-      items.map(async item => {
-        item.image = await fetchImage(item.image_id)
-      }),
-    )
-
     setSearchResults(items)
   }
 
@@ -58,7 +50,7 @@ export default function Page() {
               <h2>{result.name}</h2>
               <p>£{result.price}</p>
               <img
-                src={result.image}
+                src={result.image_path}
                 alt={result.name}
                 className="w-32 h-32 object-contain"
               />
