@@ -16,7 +16,13 @@ import {
 export default function NavigationMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
-  const menuItems = ['Search Items', 'Sell Item', 'Account', 'Contact', 'FAQs']
+  const menuLinks = {
+    'Search Items': '/',
+    'Sell Item': '/upload',
+    Account: '/signup',
+    Contact: '/contact',
+    FAQs: '/faqs',
+  }
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="w-min">
@@ -33,18 +39,18 @@ export default function NavigationMenu() {
         />
       </NavbarContent>
       <NavbarMenu className="justify-evenly">
-        {menuItems.map((item, index) => (
+        {Object.entries(menuLinks).map(([item, route], index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               color={
                 index === 2
                   ? 'primary'
-                  : index === menuItems.length - 1
+                  : index === Object.keys(menuLinks).length - 1
                     ? 'danger'
                     : 'foreground'
               }
               className="w-full justify-center"
-              href={index === 0 ? '/search' : index === 2 ? '/login' : '#'}
+              href={route}
               size="lg"
             >
               {item}
