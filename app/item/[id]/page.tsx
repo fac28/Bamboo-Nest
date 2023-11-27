@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import PageContainer from '@/components/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
+import WideBlueButton from '@/components/WideBlueButton'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description)'
@@ -44,7 +45,7 @@ export default async function listing({
     } = await supabase.auth.getUser()
     return (
       <PageContainer>
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-6">
           <FavouriteButton
             user={user ? user.id : null}
             itemID={item_id}
@@ -52,30 +53,35 @@ export default async function listing({
           />
 
           <Image
-
             src={image_path}
             width={300}
             height={300}
             alt={`image of ${name}`}
             className="self-center rounded-lg"
           />
-          <p>{brand}</p>
-          <div className="flex flex-wrap justify-between">
+          <p className="font-light">{brand.toUpperCase()}</p>
+          <div className="flex flex-wrap justify-between text-xl font-medium">
             <p>{name}</p>
             <p>£{price}</p>
           </div>
           <Link href={`/seller/${seller_id}`} className="self-center">
             <p>Seller: {seller_id}</p>
           </Link>
-          <p>Item condition: {condition}</p>
-          <p>Item condition expanded: {conditionDescription}</p>
-          <p>Age category: {age}</p>
-          <p>Item category: {category}</p>
+          <div className="italic font-light child:py-1">
+            <p>Item condition: {condition}</p>
+            <p>Item condition expanded: {conditionDescription}</p>
+            <p>Age category: {age}</p>
+            <p>Item category: {category}</p>
 
-          <p>
-            Postage options: {delivery && `post`} {collection && `collect`}
-          </p>
+            <p>
+              Postage options: {delivery && `post`} {collection && `collect`}
+            </p>
+          </div>
           <p>{description}</p>
+          <WideBlueButton
+            buttonTitle="Request Seller Info"
+            pageUrl={`/seller/${seller_id}`}
+          />
         </div>
       </PageContainer>
     )
