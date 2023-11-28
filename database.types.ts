@@ -75,12 +75,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "item_categories_sub_category_id_fkey"
-            columns: ["sub_category_id"]
+            foreignKeyName: 'item_categories_sub_category_id_fkey'
+            columns: ['sub_category_id']
             isOneToOne: false
-            referencedRelation: "sub_categories"
-            referencedColumns: ["id"]
-          }
+            referencedRelation: 'sub_categories'
+            referencedColumns: ['id']
+          },
         ]
       }
       items: {
@@ -134,40 +134,40 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "items_age_category_fkey"
-            columns: ["age_category"]
+            foreignKeyName: 'items_age_category_fkey'
+            columns: ['age_category']
             isOneToOne: false
-            referencedRelation: "age"
-            referencedColumns: ["id"]
+            referencedRelation: 'age'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "items_category_id_fkey"
-            columns: ["category_id"]
+            foreignKeyName: 'items_category_id_fkey'
+            columns: ['category_id']
             isOneToOne: false
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
+            referencedRelation: 'categories'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "items_condition_fkey"
-            columns: ["condition"]
+            foreignKeyName: 'items_condition_fkey'
+            columns: ['condition']
             isOneToOne: false
-            referencedRelation: "conditions"
-            referencedColumns: ["id"]
+            referencedRelation: 'conditions'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "items_image_id_fkey"
-            columns: ["image_id"]
+            foreignKeyName: 'items_image_id_fkey'
+            columns: ['image_id']
             isOneToOne: false
-            referencedRelation: "objects"
-            referencedColumns: ["id"]
+            referencedRelation: 'objects'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "items_seller_id_fkey"
-            columns: ["seller_id"]
+            foreignKeyName: 'items_seller_id_fkey'
+            columns: ['seller_id']
             isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
         ]
       }
       reviews: {
@@ -197,19 +197,19 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "reviews_seller_id_fkey"
-            columns: ["seller_id"]
+            foreignKeyName: 'reviews_seller_id_fkey'
+            columns: ['seller_id']
             isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "reviews_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: 'reviews_user_id_fkey'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
         ]
       }
       sub_categories: {
@@ -230,12 +230,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "sub_categories_category_id_fkey"
-            columns: ["category_id"]
+            foreignKeyName: 'sub_categories_category_id_fkey'
+            columns: ['category_id']
             isOneToOne: false
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          }
+            referencedRelation: 'categories'
+            referencedColumns: ['id']
+          },
         ]
       }
       users: {
@@ -283,19 +283,19 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "users_id_fkey"
-            columns: ["id"]
+            foreignKeyName: 'users_id_fkey'
+            columns: ['id']
             isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "users_profile_picture_fkey"
-            columns: ["profile_picture"]
+            foreignKeyName: 'users_profile_picture_fkey'
+            columns: ['profile_picture']
             isOneToOne: false
-            referencedRelation: "objects"
-            referencedColumns: ["id"]
-          }
+            referencedRelation: 'objects'
+            referencedColumns: ['id']
+          },
         ]
       }
     }
