@@ -13,9 +13,11 @@ export default function SearchPageCategoryCard({
     <Link
       key={cardKey}
       href={linkHref}
-      className="bg-white shadow-md rounded-md p-4"
+      className="bg-white shadow-md rounded-2xl border border-primaryBlue p-16"
     >
-      <h1 className="text-2xl font-bold">{cardName}</h1>
+      <p className="text-2xl font-medium text-center text-primaryBlue">
+        {cardName}
+      </p>
     </Link>
   )
 }

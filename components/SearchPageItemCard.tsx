@@ -21,7 +21,7 @@ export default function SearchPageItemCard({
       key={cardKey}
       className="bg-white p-2 border rounded shadow mb-2"
     >
-      <h2>{cardName}</h2>
+      <p>{cardName}</p>
       <p>£{cardPrice}</p>
       <img
         src={cardImgSrc}

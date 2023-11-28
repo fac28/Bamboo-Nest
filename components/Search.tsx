@@ -25,7 +25,7 @@ export default function Search({
       </label>
       <input
         id="search"
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm focus:outline-primaryBlue placeholder:text-gray-500"
+        className="peer block w-full rounded-md border border-primaryBlue py-[9px] pl-10 text-2xl text-primaryBlue focus:outline-primaryBlue placeholder:text-primaryBlue placeholder:font-extralight placeholder:italic"
         placeholder={placeholder}
         value={searchTerm}
         onChange={handleChange}
