@@ -28,6 +28,7 @@ export async function InputField({
     const price = parseFloat(formData.get('item-price') as string)
     const age_category = parseInt(formData.get('age-groups') as string)
     const category_id = parseInt(formData.get('category') as string)
+    const sub_category_id = parseInt(formData.get('sub-category') as string)
     const condition = parseInt(formData.get('condition') as string)
     const brand = formData.get('brand') as string
     const delivery = formData.get('can-deliver')
@@ -52,6 +53,7 @@ export async function InputField({
       price,
       age_category,
       category_id,
+      sub_category_id,
       condition,
       brand,
       delivery,

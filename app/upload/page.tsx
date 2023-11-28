@@ -17,7 +17,6 @@ export default async function Page() {
   const supabase = createClient(cookieStore)
   const user = await supabase.auth.getUser()
   const userId = (user && user.data?.user?.id) || ''
-  console.log(subCategories)
   return (
     <PageContainer>
       <InputField

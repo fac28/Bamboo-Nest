@@ -13,7 +13,6 @@ export default function SelectCategories({
   const [selectedCategoryState, setSelectedCategoryState] = useState(
     categories[0].id,
   )
-  console.log({ selectedCategoryState })
   return (
     <>
       <label htmlFor="item-category">Category:</label>
