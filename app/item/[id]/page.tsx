@@ -16,7 +16,6 @@ export default async function listing({
     id: string
   }
 }) {
-
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   try {

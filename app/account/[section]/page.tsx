@@ -3,6 +3,7 @@ import UpdateForm from '@/components/form/UpdateProfile'
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
+import Purchase from '@/components/PurchaseHistory'
 
 export default async function listing({
   params,
@@ -26,13 +27,27 @@ export default async function listing({
     sold: 'Sold',
   }
 
+  let component = null
+  switch (params.section) {
+    case 'details':
+      component = <UpdateForm />
+      break
+    case 'favorites':
+      break
+    case 'purchases':
+      component = <Purchase />
+      break
+    case 'sold':
+      break
+    default:
+      break
+  }
+
   return user ? (
     <PageContainer>
       <h1>Your Account</h1>
       <h1>{sections[params.section]}</h1>
-      <div>
-        <UpdateForm />
-      </div>
+      <div>{component}</div>
     </PageContainer>
   ) : (
     <PageContainer>
