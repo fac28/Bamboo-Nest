@@ -27,6 +27,7 @@ export type User = {
 }
 
 export type Category = Database['public']['Tables']['categories']['Row']
+export type SubCategory = Database['public']['Tables']['sub_categories']['Row']
 export type Item = Database['public']['Tables']['items']['Row']
 
 export type ItemWithImage = Item & {

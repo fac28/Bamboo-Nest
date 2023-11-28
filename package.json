@@ -38,6 +38,7 @@
     "eslint-config-prettier": "^9.0.0",
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
+    "supabase": "^1.115.4",
     "typescript": "^5.3.2"
   }
 }
