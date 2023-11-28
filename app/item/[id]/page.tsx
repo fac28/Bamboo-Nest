@@ -16,6 +16,7 @@ export default async function listing({
     id: string
   }
 }) {
+
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   try {
@@ -68,7 +69,7 @@ export default async function listing({
             <p>Seller: {seller_id}</p>
           </Link>
           <div className="italic font-light child:py-1">
-            <p>Item condition: {condition}</p>
+            <p>Condition: {condition}</p>
             <p>Item condition expanded: {conditionDescription}</p>
             <p>Age category: {age}</p>
             <p>Item category: {category}</p>
