@@ -16,7 +16,6 @@ export default async function listing({
     id: string
   }
 }) {
-
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   try {
@@ -51,6 +50,7 @@ export default async function listing({
             user={user ? user.id : null}
             itemID={item_id}
             className="self-end"
+            initialIsFavourite={false}
           />
 
           <Image
