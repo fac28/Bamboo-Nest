@@ -17,7 +17,10 @@ export default async function Page() {
   const supabase = createClient(cookieStore)
   const user = await supabase.auth.getUser()
   const userId = (user && user.data?.user?.id) || ''
-  const {data} = await supabase.from('users').select('first_name,last_name,bio').eq('id',userId)
+  const { data } = await supabase
+    .from('users')
+    .select('first_name,last_name,bio')
+    .eq('id', userId)
   const existsOnUsersTable = data ? true : false
   return (
     <PageContainer>
