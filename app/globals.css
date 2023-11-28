@@ -13,7 +13,7 @@
 }
 
 .vh-without-nav {
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 6rem);
 }
 
 .margin-left-auto {
