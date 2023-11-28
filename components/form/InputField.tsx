@@ -4,6 +4,9 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 
+const regexForOutCode =
+  '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
+
 export async function InputField({
   ageGroups,
   categories,
@@ -31,6 +34,7 @@ export async function InputField({
     const sub_category_id = parseInt(formData.get('sub-category') as string)
     const condition = parseInt(formData.get('condition') as string)
     const brand = formData.get('brand') as string
+    const postcode = formData.get('postcode') as string
     const delivery = formData.get('can-deliver')
     delivery === 'on' ? true : false
     const collection = formData.get('can-collect')
@@ -60,6 +64,7 @@ export async function InputField({
       collection,
       seller_id: seller,
       image_path: publicUrl.publicUrl,
+      postcode: postcode,
     }
 
     const { error } = await supabase.from('items').insert(itemInfo).select()
@@ -127,6 +132,16 @@ export async function InputField({
           <input type="checkbox" name="can-collect" id="can-collect" />
           <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
+        <label htmlFor="postcode">
+          Please enter the first half of your postcode:
+        </label>
+        <input
+          className="invalid:bg-red-500"
+          type="text"
+          name="postcode"
+          id="postcode"
+          pattern={regexForOutCode}
+        />
         <label htmlFor="item-picture">Select an item picture:</label>
         <input
           type="file"
