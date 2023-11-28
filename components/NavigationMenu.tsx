@@ -35,7 +35,6 @@ export default function NavigationMenu() {
       <NavbarContent justify="end">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          // className="sm:hidden"
         />
       </NavbarContent>
       <NavbarMenu className="justify-evenly">

@@ -7,7 +7,9 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, ItemWithImage } from '@/utils/types'
-import FavouriteButton from '@/components/FavouriteButton'
+// import FavouriteButton from '@/components/FavouriteButton'
+import SearchPageItemCard from '@/components/SearchPageItemCard'
+import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
 
 export default function Page() {
   const [searchResults, setSearchResults] = useState<ItemWithImage[]>([])
@@ -29,41 +31,31 @@ export default function Page() {
 
   return (
     <PageContainer>
-      <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
-      {searchResults.length === 0 && (
-        <div className="grid grid-cols-2 gap-4">
-          {categories.map(category => (
-            <div
-              key={category.category_name}
-              className="bg-white shadow-md rounded-md p-4"
-            >
-              <Link href={`/products/${category.category_name}`}>
-                <h1 className="text-2xl font-bold">{category.category_name}</h1>
-              </Link>
-            </div>
+      <div className="flex flex-col gap-4">
+        <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
+        {searchResults.length === 0 && (
+          <div className="grid grid-cols-2 gap-4">
+            {categories.map(category => (
+              <SearchPageCategoryCard
+                cardKey={category.category_name}
+                linkHref={`/products/${category.category_name}`}
+                cardName={category.category_name}
+              />
+            ))}
+          </div>
+        )}
+        <div className="mt-4 grid grid-cols-2 gap-4">
+          {searchResults.map(result => (
+            <SearchPageItemCard
+              linkHref={`item/${result.item_id}`}
+              cardKey={result.id}
+              cardName={result.name}
+              cardPrice={result.price}
+              cardImgSrc={result.image_path}
+              cardImgAlt={result.name}
+            />
           ))}
         </div>
-      )}
-      <div className="mt-4 grid grid-cols-2 gap-4">
-        {searchResults.map(result => (
-          <Link href={`item/${result.item_id}`} key={result.id}>
-            <div className="bg-white p-2 border rounded shadow mb-2">
-              <h2>{result.name}</h2>
-              <p>£{result.price}</p>
-              <img
-                src={result.image_path}
-                alt={result.name}
-                className="w-32 h-32 object-contain"
-              />
-              {/* <FavouriteButton
-                user={user ? user.id : null}
-                itemID={item_id}
-                className="self-end"
-                initialIsFavourite={initialIsFavourite}
-              /> */}
-            </div>
-          </Link>
-        ))}
       </div>
     </PageContainer>
   )
