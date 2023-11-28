@@ -38,3 +38,7 @@ export type ItemWithImage = Item & {
 
 export type Age = Database['public']['Tables']['age']['Row']
 export type Condition = Database['public']['Tables']['conditions']['Row']
+
+export type UserInfo = Database['public']['Tables']['users']['Row']
+export type Purchase =
+  Database['public']['Tables']['users']['Row']['purchase_history']

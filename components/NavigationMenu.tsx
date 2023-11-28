@@ -17,9 +17,9 @@ export default function NavigationMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   const menuLinks = {
-    'Search Items': '/',
+    'Search Items': '/search',
     'Sell Item': '/upload',
-    Account: '/signup',
+    Account: '/account',
     Contact: '/contact',
     FAQs: '/faqs',
   }
