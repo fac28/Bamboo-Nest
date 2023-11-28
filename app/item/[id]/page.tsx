@@ -7,7 +7,7 @@ import Link from 'next/link'
 import WideBlueButton from '@/components/WideBlueButton'
 
 const itemQuery =
-  '*, age(age_category), categories(category_name), conditions(condition,description)'
+  '*, age(age_category), categories(category_name), conditions(condition,description), users(first_name,last_name)'
 
 export default async function listing({
   params,
@@ -26,6 +26,7 @@ export default async function listing({
     if (error || !data || data.length === 0) {
       throw new Error('Error fetching data')
     }
+
     const {
       item_id,
       name,
@@ -38,11 +39,26 @@ export default async function listing({
       conditions: { condition: condition, description: conditionDescription },
       categories: { category_name: category },
       seller_id,
+      users: { first_name },
       image_path,
     } = data[0]
+
     const {
       data: { user },
     } = await supabase.auth.getUser()
+
+    const { data: favourites } = await supabase
+      .from('users')
+      .select('favourite_items')
+      .eq('id', user?.id)
+
+    const favouriteItems: string[] | null =
+      favourites && favourites[0].favourite_items
+
+    const initialIsFavourite: boolean = favouriteItems
+      ? favouriteItems.includes(item_id)
+      : false
+
     return (
       <PageContainer>
         <div className="flex flex-col gap-y-6">
@@ -50,6 +66,7 @@ export default async function listing({
             user={user ? user.id : null}
             itemID={item_id}
             className="self-end"
+            initialIsFavourite={initialIsFavourite}
           />
 
           <Image
@@ -65,7 +82,7 @@ export default async function listing({
             <p>£{price}</p>
           </div>
           <Link href={`/seller/${seller_id}`} className="self-center">
-            <p>Seller: {seller_id}</p>
+            <p>Seller: {first_name}</p>
           </Link>
           <div className="italic font-light child:py-1">
             <p>Condition: {condition}</p>
