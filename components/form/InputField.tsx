@@ -13,16 +13,18 @@ export async function InputField({
   subCategories,
   conditions,
   seller,
+  existsOnUsersTable,
 }: {
   ageGroups: Age[]
   categories: Category[]
   subCategories: SubCategory[]
   conditions: Condition[]
   seller: string
+  existsOnUsersTable: boolean
 }) {
   const submit = async (formData: FormData) => {
     'use server'
-
+    if (existsOnUsersTable) {
     const image = formData.get('item-picture') as File
     const imageName = image.name
 
@@ -73,6 +75,11 @@ export async function InputField({
       console.error(error)
     }
     return redirect('/search')
+  }
+  if (seller) {
+    console.log('you need to fill in this form first')
+  }
+  console.log('you must be logged in to perform this action')
   }
 
   return (
