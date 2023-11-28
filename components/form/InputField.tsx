@@ -132,7 +132,9 @@ export async function InputField({
           <input type="checkbox" name="can-collect" id="can-collect" />
           <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
-        <label htmlFor="postcode">Please enter the first half of your postcode:</label>
+        <label htmlFor="postcode">
+          Please enter the first half of your postcode:
+        </label>
         <input
           className="invalid:bg-red-500"
           type="text"
