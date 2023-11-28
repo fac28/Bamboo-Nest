@@ -90,7 +90,7 @@ export default async function listing({
           </div>
           <p>{description}</p>
           <WideBlueButton
-            buttonTitle="Request Seller Info"
+            buttonTitle={`Request ${first_name}'s Contact Info`}
             pageUrl={`/seller/${seller_id}`}
           />
         </div>

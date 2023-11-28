@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, ItemWithImage } from '@/utils/types'
+import FavouriteButton from '@/components/FavouriteButton'
 
 export default function Page() {
   const [searchResults, setSearchResults] = useState<ItemWithImage[]>([])
@@ -54,6 +55,12 @@ export default function Page() {
                 alt={result.name}
                 className="w-32 h-32 object-contain"
               />
+              {/* <FavouriteButton
+                user={user ? user.id : null}
+                itemID={item_id}
+                className="self-end"
+                initialIsFavourite={initialIsFavourite}
+              /> */}
             </div>
           </Link>
         ))}
