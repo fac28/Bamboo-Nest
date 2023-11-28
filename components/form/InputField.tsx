@@ -4,6 +4,8 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 
+const regexForOutCode = '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
+
 export async function InputField({
   ageGroups,
   categories,
@@ -127,6 +129,8 @@ export async function InputField({
           <input type="checkbox" name="can-collect" id="can-collect" />
           <label htmlFor="can-collect">Available for collection</label>
         </fieldset>
+        <label htmlFor='postcode'>Postcode:</label>
+        <input className='invalid:bg-red-500' type="text" name="postcode" id="postcode" pattern={regexForOutCode}/>
         <label htmlFor="item-picture">Select an item picture:</label>
         <input
           type="file"
