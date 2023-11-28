@@ -29,10 +29,7 @@ export default async function Purchase() {
   )
 
   async function fetchSellerName(seller_id: string) {
-    const { data } = await supabase
-      .from('users')
-      .select()
-      .eq('id', seller_id)
+    const { data } = await supabase.from('users').select().eq('id', seller_id)
     const { first_name, last_name } = data && data[0]
     return first_name + ' ' + last_name
   }
@@ -50,9 +47,7 @@ export default async function Purchase() {
             />
             <p>{item.name}</p>
             <p>Seller: {fetchSellerName(item.seller_id)}</p>
-            <Link
-              href={`/review/${item.seller_id}`}
-              className='underline'>
+            <Link href={`/review/${item.seller_id}`} className="underline">
               Leave a review
             </Link>
           </div>
