@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Purchase() {
   const cookieStore = cookies()
@@ -27,6 +28,15 @@ export default async function Purchase() {
       }),
   )
 
+  async function fetchSellerName(seller_id: string) {
+    const { data } = await supabase
+      .from('users')
+      .select()
+      .eq('id', seller_id)
+    const { first_name, last_name } = data && data[0]
+    return first_name + ' ' + last_name
+  }
+
   return (
     <div>
       {itemDetails &&
@@ -39,7 +49,12 @@ export default async function Purchase() {
               alt={item.name}
             />
             <p>{item.name}</p>
-            <p>{item.seller_id}</p>
+            <p>Seller: {fetchSellerName(item.seller_id)}</p>
+            <Link
+              href={`/review/${item.seller_id}`}
+              className='underline'>
+              Leave a review
+            </Link>
           </div>
         ))}
     </div>

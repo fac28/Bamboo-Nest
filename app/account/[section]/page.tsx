@@ -32,7 +32,7 @@ export default async function listing({
     case 'details':
       component = <UpdateForm />
       break
-    case 'favorites':
+    case 'favourites':
       break
     case 'purchases':
       component = <Purchase />
