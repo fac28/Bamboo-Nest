@@ -34,8 +34,6 @@ import { useState } from 'react'
 import toggleFavourite from '@/utils/handleFavouriteItem'
 import { FaRegHeart, FaHeart } from 'react-icons/fa6'
 
-// const originalIsFavourite = false
-
 export default function FavouriteButton({
   user,
   itemID,
