@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation'
 import Image from 'next/image'
 
 export default async function UpdateForm() {
-
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
@@ -13,7 +12,10 @@ export default async function UpdateForm() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const {data: userInfo} = await supabase.from('users').select().eq('id', user?.id)
+  const { data: userInfo } = await supabase
+    .from('users')
+    .select()
+    .eq('id', user?.id)
 
   const firstName = userInfo?.[0]?.first_name
   const lastName = userInfo?.[0]?.last_name
@@ -100,7 +102,7 @@ export default async function UpdateForm() {
         />
         <label htmlFor="profile-picture">Profile Picture</label>
         <p>Your current profile</p>
-        <Image src={profilePicture} width={100} height={100} alt={firstName}/>
+        <Image src={profilePicture} width={100} height={100} alt={firstName} />
         <input
           type="file"
           id="profile-picture"
