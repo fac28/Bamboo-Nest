@@ -1,16 +1,19 @@
-import { Age, Category, Condition } from '@/utils/types'
+import { Age, Category, Condition, SubCategory } from '@/utils/types'
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
+import SelectCategories from './CategoryDropDown'
 
 export async function InputField({
   ageGroups,
   categories,
+  subCategories,
   conditions,
   seller,
 }: {
   ageGroups: Age[]
   categories: Category[]
+  subCategories: SubCategory[]
   conditions: Condition[]
   seller: string
 }) {
@@ -25,6 +28,7 @@ export async function InputField({
     const price = parseFloat(formData.get('item-price') as string)
     const age_category = parseInt(formData.get('age-groups') as string)
     const category_id = parseInt(formData.get('category') as string)
+    const sub_category_id = parseInt(formData.get('sub-category') as string)
     const condition = parseInt(formData.get('condition') as string)
     const brand = formData.get('brand') as string
     const delivery = formData.get('can-deliver')
@@ -49,6 +53,7 @@ export async function InputField({
       price,
       age_category,
       category_id,
+      sub_category_id,
       condition,
       brand,
       delivery,
@@ -62,7 +67,6 @@ export async function InputField({
     if (error) {
       console.error(error)
     }
-
     return redirect('/search')
   }
 
@@ -102,14 +106,10 @@ export async function InputField({
             </option>
           ))}
         </select>
-        <label htmlFor="item-category">Category:</label>
-        <select name="category" id="category">
-          {categories.map(category => (
-            <option key={category.id} value={category.id}>
-              {category.category_name}
-            </option>
-          ))}
-        </select>
+        <SelectCategories
+          categories={categories}
+          subCategories={subCategories}
+        />
         <label htmlFor="item-condition">Condition:</label>
         <select name="condition" id="condition">
           {conditions.map(condition => (
