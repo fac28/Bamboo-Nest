@@ -4,6 +4,9 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
+import FormFieldAndLabel from '@/components/FormFieldAndLabel'
+// import WideBlueButton from '@/components/WideBlueButton'
+// import BackButton from '@/components/BackButton'
 
 export default async function Login({
   searchParams,
@@ -46,52 +49,33 @@ export default async function Login({
   ) : (
     <PageContainer>
       <div className="gap-2">
-        <Link
-          href="/"
-          className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
-          >
-            <polyline points="15 18 9 12 15 6" />
-          </svg>{' '}
-          Back
-        </Link>
-        <h1> Welcome to Bamboo Nest </h1>
+        <h1 className="mb-10 w-[80%] text-center mx-auto">
+          Welcome to Bamboo Nest
+        </h1>
         <form
           className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
           action={signIn}
         >
-          <label className="text-md" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
-            name="email"
-            placeholder="you@example.com"
+          <FormFieldAndLabel
+            htmlForInput="email"
+            labelName="Email"
+            inputType="email"
+            inputName="email"
+            inputPlaceholder="you@example.com"
             required
           />
-          <label className="text-md" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
-            type="password"
-            name="password"
-            placeholder="••••••••"
+
+          <FormFieldAndLabel
+            htmlForInput="password"
+            labelName="Password"
+            inputType="password"
+            inputName="password"
+            inputPlaceholder="••••••••"
             required
           />
-          <button className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2">
-            Log In
+
+          <button className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full">
+            Login
           </button>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
@@ -101,8 +85,13 @@ export default async function Login({
         </form>
 
         <p>
-          Not with us?
-          <Link href="/signup">create an account</Link>
+          Not with us? &nbsp;
+          <Link
+            href="/signup"
+            className="text-primaryBlue italic hover:underline"
+          >
+            Create an account
+          </Link>
         </p>
       </div>
     </PageContainer>

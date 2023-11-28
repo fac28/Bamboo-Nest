@@ -1,16 +1,21 @@
 // import Image from 'next/image'
+import BackButton from './BackButton'
 
 export default function PageContainer({
   children,
+  justify = 'justify-center',
 }: {
   children: React.ReactNode
+  justify?: 'justify-center' | 'justify-start'
 }) {
   return (
-    <>
-      {/* <Image src="/icecream.jpg" alt="Background Image" fill={true} /> */}
-      <div className="w-full px-96 py-24 vh-without-nav justify-center mx-auto flex flex-wrap flex-col items-center global-background">
+    <div className="global-background">
+      <BackButton />
+      <div
+        className={`w-full vh-without-nav mx-auto flex flex-wrap flex-col px-64 max-w-7xl ${justify}`}
+      >
         {children}
       </div>
-    </>
+    </div>
   )
 }

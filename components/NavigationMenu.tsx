@@ -35,20 +35,19 @@ export default function NavigationMenu() {
       <NavbarContent justify="end">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          // className="sm:hidden"
         />
       </NavbarContent>
       <NavbarMenu className="justify-evenly">
         {Object.entries(menuLinks).map(([item, route], index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={
-                index === 2
-                  ? 'primary'
-                  : index === Object.keys(menuLinks).length - 1
-                    ? 'danger'
-                    : 'foreground'
-              }
+              // color={
+              //   index === 2
+              //     ? 'primary'
+              //     : index === Object.keys(menuLinks).length - 1
+              //       ? 'danger'
+              //       : 'foreground'
+              // }
               className="w-full justify-center"
               href={route}
               size="lg"

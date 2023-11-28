@@ -5,6 +5,7 @@ import PageContainer from '@/components/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
 import WideBlueButton from '@/components/WideBlueButton'
+import checkItemInitialFavouriteState from '@/utils/checkItemInitialFavouriteState'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description), users(first_name,last_name)'
@@ -47,17 +48,10 @@ export default async function listing({
       data: { user },
     } = await supabase.auth.getUser()
 
-    const { data: favourites } = await supabase
-      .from('users')
-      .select('favourite_items')
-      .eq('id', user?.id)
-
-    const favouriteItems: string[] | null =
-      favourites && favourites[0].favourite_items
-
-    const initialIsFavourite: boolean = favouriteItems
-      ? favouriteItems.includes(item_id)
-      : false
+    const initialIsFavourite: boolean = await checkItemInitialFavouriteState(
+      user?.id,
+      item_id,
+    )
 
     return (
       <PageContainer>
@@ -96,7 +90,7 @@ export default async function listing({
           </div>
           <p>{description}</p>
           <WideBlueButton
-            buttonTitle="Request Seller Info"
+            buttonTitle={`Request ${first_name}'s Contact Info`}
             pageUrl={`/seller/${seller_id}`}
           />
         </div>
