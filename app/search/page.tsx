@@ -31,7 +31,7 @@ export default function Page() {
 
   return (
     <PageContainer justify="justify-start">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 py-16">
         <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
         {searchResults.length === 0 && (
           <div className="grid grid-cols-2 gap-4">
