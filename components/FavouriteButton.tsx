@@ -1,6 +1,8 @@
 'use client'
 
 import toggleFavourite from '@/utils/handleFavouriteItem'
+import { FaRegHeart } from 'react-icons/fa6'
+import { FaHeart } from 'react-icons/fa6'
 
 export default function FavouriteButton({
   user,
@@ -13,11 +15,11 @@ export default function FavouriteButton({
 }) {
   return user ? (
     <button className={className} onClick={() => toggleFavourite(user, itemID)}>
-      ADD TO FAVOURITES
+      <FaRegHeart />
     </button>
   ) : (
     <button className={className} onClick={logInAlert}>
-      ADD TO FAVOURITES
+      <FaHeart />
     </button>
   )
 }
