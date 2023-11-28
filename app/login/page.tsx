@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
 import FormFieldAndLabel from '@/components/FormFieldAndLabel'
-import WideBlueButton from '@/components/WideBlueButton'
-import BackButton from '@/components/BackButton'
+// import WideBlueButton from '@/components/WideBlueButton'
+// import BackButton from '@/components/BackButton'
 
 export default async function Login({
   searchParams,
