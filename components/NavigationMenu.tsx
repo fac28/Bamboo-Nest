@@ -21,7 +21,7 @@ export default function NavigationMenu() {
     'Sell Item': '/upload',
     Account: '/account',
     Contact: '/contact',
-    FAQs: '/faqs',
+    FAQs: '/faq',
   }
 
   return (
