@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
+import UploadItemSubmit from './submitButton'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
@@ -24,62 +25,56 @@ export async function InputField({
 }) {
   const submit = async (formData: FormData) => {
     'use server'
-    if (existsOnUsersTable) {
-      const image = formData.get('item-picture') as File
-      const imageName = image.name
+    const image = formData.get('item-picture') as File
+    const imageName = image.name
 
-      const name = formData.get('item-name') as string
-      const description = formData.get('item-description') as string
-      const price = parseFloat(formData.get('item-price') as string)
-      const age_category = parseInt(formData.get('age-groups') as string)
-      const category_id = parseInt(formData.get('category') as string)
-      const sub_category_id = parseInt(formData.get('sub-category') as string)
-      const condition = parseInt(formData.get('condition') as string)
-      const brand = formData.get('brand') as string
-      const postcode = formData.get('postcode') as string
-      const delivery = formData.get('can-deliver')
-      delivery === 'on' ? true : false
-      const collection = formData.get('can-collect')
-      collection === 'on' ? true : false
+    const name = formData.get('item-name') as string
+    const description = formData.get('item-description') as string
+    const price = parseFloat(formData.get('item-price') as string)
+    const age_category = parseInt(formData.get('age-groups') as string)
+    const category_id = parseInt(formData.get('category') as string)
+    const sub_category_id = parseInt(formData.get('sub-category') as string)
+    const condition = parseInt(formData.get('condition') as string)
+    const brand = formData.get('brand') as string
+    const postcode = formData.get('postcode') as string
+    const delivery = formData.get('can-deliver')
+    delivery === 'on' ? true : false
+    const collection = formData.get('can-collect')
+    collection === 'on' ? true : false
 
-      const cookieStore = cookies()
-      const supabase = createClient(cookieStore)
+    const cookieStore = cookies()
+    const supabase = createClient(cookieStore)
 
-      await supabase.storage
-        .from('item-pictures')
-        .upload(imageName, image, { upsert: true })
+    await supabase.storage
+      .from('item-pictures')
+      .upload(imageName, image, { upsert: true })
 
-      const { data: publicUrl } = await supabase.storage
-        .from('item-pictures')
-        .getPublicUrl(imageName)
+    const { data: publicUrl } = await supabase.storage
+      .from('item-pictures')
+      .getPublicUrl(imageName)
 
-      const itemInfo = {
-        name,
-        description,
-        price,
-        age_category,
-        category_id,
-        sub_category_id,
-        condition,
-        brand,
-        delivery,
-        collection,
-        seller_id: seller,
-        image_path: publicUrl.publicUrl,
-        postcode: postcode,
-      }
-
-      const { error } = await supabase.from('items').insert(itemInfo).select()
-
-      if (error) {
-        console.error(error)
-      }
-      return redirect('/search')
+    const itemInfo = {
+      name,
+      description,
+      price,
+      age_category,
+      category_id,
+      sub_category_id,
+      condition,
+      brand,
+      delivery,
+      collection,
+      seller_id: seller,
+      image_path: publicUrl.publicUrl,
+      postcode: postcode,
     }
-    if (seller) {
-      console.log('you need to fill in this form first')
+
+    const { error } = await supabase.from('items').insert(itemInfo).select()
+
+    if (error) {
+      console.error(error)
     }
-    console.log('you must be logged in to perform this action')
+    return redirect('/search')
   }
 
   return (
@@ -156,9 +151,11 @@ export async function InputField({
           name="item-picture"
           accept="image/png, image/jpeg"
         />
-        <button type="submit" formAction={submit}>
-          Submit
-        </button>
+        <UploadItemSubmit
+          submit={submit}
+          existsOnUsersTable={existsOnUsersTable}
+          seller={seller}
+        />
       </form>
     </div>
   )
