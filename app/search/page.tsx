@@ -45,7 +45,7 @@ export default function Page() {
         )}
         <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults.map(result => (
-            <div key = {result.item_id}>
+            <div key={result.item_id}>
               <ItemCard
                 linkHref={`item/${result.item_id}`}
                 cardName={result.name}
