@@ -19,7 +19,7 @@ export default async function Purchase() {
 
   const itemDetails = await Promise.all(
     favourite_items &&
-    favourite_items.map(async item_id => {
+      favourite_items.map(async item_id => {
         const { data } = await supabase
           .from('items')
           .select('*')
