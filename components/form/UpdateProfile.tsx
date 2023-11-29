@@ -98,11 +98,18 @@ export default async function UpdateForm() {
         <textarea
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="Bio"
-          placeholder={!bio || bio && bio.length === 0 ? 'Tell us about yourself' : bio}
+          placeholder={
+            !bio || (bio && bio.length === 0) ? 'Tell us about yourself' : bio
+          }
         />
         <label htmlFor="profile-picture">Profile Picture</label>
         <p>Your current profile</p>
-        <Image src={profilePicture||''} width={100} height={100} alt={firstName} />
+        <Image
+          src={profilePicture || ''}
+          width={100}
+          height={100}
+          alt={firstName}
+        />
         <input
           type="file"
           id="profile-picture"
