@@ -34,7 +34,7 @@ export default async function Login({
       return redirect('/login?message=Could not authenticate user')
     }
 
-    supabase
+    await supabase
       .from('users')
       .upsert({
         id: data?.user?.id,
