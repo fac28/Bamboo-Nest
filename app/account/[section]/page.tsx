@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import Purchase from '@/components/PurchaseHistory'
+import Favourites from '@/components/Favourites'
 
 export default async function listing({
   params,
@@ -22,7 +23,7 @@ export default async function listing({
 
   const sections: { [key: string]: string } = {
     details: 'Personal Details',
-    favorites: 'Favorites',
+    favourites: 'Favourites',
     purchases: 'Purchases',
     sold: 'Sold',
   }
@@ -33,6 +34,7 @@ export default async function listing({
       component = <UpdateForm />
       break
     case 'favourites':
+      component = <Favourites />
       break
     case 'purchases':
       component = <Purchase />
@@ -47,7 +49,7 @@ export default async function listing({
     <PageContainer>
       <h1>Your Account</h1>
       <h1>{sections[params.section]}</h1>
-      <div>{component}</div>
+      {component}
     </PageContainer>
   ) : (
     <PageContainer>
