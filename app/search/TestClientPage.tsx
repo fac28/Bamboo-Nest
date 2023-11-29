@@ -6,12 +6,18 @@ import fetchCategories from '@/utils/fetchCategories'
 // import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
-import { Category, ItemWithImage, User } from '@/utils/types'
+import { Category, ItemWithImage } from '@/utils/types'
 // import FavouriteButton from '@/components/FavouriteButton'
 import SearchPageItemCard from '@/components/SearchPageItemCard'
 import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
 
-export default function ClientPage({user}:{user:User}) {
+export default function ClientPage({
+  favouriteItems,
+  user,
+}: {
+  favouriteItems: string[] | null
+  user: string | null
+}) {
   const [searchResults, setSearchResults] = useState<ItemWithImage[]>([])
   const [categories, setCategories] = useState<Category[]>([])
 
@@ -48,11 +54,12 @@ export default function ClientPage({user}:{user:User}) {
           {searchResults.map(result => (
             <SearchPageItemCard
               linkHref={`item/${result.item_id}`}
-              cardKey={result.id}
+              cardKey={result.item_id}
               cardName={result.name}
               cardPrice={result.price}
               cardImgSrc={result.image_path}
               cardImgAlt={result.name}
+              favouriteItems={favouriteItems}
               user={user}
             />
           ))}

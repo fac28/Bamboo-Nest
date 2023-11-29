@@ -1,25 +1,35 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toggleFavourite from '@/utils/handleFavouriteItem'
 import { FaRegHeart, FaHeart } from 'react-icons/fa6'
+import checkItemInitialFavouriteState from '@/utils/checkItemInitialFavouriteState'
 
 export default function FavouriteButton({
   user,
   itemID,
   className,
-  initialIsFavourite,
+  favouriteItems,
 }: {
   user: string | null
   itemID: string
   className?: string
-  initialIsFavourite?: boolean
+  favouriteItems?: string[] | null
 }) {
-  const [isFavourite, setIsFavourite] = useState(initialIsFavourite)
+  const [isFavourite, setIsFavourite] = useState(false)
+  useEffect(() => {
 
+    const initialiseFavouriteState = async () => {
+      const initialFavourite = await checkItemInitialFavouriteState(favouriteItems,itemID)
+      setIsFavourite(initialFavourite)
+    }
+    initialiseFavouriteState()
+
+  }, [])
+    
   const handleClick = () => {
     if (user) {
-      toggleFavourite(user, itemID)
+      toggleFavourite(user, parseInt(itemID))
       setIsFavourite(!isFavourite) // Toggle the local state
     } else {
       logInAlert()
