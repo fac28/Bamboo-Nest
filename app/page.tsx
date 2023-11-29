@@ -23,7 +23,8 @@ export default async function Index() {
       <div className="relative h-96">
         <div className="absolute inset-0 flex items-center justify-center mx-auto ">
           <h2 className="z-10 text-center text-black text-5xl w-1/2">
-            Bamboo Nest is the leading baby clothing marketplace, buy or sell.
+            Rent, buy or sell your baby gear. A marketplace for you to rent, buy
+            or sell pre-loved baby items locally.
           </h2>
         </div>
         <Image
@@ -33,6 +34,11 @@ export default async function Index() {
         />
       </div>
       <div className="max-w-5xl mx-auto ">
+        <div className="flex justify-between px-8 pt-8 items-center">
+          <p className="text-xl font-medium">Categories</p>
+          <Link href={'/Search'}>View More &#8594;</Link>
+        </div>
+
         <div className="p-8 cust-dotted-border-bottom">
           <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
@@ -48,10 +54,6 @@ export default async function Index() {
               Sell{' '}
             </Button>
           </Link>
-        </div>
-
-        <div className="p-8">
-          <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
       </div>
       <footer></footer>
