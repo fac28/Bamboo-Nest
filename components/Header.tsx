@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default async function Header() {
   return (
-    <div className="flex items-center relative z-10">
+    <div className="flex items-center sticky top-0 z-30 bg-white w-full">
       <Link href="#">
         <p className="font-bold text-inherit px-6 text-xl">Bamboo Nest</p>
       </Link>
