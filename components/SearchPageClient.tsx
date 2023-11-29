@@ -1,12 +1,11 @@
 'use client'
 import Search from '@/components/Search'
 import PageContainer from '@/components/PageContainer'
-
 import fetchCategories from '@/utils/fetchCategories'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, ItemWithImage } from '@/utils/types'
-import SearchPageItemCard from '@/components/SearchPageItemCard'
+import ItemCard from '@/components/ItemCard'
 import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
 
 export default function ClientPage({
@@ -50,16 +49,18 @@ export default function ClientPage({
         )}
         <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults.map(result => (
-            <SearchPageItemCard
-              linkHref={`item/${result.item_id}`}
-              cardKey={result.item_id}
-              cardName={result.name}
-              cardPrice={result.price}
-              cardImgSrc={result.image_path}
-              cardImgAlt={result.name}
-              favouriteItems={favouriteItems}
-              user={user}
-            />
+            <div key={result.item_id}>
+              <ItemCard
+                linkHref={`item/${result.item_id}`}
+                cardKey={result.item_id}
+                cardName={result.name}
+                cardPrice={result.price}
+                cardImgSrc={result.image_path}
+                cardImgAlt={result.name}
+                favouriteItems={favouriteItems}
+                user={user}
+              />
+            </div>
           ))}
         </div>
       </div>

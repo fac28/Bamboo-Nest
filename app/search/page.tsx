@@ -1,6 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import ClientPage from './TestClientPage'
+import ClientPage from '../../components/SearchPageClient'
 
 export default async function page() {
   const cookieStore = cookies()

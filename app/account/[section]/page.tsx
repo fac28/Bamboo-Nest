@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import Purchase from '@/components/PurchaseHistory'
 import Favourites from '@/components/Favourites'
+import ListingHistory from '@/components/ListingHistory'
 
 export default async function listing({
   params,
@@ -25,7 +26,7 @@ export default async function listing({
     details: 'Personal Details',
     favourites: 'Favourites',
     purchases: 'Purchases',
-    sold: 'Sold',
+    listings: 'Listings',
   }
 
   let component = null
@@ -39,7 +40,8 @@ export default async function listing({
     case 'purchases':
       component = <Purchase />
       break
-    case 'sold':
+    case 'listings':
+      component = <ListingHistory />
       break
     default:
       break

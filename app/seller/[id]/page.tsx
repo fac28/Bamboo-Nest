@@ -1,6 +1,10 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
+import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
+import { ItemWithImage } from '@/utils/types'
+import WideBlueButton from '@/components/WideBlueButton'
+import PageContainer from '@/components/PageContainer'
 
 export default async function listing({
   params,
@@ -11,56 +15,62 @@ export default async function listing({
 }) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
+
   try {
     const { data, error } = await supabase
       .from('users')
       .select('*') // Should change this to just relevant info to ensure we don't expose private info of seller to public
       .eq('id', params.id)
+
     if (error || !data || data.length === 0) {
       throw new Error('Error fetching data')
     }
-    const {
-      first_name,
-      last_name,
-      bio,
-      sale_history,
-      items_for_sale,
-      profile_picture,
-    } = data[0]
-    const fullName = `${first_name} ${last_name}`
 
-    const { data: allImagesData } = await supabase.storage
-      .from('profile-pictures')
-      .list('')
-    const imageName = allImagesData?.filter(
-      singleImage => singleImage.id === profile_picture,
+    const { first_name, last_name, bio, image_path, created_at } = data[0]
+
+    const fullName = `${first_name} ${last_name}`
+    const items_for_sale: ItemWithImage[] = await fetchItemsBySeller(
+      supabase,
+      params.id,
     )
-    const { data: publicUrl } = await supabase.storage
-      .from('profile-pictures')
-      .getPublicUrl(`${imageName && imageName[0].name}`)
+    const sale_history: ItemWithImage[] = await items_for_sale.filter(
+      item => item.sold === true,
+    )
+
+    const imageStyle = {
+      borderRadius: '50%',
+      border: '1px solid #fff',
+    }
+
     return (
-      <>
-        <div>
-          <h1>{fullName}</h1>
+      <PageContainer>
+        <div className="pb-2 gap-2">
           <Image
-            src={publicUrl.publicUrl}
+            src={image_path || ''}
             alt={`${fullName}'s avatar photo`}
-            width={300}
-            height={300}
+            width={200}
+            height={200}
+            style={imageStyle}
           />
-        </div>
-        <p>{bio}</p>
-        <div>
-          <p>{items_for_sale && items_for_sale.length} items for sale</p>
-          {/* want to add a card or list of cards here with most recent items */}
-          <button>see all</button>
+          <h1 className="text-xl">{fullName}</h1>
+          <p className="text-slate-500">
+            {sale_history && sale_history.length} items sold
+          </p>
         </div>
         <div>
-          <p>{sale_history && sale_history.length} items sold</p>
-          {/* want to add a card or list of cards here with most recent items */}
-          <button>see all</button>
+          <h2 className="text-xl"> About me </h2>
+          <p>{bio}</p>
+          <h2 className="text-xl"> Member Since </h2>
+          <p>{created_at.split('T')[0]}</p>
+          <div className="flex flex-col w-40 gap-2 pt-2">
+            <WideBlueButton
+              buttonTitle={`See All ${first_name}'s Items`}
+              pageUrl=""
+            />
+            <WideBlueButton buttonTitle={`Message ${first_name}`} pageUrl="" />
+          </div>
         </div>
-      </>
+      </PageContainer>
     )
   } catch (error) {
     console.error(error)
