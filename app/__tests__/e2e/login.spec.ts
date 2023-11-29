@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('should navigate to the index page', async ({ page }) => {
+test('should navigate back to the index page', async ({ page }) => {
   await page.goto('/login')
   // Find an element with the text 'Back' and click on it
   await page.getByRole('link', { name: 'Back' }).click()
@@ -16,7 +16,7 @@ test('should navigate to the signup page', async ({ page }) => {
   await expect(page).toHaveURL('/signup')
 })
 
-test("should be able to log in (James's email, password is password", async ({
+test("should be able to log in (James's email, password is password)", async ({
   page,
 }) => {
   await page.goto('/login')
