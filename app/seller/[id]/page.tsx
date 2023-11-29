@@ -26,18 +26,16 @@ export default async function listing({
       throw new Error('Error fetching data')
     }
 
-    const {
-      first_name,
-      last_name,
-      bio,
-      image_path,
-      created_at
-    } = data[0]
+    const { first_name, last_name, bio, image_path, created_at } = data[0]
 
     const fullName = `${first_name} ${last_name}`
-    const items_for_sale : ItemWithImage[] = await fetchItemsBySeller(supabase, params.id)
+    const items_for_sale: ItemWithImage[] = await fetchItemsBySeller(
+      supabase,
+      params.id,
+    )
     const sale_history: ItemWithImage[] = await items_for_sale.filter(
-      item => item.sold === true)
+      item => item.sold === true,
+    )
 
     const imageStyle = {
       borderRadius: '50%',
@@ -46,33 +44,32 @@ export default async function listing({
 
     return (
       <PageContainer>
-          <div className='pb-2 gap-2'>
-            <Image
-              src={image_path||''}
-              alt={`${fullName}'s avatar photo`}
-              width={200}
-              height={200}
-              style={imageStyle}
+        <div className="pb-2 gap-2">
+          <Image
+            src={image_path || ''}
+            alt={`${fullName}'s avatar photo`}
+            width={200}
+            height={200}
+            style={imageStyle}
+          />
+          <h1 className="text-xl">{fullName}</h1>
+          <p className="text-slate-500">
+            {sale_history && sale_history.length} items sold
+          </p>
+        </div>
+        <div>
+          <h2 className="text-xl"> About me </h2>
+          <p>{bio}</p>
+          <h2 className="text-xl"> Member Since </h2>
+          <p>{created_at.split('T')[0]}</p>
+          <div className="flex flex-col w-40 gap-2 pt-2">
+            <WideBlueButton
+              buttonTitle={`See All ${first_name}'s Items`}
+              pageUrl=""
             />
-            <h1 className='text-xl'>{fullName}</h1>
-            <p className='text-slate-500'>{sale_history && sale_history.length} items sold</p>
+            <WideBlueButton buttonTitle={`Message ${first_name}`} pageUrl="" />
           </div>
-          <div>
-            <h2 className='text-xl'> About me </h2>
-            <p>{bio}</p>
-            <h2 className='text-xl'> Member Since </h2>
-            <p>{created_at.split('T')[0]}</p>
-            <div className='flex flex-col w-40 gap-2 pt-2'>
-              <WideBlueButton
-                buttonTitle={`See All ${first_name}'s Items`}
-                pageUrl=''
-              />
-              <WideBlueButton
-                buttonTitle={`Message ${first_name}`}
-                pageUrl=''
-              />
-            </div>
-          </div>
+        </div>
       </PageContainer>
     )
   } catch (error) {
