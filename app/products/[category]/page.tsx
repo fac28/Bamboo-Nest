@@ -1,6 +1,8 @@
 import fetchItemsByCategory from '@/utils/fetchItemsByCategory'
 import PageContainer from '@/components/PageContainer'
 import ItemCard from '@/components/ItemCard'
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 
 export default async function Page({
   params,
@@ -8,7 +10,18 @@ export default async function Page({
   params: { category: string }
 }) {
   const items = await fetchItemsByCategory(decodeURIComponent(params.category))
-
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { data: favourites } = await supabase
+    .from('users')
+    .select('favourite_items')
+    .eq('id', user && user.id)
+  const favouriteItems: string[] | null =
+    favourites && favourites[0].favourite_items
+  const userID = user ? user.id : null
   return (
     <PageContainer justify="justify-start">
       <div className="flex flex-col gap-4 py-16">
@@ -22,6 +35,9 @@ export default async function Page({
                 cardPrice={item.price}
                 cardImgSrc={item.image_path}
                 cardImgAlt={`image of ${item.name}`}
+                cardKey={item.item_id}
+                favouriteItems={favouriteItems}
+                user={userID}
               />
             </div>
           ))}
