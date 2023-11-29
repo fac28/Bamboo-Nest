@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
+import UploadItemSubmit from './SubmitItemButton'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
@@ -13,16 +14,17 @@ export async function InputField({
   subCategories,
   conditions,
   seller,
+  existsOnUsersTable,
 }: {
   ageGroups: Age[]
   categories: Category[]
   subCategories: SubCategory[]
   conditions: Condition[]
   seller: string
+  existsOnUsersTable: boolean
 }) {
   const submit = async (formData: FormData) => {
     'use server'
-
     const image = formData.get('item-picture') as File
     const imageName = image.name
 
@@ -149,9 +151,11 @@ export async function InputField({
           name="item-picture"
           accept="image/png, image/jpeg"
         />
-        <button type="submit" formAction={submit}>
-          Submit
-        </button>
+        <UploadItemSubmit
+          submit={submit}
+          existsOnUsersTable={existsOnUsersTable}
+          seller={seller}
+        />
       </form>
     </div>
   )
