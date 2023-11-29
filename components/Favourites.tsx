@@ -1,8 +1,7 @@
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
-import Image from 'next/image'
-import Link from 'next/link'
 import getItemDetails from '@/utils/fetchItemDetails'
+import ItemCard from '@/components/ItemCard'
 import fetchSellerName from '@/utils/fetchSellerName'
 
 export default async function Purchase() {
@@ -15,23 +14,24 @@ export default async function Purchase() {
   const userID = user?.id || ''
 
   const itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
+  const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id)
 
   return (
-    <div>
-      {itemDetails &&
-        itemDetails.map((item, index) => (
-          <Link href={`/item/${item.item_id}`} key={index}>
-            <Image
-              src={item.image_path}
-              height={50}
-              width={50}
-              alt={item.name}
-            />
-            <p>{item.name}</p>
-            <p>£{item.price}</p>
-            <p>Seller: {fetchSellerName(supabase, item.seller_id)}</p>
-          </Link>
-        ))}
-    </div>
+    <div className="flex flex-col gap-4 py-16">
+        <div className="grid grid-cols-2 gap-4">
+          {itemDetails.map(item => (
+            <div key = {item.item_id}>
+              <ItemCard
+                linkHref={`/item/${item.item_id}`}
+                cardName={item.name}
+                cardPrice={item.price}
+                cardImgSrc={item.image_path}
+                cardImgAlt={`image of ${item.name}`}
+                seller_name={ seller_name}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
   )
 }
