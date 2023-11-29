@@ -16,7 +16,7 @@ test('should navigate to the signup page', async ({ page }) => {
   await expect(page).toHaveURL('/signup')
 })
 
-test("should be able to log in (James's email, password is password", async ({
+test("should be able to log in (James's email, password is password)", async ({
   page,
 }) => {
   await page.goto('/login')
