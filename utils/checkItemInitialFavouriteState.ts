@@ -1,13 +1,10 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
-import { User } from './types'
+import { createClient } from '@/utils/supabase/client'
 
 export default async function checkItemInitialFavouriteState(
   user: string | undefined,
   item_id: string,
 ) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createClient()
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')

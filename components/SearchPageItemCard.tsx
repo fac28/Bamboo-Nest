@@ -1,4 +1,8 @@
 import Link from 'next/link'
+import FavouriteButton from './FavouriteButton'
+import { useEffect, useState } from 'react'
+import checkItemInitialFavouriteState from '@/utils/checkItemInitialFavouriteState'
+import { User } from '@/utils/types'
 
 export default function SearchPageItemCard({
   linkHref,
@@ -7,6 +11,7 @@ export default function SearchPageItemCard({
   cardPrice,
   cardImgSrc,
   cardImgAlt,
+  user
 }: {
   linkHref: string
   cardKey: number
@@ -14,7 +19,19 @@ export default function SearchPageItemCard({
   cardPrice: number
   cardImgSrc: string
   cardImgAlt: string
+  user: User
 }) {
+  const [initialIsFavourite, setInitialIsFavourite] = useState(false)
+  useEffect(() => {
+    const fetchData = async () => {const initialIsFavourite: boolean = await checkItemInitialFavouriteState(
+      user?.id,
+      `${cardKey}`,
+    )
+    setInitialIsFavourite(initialIsFavourite)
+  }
+  console.log(fetchData)
+  }, [])
+  
   return (
     <Link
       href={linkHref}
@@ -33,12 +50,12 @@ export default function SearchPageItemCard({
         <p className="text-sm">£{cardPrice}</p>
       </div>
 
-      {/* <FavouriteButton
+      <FavouriteButton
                 user={user ? user.id : null}
-                itemID={item_id}
+                itemID={`${cardKey}`}
                 className="self-end"
                 initialIsFavourite={initialIsFavourite}
-              /> */}
+              />
     </Link>
   )
 }
