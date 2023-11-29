@@ -9,10 +9,14 @@ import Image from 'next/image'
 
 export default async function Index() {
   const cardTitle = [
-    { title: 'Cots' },
-    { title: 'Toys' },
-    { title: 'Clothes' },
-    { title: 'Buggies' },
+    { title: 'Clothing' },
+    { title: 'Feeding' },
+    { title: 'Sleeping' },
+    { title: 'Travelling' },
+    { title: 'Cleaning' },
+    { title: 'Playing' },
+    { title: 'Monitoring' },
+    { title: 'Other' },
   ]
   return (
     <>
@@ -23,13 +27,17 @@ export default async function Index() {
           </h2>
         </div>
         <Image
-          src="/tumbleweed.jpg"
+          src="/green-gradient.jpg"
           alt="Description of the image"
           fill={true}
         />
       </div>
       <div className="max-w-5xl mx-auto ">
-        <div className="flex gap-4 w-500px p-8 cust-dotted-border-bottom">
+        <div className="p-8 cust-dotted-border-bottom">
+          <CategoryCard cardTitle={cardTitle} height="[50px]" />
+        </div>
+
+        <div className="flex gap-4 w-500px p-8 ">
           <Link href="/search" className="w-full ">
             <Button className="text-white text-4xl w-full p-16 bg-primaryBlue border-4 border-solid border-primaryBlue rounded-full">
               Buy{' '}
@@ -43,7 +51,7 @@ export default async function Index() {
         </div>
 
         <div className="p-8">
-          <CategoryCard cardTitle={cardTitle} />
+          <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
       </div>
       <footer></footer>

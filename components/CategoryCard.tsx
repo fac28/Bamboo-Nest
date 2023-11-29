@@ -1,4 +1,5 @@
 import { Card, CardHeader } from '@nextui-org/react'
+import Link from 'next/link'
 
 interface CardTitle {
   title: string
@@ -6,22 +7,25 @@ interface CardTitle {
 
 interface CategoryCardProps {
   cardTitle: CardTitle[]
+  height: string
 }
 
-export default function CategoryCard({ cardTitle }: CategoryCardProps) {
+export default function CategoryCard({ cardTitle, height }: CategoryCardProps) {
   return (
-    <div className="gap-4 grid grid-cols-2 grid-rows-2 ">
+    <div className="gap-4 grid grid-cols-4 grid-rows-2">
       {cardTitle.map((item, index) => (
-        <Card
-          className="h-[200px] border-2 border-solid border-primaryBlue rounded-3xl"
-          key={index}
-        >
-          <CardHeader className="flex items-center justify-center h-full">
-            <h4 className="text-primaryBlue font-medium text-4xl">
-              {item.title}
-            </h4>
-          </CardHeader>
-        </Card>
+        <Link key={index} href={`/products/${encodeURIComponent(item.title)}`}>
+          <Card
+            className={`h-${height} border-2 border-solid border-primaryBlue rounded-3xl`}
+            key={index}
+          >
+            <CardHeader className="flex items-center justify-center h-full">
+              <h4 className="text-primaryBlue font-medium text-xl">
+                {item.title}
+              </h4>
+            </CardHeader>
+          </Card>
+        </Link>
       ))}
     </div>
   )
