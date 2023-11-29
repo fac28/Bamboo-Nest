@@ -28,7 +28,8 @@ export default function FavouriteButton({
     initialiseFavouriteState()
   }, [])
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     if (user) {
       toggleFavourite(user, parseInt(itemID))
       setIsFavourite(!isFavourite) // Toggle the local state

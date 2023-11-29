@@ -40,13 +40,13 @@ export default function SearchPageItemCard({
           <p className="text-md">{cardName}</p>
           <p className="text-sm">£{cardPrice}</p>
         </div>
-      </Link>
       <FavouriteButton
         user={user}
         itemID={`${cardKey}`}
         className="self-end"
         favouriteItems={favouriteItems}
       />
+      </Link>
     </>
   )
 }
