@@ -22,6 +22,7 @@ export default async function Login({
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
 
+
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
