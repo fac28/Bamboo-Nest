@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('should navigate to the index page', async ({ page }) => {
+test('should navigate back to the index page', async ({ page }) => {
   await page.goto('/login')
   // Find an element with the text 'Back' and click on it
   await page.getByRole('link', { name: 'Back' }).click()
