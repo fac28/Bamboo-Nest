@@ -30,9 +30,6 @@ export default function SearchPageItemCard({
       </div>
       <div className="md:col-span-1 row-span-2 flex flex-col justify-around p-2">
         <p className="text-md">{cardName}</p>
-        <p className="text-sm font-extralight italic text-gray-400">
-          Another bit of information, maybe category?
-        </p>
         <p className="text-sm">£{cardPrice}</p>
       </div>
 
