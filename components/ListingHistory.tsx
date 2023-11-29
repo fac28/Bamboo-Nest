@@ -4,18 +4,18 @@ import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { ItemWithImage } from '@/utils/types'
 import ItemCard from '@/components/ItemCard'
 
-export default async function SellingHistory() {
+export default async function SellingHistory({id=''}) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const userID = user?.id || ''
+  id ? id: user?.id
 
   const itemDetails: ItemWithImage[] = await fetchItemsBySeller(
     supabase,
-    userID,
+    id,
   )
 
   return (

@@ -5,14 +5,26 @@ import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { ItemWithImage } from '@/utils/types'
 import WideBlueButton from '@/components/WideBlueButton'
 import PageContainer from '@/components/PageContainer'
+import SellingHistory from '@/components/ListingHistory'
 
 export default async function listing({
   params,
 }: {
   params: {
-    id: string
+    slug: string[]
   }
 }) {
+
+  const sellerID = params.slug[0]
+
+  if(params.slug[1]=='history'){
+    return(
+      <PageContainer>
+        <h1>Selling history</h1>
+        <SellingHistory id={params.slug[0]}/>
+      </PageContainer>
+    )
+  }
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
@@ -20,7 +32,7 @@ export default async function listing({
     const { data, error } = await supabase
       .from('users')
       .select('*') // Should change this to just relevant info to ensure we don't expose private info of seller to public
-      .eq('id', params.id)
+      .eq('id', sellerID)
 
     if (error || !data || data.length === 0) {
       throw new Error('Error fetching data')
@@ -31,7 +43,7 @@ export default async function listing({
     const fullName = `${first_name} ${last_name}`
     const items_for_sale: ItemWithImage[] = await fetchItemsBySeller(
       supabase,
-      params.id,
+      sellerID,
     )
     const sale_history: ItemWithImage[] = await items_for_sale.filter(
       item => item.sold === true,
@@ -65,7 +77,7 @@ export default async function listing({
           <div className="flex flex-col w-40 gap-2 pt-2">
             <WideBlueButton
               buttonTitle={`See All ${first_name}'s Items`}
-              pageUrl=""
+              pageUrl={`${sellerID}/history`}
             />
             <WideBlueButton buttonTitle={`Message ${first_name}`} pageUrl="" />
           </div>
