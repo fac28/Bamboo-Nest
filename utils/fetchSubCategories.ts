@@ -8,7 +8,7 @@ export default async function fetchSubCategories() {
 
   const { data, error } = await supabase.from('sub_categories').select('*')
   if (error) {
-    console.log(error)
+    console.error(error)
     return []
   }
   return data

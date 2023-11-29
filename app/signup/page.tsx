@@ -26,9 +26,8 @@ export default async function Login({
       password,
     })
 
-    console.log(error)
-
     if (error) {
+      console.error(error)
       return redirect(`/login?message=${error.message}`)
     }
 
@@ -38,6 +37,7 @@ export default async function Login({
         id: data?.user?.id,
         first_name: firstName,
         last_name: lastName,
+        created_at: new Date(),
       })
       .select()
 
