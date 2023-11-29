@@ -63,7 +63,7 @@ export default async function listing({
       </>
     )
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return <p>Error loading data</p>
   }
 }

@@ -15,6 +15,6 @@ export default async function updateSupabaseFavouriteItems(
       throw new Error('Error fetching data')
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

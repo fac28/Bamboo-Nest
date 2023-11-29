@@ -28,6 +28,6 @@ export default async function toggleFavourite(user: string, itemID: string) {
     console.log('add item', { updatedFavouriteItems })
     updateSupabaseFavouriteItems(user, updatedFavouriteItems)
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

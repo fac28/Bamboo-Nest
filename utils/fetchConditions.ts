@@ -8,7 +8,7 @@ export default async function fetchConditions() {
   const { data, error } = await supabase.from('conditions').select()
 
   if (error) {
-    console.log(error)
+    console.error(error)
     return []
   }
   return data

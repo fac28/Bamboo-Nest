@@ -97,7 +97,7 @@ export default async function listing({
       </PageContainer>
     )
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return <p>Error loading data</p>
   }
 }

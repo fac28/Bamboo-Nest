@@ -8,7 +8,7 @@ export default async function fetchAgeGroups() {
   const { data, error } = await supabase.from('age').select()
 
   if (error) {
-    console.log(error)
+    console.error(error)
     return []
   }
   return data
