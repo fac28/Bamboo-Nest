@@ -14,14 +14,13 @@ export default async function listing({
     slug: string[]
   }
 }) {
-
   const sellerID = params.slug[0]
 
-  if(params.slug[1]=='history'){
-    return(
+  if (params.slug[1] == 'history') {
+    return (
       <PageContainer>
         <h1>Selling history</h1>
-        <SellingHistory id={params.slug[0]}/>
+        <SellingHistory id={params.slug[0]} />
       </PageContainer>
     )
   }
