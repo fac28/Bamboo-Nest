@@ -5,7 +5,6 @@ import PageContainer from '@/components/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
 import WideBlueButton from '@/components/WideBlueButton'
-import checkItemInitialFavouriteState from '@/utils/checkItemInitialFavouriteState'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description), users(first_name,last_name)'
@@ -47,20 +46,22 @@ export default async function listing({
     const {
       data: { user },
     } = await supabase.auth.getUser()
-
-    const initialIsFavourite: boolean = await checkItemInitialFavouriteState(
-      user?.id,
-      item_id,
-    )
+    const { data: favourites } = await supabase
+      .from('users')
+      .select('favourite_items')
+      .eq('id', user && user.id)
+    const favouriteItems: string[] | null =
+      favourites && favourites[0].favourite_items
+    const userID = user ? user.id : null
 
     return (
       <PageContainer>
         <div className="flex flex-col gap-y-6">
           <FavouriteButton
-            user={user ? user.id : null}
+            user={userID}
             itemID={item_id}
             className="self-end"
-            initialIsFavourite={initialIsFavourite}
+            favouriteItems={favouriteItems}
           />
 
           <Image

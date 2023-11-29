@@ -2,7 +2,7 @@ import { createClient } from './supabase/client'
 
 export default async function updateSupabaseFavouriteItems(
   user: string,
-  updatedItems: string[],
+  updatedItems: number[],
 ) {
   const supabase = createClient()
   try {

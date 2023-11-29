@@ -1,62 +1,19 @@
-'use client'
-import Search from '@/components/Search'
-import PageContainer from '@/components/PageContainer'
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
+import ClientPage from '../../components/SearchPageClient'
 
-import fetchCategories from '@/utils/fetchCategories'
-import { useState, useEffect } from 'react'
-import searchItem from '@/utils/searchByName'
-import { Category, ItemWithImage } from '@/utils/types'
-// import FavouriteButton from '@/components/FavouriteButton'
-import ItemCard from '@/components/ItemCard'
-import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
-
-export default function Page() {
-  const [searchResults, setSearchResults] = useState<ItemWithImage[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
-
-  async function handleSearch(term: string) {
-    const items = await searchItem(term)
-    setSearchResults(items)
-  }
-
-  async function fetchCategoriesData() {
-    const categoriesData = await fetchCategories()
-    setCategories(categoriesData)
-  }
-
-  useEffect(() => {
-    fetchCategoriesData()
-  }, [])
-
-  return (
-    <PageContainer justify="justify-start">
-      <div className="flex flex-col gap-4 py-16">
-        <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
-        {searchResults.length === 0 && (
-          <div className="grid grid-cols-2 gap-4">
-            {categories.map(category => (
-              <SearchPageCategoryCard
-                cardKey={category.category_name}
-                linkHref={`/products/${category.category_name}`}
-                cardName={category.category_name}
-              />
-            ))}
-          </div>
-        )}
-        <div className="mt-4 grid grid-cols-2 gap-4">
-          {searchResults.map(result => (
-            <div key={result.item_id}>
-              <ItemCard
-                linkHref={`item/${result.item_id}`}
-                cardName={result.name}
-                cardPrice={result.price}
-                cardImgSrc={result.image_path}
-                cardImgAlt={result.name}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </PageContainer>
-  )
+export default async function page() {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { data: favourites } = await supabase
+    .from('users')
+    .select('favourite_items')
+    .eq('id', user && user.id)
+  const favouriteItems: string[] | null =
+    favourites && favourites[0].favourite_items
+  const userID = user ? user.id : null
+  return <ClientPage favouriteItems={favouriteItems} user={userID} />
 }
