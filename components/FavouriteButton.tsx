@@ -18,15 +18,16 @@ export default function FavouriteButton({
 }) {
   const [isFavourite, setIsFavourite] = useState(false)
   useEffect(() => {
-
     const initialiseFavouriteState = async () => {
-      const initialFavourite = await checkItemInitialFavouriteState(favouriteItems,itemID)
+      const initialFavourite = await checkItemInitialFavouriteState(
+        favouriteItems,
+        itemID,
+      )
       setIsFavourite(initialFavourite)
     }
     initialiseFavouriteState()
-
   }, [])
-    
+
   const handleClick = () => {
     if (user) {
       toggleFavourite(user, parseInt(itemID))

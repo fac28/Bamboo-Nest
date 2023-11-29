@@ -14,6 +14,6 @@ export default async function page() {
     .eq('id', user && user.id)
   const favouriteItems: string[] | null =
     favourites && favourites[0].favourite_items
-    const userID = user ? user.id : null
+  const userID = user ? user.id : null
   return <ClientPage favouriteItems={favouriteItems} user={userID} />
 }
