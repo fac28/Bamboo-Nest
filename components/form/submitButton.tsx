@@ -3,7 +3,7 @@ export default function UploadItemSubmit({
   submit,
   existsOnUsersTable,
   seller,
-} : {
+}: {
   submit: (formData: FormData) => void
   existsOnUsersTable: boolean
   seller: string
@@ -13,7 +13,7 @@ export default function UploadItemSubmit({
       return submit(formData)
     }
     if (seller) {
-      return alert('you need to fill in this form first')
+      return alert('you need to update your details ')
     }
     return alert('you must be logged in to perform this action')
   }

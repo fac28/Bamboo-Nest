@@ -21,7 +21,7 @@ export default async function Page() {
     .from('users')
     .select('first_name,last_name,bio')
     .eq('id', userId)
-  const existsOnUsersTable = (data&& data.length > 0 ? true : false) || false
+  const existsOnUsersTable = (data && data.length > 0 ? true : false) || false
   return (
     <PageContainer>
       <InputField
