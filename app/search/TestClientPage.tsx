@@ -3,11 +3,9 @@ import Search from '@/components/Search'
 import PageContainer from '@/components/PageContainer'
 
 import fetchCategories from '@/utils/fetchCategories'
-// import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, ItemWithImage } from '@/utils/types'
-// import FavouriteButton from '@/components/FavouriteButton'
 import SearchPageItemCard from '@/components/SearchPageItemCard'
 import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
 
