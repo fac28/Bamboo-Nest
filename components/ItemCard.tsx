@@ -14,15 +14,15 @@ export default function ItemCard({
   user,
 }: {
   linkHref: string
-  cardKey: number
+  cardKey?: number
   cardName: string
   cardPrice: number
   cardImgSrc: string
   cardImgAlt: string
   seller_id?: string | null
   seller_name?: string | null
-  favouriteItems: string[] | null
-  user: string | null
+  favouriteItems?: string[] | null
+  user?: string | null
 }) {
   return (
     <Link
@@ -42,12 +42,13 @@ export default function ItemCard({
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
-      <FavouriteButton
-        user={user}
+
+      {typeof cardKey === 'string' ? <FavouriteButton
+        user={user ? user : null}
         itemID={`${cardKey}`}
         className="self-end"
         favouriteItems={favouriteItems}
-      />
+      />: <></>}
     </Link>
   )
 }
