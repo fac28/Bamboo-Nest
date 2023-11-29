@@ -16,7 +16,6 @@ export default async function Purchase() {
 
   const itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
 
-
   return (
     <div>
       {itemDetails &&
