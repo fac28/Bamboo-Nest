@@ -1,10 +1,10 @@
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
-import getItemDetails from '@/utils/fetchItemDetails'
+import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
+import { ItemWithImage } from '@/utils/types'
 import ItemCard from '@/components/ItemCard'
-import fetchSellerName from '@/utils/fetchSellerName'
 
-export default async function Purchase() {
+export default async function SellingHistory() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   const {
@@ -13,8 +13,10 @@ export default async function Purchase() {
 
   const userID = user?.id || ''
 
-  const itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
-  const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id)
+  const itemDetails: ItemWithImage[] = await fetchItemsBySeller(
+    supabase,
+    userID,
+  )
 
   return (
     <div className="flex flex-col gap-4 py-16">
@@ -27,7 +29,6 @@ export default async function Purchase() {
               cardPrice={item.price}
               cardImgSrc={item.image_path}
               cardImgAlt={`image of ${item.name}`}
-              seller_name={seller_name}
             />
           </div>
         ))}

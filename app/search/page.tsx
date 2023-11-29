@@ -3,12 +3,11 @@ import Search from '@/components/Search'
 import PageContainer from '@/components/PageContainer'
 
 import fetchCategories from '@/utils/fetchCategories'
-// import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, ItemWithImage } from '@/utils/types'
 // import FavouriteButton from '@/components/FavouriteButton'
-import SearchPageItemCard from '@/components/SearchPageItemCard'
+import ItemCard from '@/components/ItemCard'
 import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
 
 export default function Page() {
@@ -46,14 +45,15 @@ export default function Page() {
         )}
         <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults.map(result => (
-            <SearchPageItemCard
-              linkHref={`item/${result.item_id}`}
-              cardKey={result.id}
-              cardName={result.name}
-              cardPrice={result.price}
-              cardImgSrc={result.image_path}
-              cardImgAlt={result.name}
-            />
+            <div key={result.item_id}>
+              <ItemCard
+                linkHref={`item/${result.item_id}`}
+                cardName={result.name}
+                cardPrice={result.price}
+                cardImgSrc={result.image_path}
+                cardImgAlt={result.name}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -8,7 +8,7 @@ export default async function Login() {
       <div className="gap-4 grid grid-cols-2 grid-rows-2">
         <Link href="/account/favourites">Favourites </Link>
         <Link href="/account/purchases">Purchases </Link>
-        <Link href="/account">Sold </Link>
+        <Link href="/account/listings">All Listings </Link>
         <Link href="/account/details">Personal Details </Link>
       </div>
     </PageContainer>

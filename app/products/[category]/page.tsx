@@ -1,7 +1,6 @@
 import fetchItemsByCategory from '@/utils/fetchItemsByCategory'
 import PageContainer from '@/components/PageContainer'
-// import Link from 'next/link'
-import SearchPageItemCard from '@/components/SearchPageItemCard'
+import ItemCard from '@/components/ItemCard'
 
 export default async function Page({
   params,
@@ -16,14 +15,15 @@ export default async function Page({
         <h1>{params.category}</h1>
         <div className="grid grid-cols-2 gap-4">
           {items.map(item => (
-            <SearchPageItemCard
-              linkHref={`/item/${item.item_id}`}
-              cardKey={item.name}
-              cardName={item.name}
-              cardPrice={item.price}
-              cardImgSrc={item.image_path}
-              cardImgAlt={`image of ${item.name}`}
-            />
+            <div key={item.item_id}>
+              <ItemCard
+                linkHref={`/item/${item.item_id}`}
+                cardName={item.name}
+                cardPrice={item.price}
+                cardImgSrc={item.image_path}
+                cardImgAlt={`image of ${item.name}`}
+              />
+            </div>
           ))}
         </div>
       </div>
