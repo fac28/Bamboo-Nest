@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         primaryBlue: '#077467',
         customBg: '#F1F6F7',
-        greenHighlight: '#94CC9F',
+        greenHighlight: '#44AF94',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         btn: {
