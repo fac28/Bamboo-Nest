@@ -5,7 +5,6 @@ import { Card, CardHeader } from '@nextui-org/react'
 import { linkData } from '@/utils/constants'
 
 export default async function Login() {
-
   const { user } = await getUser()
   if (!user) {
     return (
