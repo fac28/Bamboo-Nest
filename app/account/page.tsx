@@ -1,7 +1,16 @@
 import Link from 'next/link'
 import PageContainer from '@/components/PageContainer'
+import getUser from '@/utils/getUser'
 
 export default async function Login() {
+  const { user } = await getUser()
+  if (!user) {
+    return (
+      <PageContainer>
+        <h1> Please Log in first </h1>
+      </PageContainer>
+    )
+  }
   return (
     <PageContainer>
       <h1> Your Account </h1>
