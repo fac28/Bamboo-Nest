@@ -63,7 +63,7 @@ export default async function Index() {
         </div>
 
         <div className="p-8 cust-dotted-border-bottom">
-          <CategoryCard cardTitle={cardTitle} height="[50px]"/>
+          <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-8">
