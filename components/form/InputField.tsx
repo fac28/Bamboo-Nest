@@ -1,9 +1,8 @@
 import { Age, Category, Condition, SubCategory } from '@/utils/types'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
+import newClient from '@/utils/createNewClient'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
@@ -44,8 +43,7 @@ export async function InputField({
     const collection = formData.get('can-collect')
     collection === 'on' ? true : false
 
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     await supabase.storage
       .from('item-pictures')

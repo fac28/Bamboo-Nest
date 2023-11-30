@@ -7,10 +7,13 @@ import fetchSubCategories from '@/utils/fetchSubCategories'
 import getUser from '@/utils/getUser'
 
 export default async function Page() {
-  const ageGroups = await fetchAgeGroups()
-  const categories = await fetchCategories()
-  const conditions = await fetchConditions()
-  const subCategories = await fetchSubCategories()
+
+  const [ageGroups, categories, conditions, subCategories] = await Promise.all([
+    fetchAgeGroups(),
+    fetchCategories(),
+    fetchConditions(),
+    fetchSubCategories(),
+  ]);
 
   const { user, supabase } = await getUser()
   const userId = user?.id || ''

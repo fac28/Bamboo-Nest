@@ -1,9 +1,7 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
+import newClient from '@/utils/createNewClient'
 
 export default async function fetchItemsByCategory(category: string) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = newClient()
 
   if (category.toLowerCase() === 'all') {
     const { data, error } = await supabase.from('items').select()

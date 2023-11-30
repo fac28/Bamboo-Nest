@@ -44,3 +44,10 @@ export type Purchase =
   Database['public']['Tables']['users']['Row']['purchase_history']
 
 export type Review = Database['public']['Tables']['reviews']['Row']
+export interface ItemForHomePage {
+  item_id: number
+  name: string
+  price: number
+  image_path: string
+  brand: string
+}

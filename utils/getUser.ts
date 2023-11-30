@@ -1,10 +1,9 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import newClient from '@/utils/createNewClient'
 
 export default async function getUser() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+
+  const supabase = newClient()
 
   const {
     data: { user },
