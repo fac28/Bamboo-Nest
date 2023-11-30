@@ -2,7 +2,7 @@
 
 import CategoryCard from '@/components/CategoryCard'
 import Link from 'next/link'
-import { Button } from '@nextui-org/react'
+// import { Button } from '@nextui-org/react'
 import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
@@ -66,7 +66,7 @@ export default async function Index() {
           <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-4 gap-8 p-8">
           {itemDetails.slice(0, 4).map(item => (
             <div key={item.item_id}>
               <ItemCard
@@ -75,13 +75,14 @@ export default async function Index() {
                 cardPrice={item.price}
                 cardImgSrc={item.image_path}
                 cardImgAlt={`image of ${item.name}`}
+                grid_direction={'grid-rows-2'}
                 // seller_name={}
               />
             </div>
           ))}
         </div>
 
-        <div className="flex gap-4 w-500px p-8 ">
+        {/* <div className="flex gap-4 w-500px p-8 ">
           <Link href="/search" className="w-full ">
             <Button className="text-white text-4xl w-full p-16 bg-primaryBlue border-4 border-solid border-primaryBlue rounded-full">
               Buy{' '}
@@ -92,7 +93,7 @@ export default async function Index() {
               Sell{' '}
             </Button>
           </Link>
-        </div>
+        </div> */}
       </div>
       <footer></footer>
     </>

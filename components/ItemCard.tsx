@@ -8,6 +8,7 @@ export default function ItemCard({
   cardImgAlt,
   seller_name = null,
   seller_id = null,
+  grid_direction = 'grid-cols-2',
 }: {
   linkHref: string
   cardName: string
@@ -16,11 +17,12 @@ export default function ItemCard({
   cardImgAlt: string
   seller_id?: string | null
   seller_name?: string | null
+  grid_direction?: 'grid-cols-2' | 'grid-rows-2'
 }) {
   return (
     <Link
       href={seller_id ? `/review/${seller_id}` : linkHref}
-      className="bg-white p-2 rounded-2xl shadow-xl mb-2 grid grid-cols-2 gap-4"
+      className={`bg-white p-2 rounded-2xl shadow-xl mb-2 grid ${grid_direction} gap-4`}
     >
       <div className="sm:col-span-1 row-span-2">
         <img
