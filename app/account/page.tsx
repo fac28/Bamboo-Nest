@@ -17,51 +17,51 @@ export default async function Login() {
       <h1> Your Account </h1>
       <div className="gap-4 grid grid-cols-2 grid-rows-2">
         <Link href="/account/favourites">
-        <Card
+          <Card
             className={`border-2 border-solid border-primaryBlue rounded-3xl h-20`}
           >
             <CardHeader className="flex items-center justify-center h-full">
               <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
-              Favourites
+                Favourites
               </h4>
             </CardHeader>
-        </Card>
+          </Card>
         </Link>
 
         <Link href="/account/purchases">
-        <Card
+          <Card
             className={`border-2 border-solid border-primaryBlue rounded-3xl h-20`}
           >
             <CardHeader className="flex items-center justify-center h-full">
               <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
-              Purchases
+                Purchases
               </h4>
             </CardHeader>
-        </Card>
+          </Card>
         </Link>
 
         <Link href="/account/listings">
-        <Card
+          <Card
             className={`border-2 border-solid border-primaryBlue rounded-3xl h-20`}
           >
             <CardHeader className="flex items-center justify-center h-full">
               <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
-              All Listings
+                All Listings
               </h4>
             </CardHeader>
-        </Card>
+          </Card>
         </Link>
 
         <Link href="/account/details">
-        <Card
+          <Card
             className={`border-2 border-solid border-primaryBlue rounded-3xl h-20`}
           >
             <CardHeader className="flex items-center justify-center h-full">
               <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
-              Personal Details
+                Personal Details
               </h4>
             </CardHeader>
-        </Card>
+          </Card>
         </Link>
       </div>
     </PageContainer>
