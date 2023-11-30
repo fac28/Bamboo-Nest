@@ -4,9 +4,12 @@ import ItemCard from '@/components/ItemCard'
 import getUser from '@/utils/getUser'
 
 export default async function ListingHistory({ id = '' }) {
-  const { user, supabase } = await getUser()
+  const { user, supabase } = await getUser();
+  const userID = await user?.id || ''
 
-  id ? id : user?.id
+  if(id === '') id = userID
+
+  console.log(id)
 
   const itemDetails: ItemWithImage[] = await fetchItemsBySeller(supabase, id)
 
