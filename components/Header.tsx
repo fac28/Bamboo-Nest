@@ -1,4 +1,4 @@
-import AuthButton from '@/components/AuthButton'
+import AuthButton from '@/components/button/AuthButton'
 import NavigationMenu from '@/components/NavigationMenu'
 import Link from 'next/link'
 
