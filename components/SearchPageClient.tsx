@@ -47,7 +47,7 @@ export default function ClientPage({
             ))}
           </div>
         )}
-        <div className="mt-4 grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults.map(result => (
             <div key={result.item_id}>
               <ItemCard
