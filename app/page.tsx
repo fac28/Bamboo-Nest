@@ -53,7 +53,7 @@ export default async function Index() {
           fill={true}
         />
       </div>
-      <div className="max-w-5xl mx-auto ">
+      <div className="max-w-5xl mx-auto pb-6">
         <div className="flex justify-between px-8 pt-8 items-center">
           <p className="text-xl font-medium">Categories</p>
           <Link href={'/search'}>View More &#8594;</Link>
