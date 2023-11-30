@@ -48,7 +48,7 @@ export default function NavigationMenu() {
               //       ? 'danger'
               //       : 'foreground'
               // }
-              className="w-full justify-center"
+              className="w-full justify-center text-black"
               href={route}
               size="lg"
             >
