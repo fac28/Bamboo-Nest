@@ -1,8 +1,5 @@
-// import NavigationMenu from '@/components/NavigationMenu'
-
 import CategoryCard from '@/components/CategoryCard'
 import Link from 'next/link'
-// import { Button } from '@nextui-org/react'
 import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'

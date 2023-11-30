@@ -3,7 +3,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
-import FormFieldAndLabel from '@/components/FormFieldAndLabel'
+import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
 import getUser from '@/utils/getUser'
 
 export default async function Login({
