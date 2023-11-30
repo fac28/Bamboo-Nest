@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import FavouriteButton from './FavouriteButton'
+import FavouriteButton from '@/components/button/FavouriteButton'
 import Image from 'next/image'
 
 export default function ItemCard({
