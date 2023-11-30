@@ -1,15 +1,10 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import getItemDetails from '@/utils/fetchItemDetails'
 import ItemCard from '@/components/ItemCard'
 import fetchSellerName from '@/utils/fetchSellerName'
+import getUser from '@/utils/getUser'
 
 export default async function Purchase() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user, supabase } = await getUser()
 
   const userID = user?.id || ''
 

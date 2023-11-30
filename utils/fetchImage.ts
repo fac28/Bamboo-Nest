@@ -1,11 +1,9 @@
 'use server'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
+import newClient from '@/utils/createNewClient'
 
 export default async function fetchImage(image_id: string) {
   if (!image_id) return null
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = newClient()
 
   const { data: allImagesData } = await supabase.storage
     .from('item-pictures')

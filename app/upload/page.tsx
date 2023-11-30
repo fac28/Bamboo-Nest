@@ -7,10 +7,12 @@ import fetchSubCategories from '@/utils/fetchSubCategories'
 import getUser from '@/utils/getUser'
 
 export default async function Page() {
-  const ageGroups = await fetchAgeGroups()
-  const categories = await fetchCategories()
-  const conditions = await fetchConditions()
-  const subCategories = await fetchSubCategories()
+  const [ageGroups, categories, conditions, subCategories] = await Promise.all([
+    fetchAgeGroups(),
+    fetchCategories(),
+    fetchConditions(),
+    fetchSubCategories(),
+  ])
 
   const { user, supabase } = await getUser()
   const userId = user?.id || ''
@@ -19,22 +21,7 @@ export default async function Page() {
     .select('first_name,last_name,bio')
     .eq('id', userId)
   const existsOnUsersTable = (data && data.length > 0 ? true : false) || false
-  // return user? (
-  //   <PageContainer>
-  //     <InputField
-  //       ageGroups={ageGroups}
-  //       categories={categories}
-  //       subCategories={subCategories}
-  //       conditions={conditions}
-  //       seller={userId}
-  //       existsOnUsersTable={existsOnUsersTable}
-  //     />
-  //   </PageContainer>
-  // ): (
-  //   <PageContainer>
-  //     <h1> Please Log in first </h1>
-  //   </PageContainer>
-  // )
+
   return (
     <PageContainer>
       {user ? (
