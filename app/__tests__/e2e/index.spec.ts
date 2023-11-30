@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test'
 
 // test link to search page
-test('should navigate to the search page (via \'View More\')', async ({ page }) => {
+test("should navigate to the search page (via 'View More')", async ({
+  page,
+}) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'View More' }).click()
   await expect(page).toHaveURL('/search')

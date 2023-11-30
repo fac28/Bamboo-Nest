@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 // test logo button
 test('should navigate to the home page', async ({ page }) => {
-  await page.goto('http://localhost:3000/search');
-  await page.getByRole('link', { name: 'Bamboo Nest' }).click();
+  await page.goto('http://localhost:3000/search')
+  await page.getByRole('link', { name: 'Bamboo Nest' }).click()
   await expect(page).toHaveURL('/')
-});
+})
 
 //test login button
 test('should navigate to the login page', async ({ page }) => {
