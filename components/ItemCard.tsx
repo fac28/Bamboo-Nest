@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import FavouriteButton from './button/FavouriteButton'
+import FavouriteButton from '@/components/button/FavouriteButton'
+import Image from 'next/image'
 
 export default function ItemCard({
   linkHref,
@@ -29,10 +30,12 @@ export default function ItemCard({
   return (
     <Link
       href={seller_id ? `/review/${seller_id}` : linkHref}
-      className={`bg-white hover:scale-95 transition-transform duration-300 transform origin-center p-2 rounded-2xl shadow-xl mb-2 grid grid-rows-2 lg:${grid_direction} gap-4`}
+      className={`bg-white p-2 rounded-2xl shadow-xl mb-2 grid grid-rows-2 lg:${grid_direction} gap-4`}
     >
       <div className="sm:col-span-1 row-span-2">
-        <img
+        <Image
+          width="500"
+          height="500"
           src={cardImgSrc}
           alt={cardImgAlt}
           className="w-full h-full aspect-square object-cover rounded-2xl"
