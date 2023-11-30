@@ -35,18 +35,18 @@ export default async function Page() {
   //     <h1> Please Log in first </h1>
   //   </PageContainer>
   // )
-  return(
+  return (
     <PageContainer>
-      {user?(
-      <InputField
-        ageGroups={ageGroups}
-        categories={categories}
-        subCategories={subCategories}
-        conditions={conditions}
-        seller={userId}
-        existsOnUsersTable={existsOnUsersTable}
-      />
-      ): (
+      {user ? (
+        <InputField
+          ageGroups={ageGroups}
+          categories={categories}
+          subCategories={subCategories}
+          conditions={conditions}
+          seller={userId}
+          existsOnUsersTable={existsOnUsersTable}
+        />
+      ) : (
         <h1> Please Log in first </h1>
       )}
     </PageContainer>
