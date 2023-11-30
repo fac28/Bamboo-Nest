@@ -12,7 +12,7 @@ export default function PageContainer({
     <div className="global-background">
       <BackButton />
       <div
-        className={`w-full vh-without-nav mx-auto flex flex-wrap flex-col px-6 lg:px-64 max-w-7xl ${justify} items-center`}
+        className={`w-full vh-without-nav mx-auto flex flex-wrap flex-col px-6 lg:px-58 max-w-7xl ${justify} items-center`}
       >
         {children}
       </div>
