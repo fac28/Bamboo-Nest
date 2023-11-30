@@ -56,7 +56,9 @@ export default async function Index() {
       <div className="max-w-5xl mx-auto pb-6">
         <div className="flex justify-between px-8 pt-8 items-center">
           <p className="text-xl font-medium">Categories</p>
-          <Link href={'/search'}>View More &#8594;</Link>
+          <Link href={'/search'} className="hover:opacity-30">
+            View More &#8594;
+          </Link>
         </div>
 
         {/* <div className="p-8 cust-dotted-border-bottom"> */}
@@ -66,7 +68,9 @@ export default async function Index() {
 
         <div className="flex justify-between px-8 pt-8 items-center">
           <p className="text-xl font-medium">Recently Listed</p>
-          <Link href={'/Search'}>See more &#8594;</Link>
+          <Link href={'/Search'} className="hover:opacity-30">
+            See more &#8594;
+          </Link>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-8">
           {itemDetails.slice(0, 4).map(item => (
