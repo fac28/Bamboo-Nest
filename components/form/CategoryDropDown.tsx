@@ -10,6 +10,7 @@ export default function SelectCategories({
   categories: Category[]
   subCategories: SubCategory[]
 }) {
+  const inputStyle = "peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue"
   const [selectedCategoryState, setSelectedCategoryState] = useState(
     categories[0].id,
   )
@@ -21,6 +22,7 @@ export default function SelectCategories({
         id="category"
         value={selectedCategoryState}
         onChange={e => setSelectedCategoryState(parseInt(e.target.value))}
+        className={inputStyle}
       >
         {categories.map(category => (
           <option key={category.id} value={category.id}>
@@ -29,7 +31,7 @@ export default function SelectCategories({
         ))}
       </select>
       <label htmlFor="item-sub-category">sub-category:</label>
-      <select name="sub-category" id="sub-category">
+      <select name="sub-category" id="sub-category" className={inputStyle}>
         {subCategories
           .filter(
             subCategory => subCategory.category_id === selectedCategoryState,

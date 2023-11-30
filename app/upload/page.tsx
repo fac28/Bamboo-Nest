@@ -19,22 +19,7 @@ export default async function Page() {
     .select('first_name,last_name,bio')
     .eq('id', userId)
   const existsOnUsersTable = (data && data.length > 0 ? true : false) || false
-  // return user? (
-  //   <PageContainer>
-  //     <InputField
-  //       ageGroups={ageGroups}
-  //       categories={categories}
-  //       subCategories={subCategories}
-  //       conditions={conditions}
-  //       seller={userId}
-  //       existsOnUsersTable={existsOnUsersTable}
-  //     />
-  //   </PageContainer>
-  // ): (
-  //   <PageContainer>
-  //     <h1> Please Log in first </h1>
-  //   </PageContainer>
-  // )
+
   return (
     <PageContainer>
       {user ? (
