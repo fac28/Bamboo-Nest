@@ -1,17 +1,11 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import PageContainer from '@/components/PageContainer'
 import { ReviewSeller } from '@/components/form/ReviewSeller'
+import getUser from '@/utils/getUser'
 
 export default async function Review({ params }: { params: { id: string } }) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
   const seller_id = params.id
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user } = await getUser()
 
   return user ? (
     <PageContainer>

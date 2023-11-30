@@ -1,10 +1,9 @@
 import FavouriteButton from '@/components/FavouriteButton'
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import PageContainer from '@/components/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
 import WideBlueButton from '@/components/WideBlueButton'
+import getUser from '@/utils/getUser'
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description), users(first_name,last_name)'
@@ -16,8 +15,8 @@ export default async function listing({
     id: string
   }
 }) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const { user, supabase } = await getUser()
+
   try {
     const { data, error } = await supabase
       .from('items')
@@ -43,9 +42,6 @@ export default async function listing({
       image_path,
     } = data[0]
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
     const { data: favourites } = await supabase
       .from('users')
       .select('favourite_items')

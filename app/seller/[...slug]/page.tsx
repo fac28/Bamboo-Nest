@@ -1,5 +1,3 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { ItemWithImage, Review } from '@/utils/types'
@@ -8,6 +6,7 @@ import PageContainer from '@/components/PageContainer'
 import ListingHistory from '@/components/ListingHistory'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 import DisplayReview from '@/components/DisplayReview'
+import getUser from '@/utils/getUser'
 
 export default async function listing({
   params,
@@ -18,8 +17,7 @@ export default async function listing({
 }) {
   const sellerID = params.slug[0]
 
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const { supabase } = await getUser()
 
   try {
     const { data, error } = await supabase

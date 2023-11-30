@@ -1,13 +1,9 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import ClientPage from '../../components/SearchPageClient'
+import getUser from '@/utils/getUser'
 
 export default async function page() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user, supabase } = await getUser()
+
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')
