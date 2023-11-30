@@ -16,7 +16,6 @@ export default async function listing({
     slug: string[]
   }
 }) {
-
   const sellerID = params.slug[0]
 
   const cookieStore = cookies()

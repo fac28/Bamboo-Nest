@@ -15,7 +15,7 @@ export default async function ListingHistory({ id = '' }) {
 
   const itemDetails: ItemWithImage[] = await fetchItemsBySeller(supabase, id)
 
-  return (itemDetails.length > 0 )? (
+  return itemDetails.length > 0 ? (
     <div className="flex flex-col gap-4 py-16">
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
@@ -31,7 +31,7 @@ export default async function ListingHistory({ id = '' }) {
         ))}
       </div>
     </div>
-  ): (
+  ) : (
     <div>
       <h2>No items listed yet</h2>
     </div>
