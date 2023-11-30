@@ -7,12 +7,15 @@ import PageContainer from '@/components/PageContainer'
 import FormFieldAndLabel from '@/components/FormFieldAndLabel'
 // import WideBlueButton from '@/components/WideBlueButton'
 // import BackButton from '@/components/BackButton'
+import getUser from '@/utils/getUser'
 
 export default async function Login({
   searchParams,
 }: {
   searchParams: { message: string }
 }) {
+  const { user } = await getUser()
+
   const signIn = async (formData: FormData) => {
     'use server'
 
@@ -32,13 +35,6 @@ export default async function Login({
 
     return redirect('/')
   }
-
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
 
   return user ? (
     <PageContainer>

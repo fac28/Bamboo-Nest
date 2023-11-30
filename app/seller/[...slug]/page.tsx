@@ -1,11 +1,12 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
-import { ItemWithImage } from '@/utils/types'
+import { ItemWithImage, Review } from '@/utils/types'
 import WideBlueButton from '@/components/WideBlueButton'
 import PageContainer from '@/components/PageContainer'
-import SellingHistory from '@/components/ListingHistory'
+import ListingHistory from '@/components/ListingHistory'
+import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
+import DisplayReview from '@/components/DisplayReview'
+import getUser from '@/utils/getUser'
 
 export default async function listing({
   params,
@@ -16,21 +17,12 @@ export default async function listing({
 }) {
   const sellerID = params.slug[0]
 
-  if (params.slug[1] == 'history') {
-    return (
-      <PageContainer>
-        <h1>Selling history</h1>
-        <SellingHistory id={params.slug[0]} />
-      </PageContainer>
-    )
-  }
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const { supabase } = await getUser()
 
   try {
     const { data, error } = await supabase
       .from('users')
-      .select('*') // Should change this to just relevant info to ensure we don't expose private info of seller to public
+      .select('first_name, last_name, bio, image_path, created_at')
       .eq('id', sellerID)
 
     if (error || !data || data.length === 0) {
@@ -44,6 +36,20 @@ export default async function listing({
       supabase,
       sellerID,
     )
+
+    const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
+
+    if (params.slug[1] == 'history') {
+      return (
+        <PageContainer>
+          <h1>Reviews for {first_name} </h1>
+          <DisplayReview reviewData={reviewData} />
+          <h1>All Listings by {first_name}</h1>
+          <ListingHistory id={sellerID} />
+        </PageContainer>
+      )
+    }
+
     const sale_history: ItemWithImage[] = await items_for_sale.filter(
       item => item.sold === true,
     )

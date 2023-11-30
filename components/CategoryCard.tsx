@@ -12,7 +12,7 @@ interface CategoryCardProps {
 
 export default function CategoryCard({ cardTitle, height }: CategoryCardProps) {
   return (
-    <div className="gap-4 grid grid-cols-4 grid-rows-2">
+    <div className="gap-4 grid grid-cols-3 lg:grid-cols-4 grid-rows-2">
       {cardTitle.map((item, index) => (
         <Link key={index} href={`/products/${encodeURIComponent(item.title)}`}>
           <Card
@@ -20,7 +20,7 @@ export default function CategoryCard({ cardTitle, height }: CategoryCardProps) {
             key={index}
           >
             <CardHeader className="flex items-center justify-center h-full">
-              <h4 className="text-primaryBlue font-medium text-xl">
+              <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
                 {item.title}
               </h4>
             </CardHeader>
