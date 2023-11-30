@@ -59,7 +59,7 @@ export default async function Index() {
       <div className="max-w-5xl mx-auto ">
         <div className="flex justify-between px-8 pt-8 items-center">
           <p className="text-xl font-medium">Categories</p>
-          <Link href={'/Search'}>View More &#8594;</Link>
+          <Link href={'/search'}>View More &#8594;</Link>
         </div>
 
         <div className="p-8 cust-dotted-border-bottom">
