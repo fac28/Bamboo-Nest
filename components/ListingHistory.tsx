@@ -4,7 +4,7 @@ import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { ItemWithImage } from '@/utils/types'
 import ItemCard from '@/components/ItemCard'
 
-export default async function SellingHistory({ id = '' }) {
+export default async function ListingHistory({ id = '' }) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   const {
@@ -15,7 +15,7 @@ export default async function SellingHistory({ id = '' }) {
 
   const itemDetails: ItemWithImage[] = await fetchItemsBySeller(supabase, id)
 
-  return (
+  return (itemDetails.length > 0 )? (
     <div className="flex flex-col gap-4 py-16">
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
@@ -30,6 +30,10 @@ export default async function SellingHistory({ id = '' }) {
           </div>
         ))}
       </div>
+    </div>
+  ): (
+    <div>
+      <h2>No items listed yet</h2>
     </div>
   )
 }
