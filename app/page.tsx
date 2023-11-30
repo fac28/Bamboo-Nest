@@ -4,6 +4,10 @@ import CategoryCard from '@/components/CategoryCard'
 import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import Image from 'next/image'
+import { cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
+// import getItemDetails from '@/utils/fetchItemDetails'
+import ItemCard from '@/components/ItemCard'
 
 // import Header from '@/components/Header'
 
@@ -18,6 +22,25 @@ export default async function Index() {
     { title: 'Monitoring' },
     { title: 'Other' },
   ]
+
+  interface Item {
+    item_id: number
+    name: string
+    price: number
+    image_path: string
+    brand: string
+    // Add any other properties if necessary
+  }
+
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const { data: items } = await supabase
+    .from('items')
+    .select('item_id, name, price, image_path, brand')
+
+  const itemDetails: Item[] = items || []
+
   return (
     <>
       <div className="relative h-96">
@@ -41,6 +64,21 @@ export default async function Index() {
 
         <div className="p-8 cust-dotted-border-bottom">
           <CategoryCard cardTitle={cardTitle} height="[50px]" />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {itemDetails.slice(0, 4).map(item => (
+            <div key={item.item_id}>
+              <ItemCard
+                linkHref={`/item/${item.item_id}`}
+                cardName={item.name}
+                cardPrice={item.price}
+                cardImgSrc={item.image_path}
+                cardImgAlt={`image of ${item.name}`}
+                // seller_name={}
+              />
+            </div>
+          ))}
         </div>
 
         <div className="flex gap-4 w-500px p-8 ">
