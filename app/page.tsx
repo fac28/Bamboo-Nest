@@ -43,9 +43,9 @@ export default async function Index() {
 
   return (
     <>
-      <div className="relative h-96">
+      <div className="h-60 relative lg:h-96">
         <div className="absolute inset-0 flex items-center justify-center mx-auto ">
-          <h2 className="z-10 text-center text-black text-5xl w-1/2">
+          <h2 className="text-xl z-10 text-center text-black lg:text-5xl w-1/2">
             Rent, buy or sell your baby gear. A marketplace for you to rent, buy
             or sell pre-loved baby items locally.
           </h2>
@@ -59,14 +59,14 @@ export default async function Index() {
       <div className="max-w-5xl mx-auto ">
         <div className="flex justify-between px-8 pt-8 items-center">
           <p className="text-xl font-medium">Categories</p>
-          <Link href={'/Search'}>View More &#8594;</Link>
+          <Link href={'/search'}>View More &#8594;</Link>
         </div>
 
         <div className="p-8 cust-dotted-border-bottom">
           <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
 
-        <div className="grid grid-cols-4 gap-8 p-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-8">
           {itemDetails.slice(0, 4).map(item => (
             <div key={item.item_id}>
               <ItemCard
