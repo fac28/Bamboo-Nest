@@ -2,7 +2,7 @@ import ClientPage from '../../components/SearchPageClient'
 import getUser from '@/utils/getUser'
 
 export default async function page() {
-  const {user, supabase} = await getUser()
+  const { user, supabase } = await getUser()
 
   const { data: favourites } = await supabase
     .from('users')

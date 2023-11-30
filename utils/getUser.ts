@@ -2,8 +2,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 
-export default async function getUser(){
-
+export default async function getUser() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
@@ -11,5 +10,5 @@ export default async function getUser(){
     data: { user },
   } = await supabase.auth.getUser()
 
-  return {user, supabase}
+  return { user, supabase }
 }

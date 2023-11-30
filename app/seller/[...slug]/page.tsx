@@ -17,7 +17,7 @@ export default async function listing({
 }) {
   const sellerID = params.slug[0]
 
-  const {supabase} = await getUser()
+  const { supabase } = await getUser()
 
   try {
     const { data, error } = await supabase

@@ -15,8 +15,7 @@ export default async function listing({
     id: string
   }
 }) {
-
-  const {user, supabase} = await getUser()
+  const { user, supabase } = await getUser()
 
   try {
     const { data, error } = await supabase

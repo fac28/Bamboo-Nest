@@ -14,7 +14,6 @@ export default async function listing({
     message: string
   }
 }) {
-
   const { user } = await getUser()
 
   const sections: { [key: string]: string } = {

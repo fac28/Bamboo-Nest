@@ -3,7 +3,6 @@ import { ReviewSeller } from '@/components/form/ReviewSeller'
 import getUser from '@/utils/getUser'
 
 export default async function Review({ params }: { params: { id: string } }) {
-
   const seller_id = params.id
 
   const { user } = await getUser()
