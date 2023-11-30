@@ -62,10 +62,15 @@ export default async function Index() {
           <Link href={'/search'}>View More &#8594;</Link>
         </div>
 
-        <div className="p-8 cust-dotted-border-bottom">
+        {/* <div className="p-8 cust-dotted-border-bottom"> */}
+        <div className="p-8">
           <CategoryCard cardTitle={cardTitle} height="[50px]" />
         </div>
 
+        <div className="flex justify-between px-8 pt-8 items-center">
+          <p className="text-xl font-medium">Recently Listed</p>
+          <Link href={'/Search'}>See more &#8594;</Link>
+        </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-8">
           {itemDetails.slice(0, 4).map(item => (
             <div key={item.item_id}>

@@ -38,7 +38,7 @@ export default function ItemCard({
           className="w-full h-full aspect-square object-cover rounded-2xl"
         />
       </div>
-      <div className="md:col-span-1 row-span-2 flex flex-col justify-around p-2">
+      <div className="md:col-span-1 row-span-2 flex flex-col justify-around p-2 min-h-[6rem]">
         <p className="text-md">{cardName}</p>
         <p className="text-sm">£{cardPrice}</p>
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}

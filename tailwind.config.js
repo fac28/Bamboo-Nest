@@ -12,6 +12,8 @@ module.exports = {
     extend: {
       colors: {
         primaryBlue: '#077467',
+        customBg: '#F1F6F7',
+        greenHighlight: '#94CC9F',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         btn: {
