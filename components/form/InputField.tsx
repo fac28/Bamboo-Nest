@@ -23,7 +23,8 @@ export async function InputField({
   seller: string
   existsOnUsersTable: boolean
 }) {
-  const inputStyle = "peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue";
+  const inputStyle =
+    'peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue'
   const submit = async (formData: FormData) => {
     'use server'
     const image = formData.get('item-picture') as File
@@ -112,7 +113,7 @@ export async function InputField({
         <label htmlFor="age-group">Age Group:</label>
         <select name="age-groups" id="age-groups" className={inputStyle}>
           {ageGroups.map(ageGroup => (
-            <option key={ageGroup.id} value={ageGroup.id} >
+            <option key={ageGroup.id} value={ageGroup.id}>
               {ageGroup.age_category}
             </option>
           ))}
@@ -130,8 +131,13 @@ export async function InputField({
           ))}
         </select>
         <label htmlFor="brand">Brand:</label>
-        <input name="brand" id="brand" placeholder="Brand" className={inputStyle}/>
-        <fieldset id="delivery" className={inputStyle} >
+        <input
+          name="brand"
+          id="brand"
+          placeholder="Brand"
+          className={inputStyle}
+        />
+        <fieldset id="delivery" className={inputStyle}>
           <legend>Choose your delivery options</legend>
           <input type="checkbox" name="can-deliver" id="can-deliver" />
           <label htmlFor="can-deliver">Available for delivery</label>
@@ -147,7 +153,6 @@ export async function InputField({
           name="postcode"
           id="postcode"
           pattern={regexForOutCode}
-
         />
         <label htmlFor="item-picture">Select an item picture:</label>
         <input

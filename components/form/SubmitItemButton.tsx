@@ -1,7 +1,6 @@
 'use client'
 import { Button } from '@nextui-org/react'
 
-
 export default function UploadItemSubmit({
   submit,
   existsOnUsersTable,
@@ -21,7 +20,11 @@ export default function UploadItemSubmit({
     return alert('you must be logged in to perform this action')
   }
   return (
-    <Button type="submit" formAction={formHandler} className="bg-primaryBlue text-white rounded-full">
+    <Button
+      type="submit"
+      formAction={formHandler}
+      className="bg-primaryBlue text-white rounded-full"
+    >
       Submit
     </Button>
   )

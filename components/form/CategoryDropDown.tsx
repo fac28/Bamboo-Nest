@@ -10,7 +10,8 @@ export default function SelectCategories({
   categories: Category[]
   subCategories: SubCategory[]
 }) {
-  const inputStyle = "peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue"
+  const inputStyle =
+    'peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue'
   const [selectedCategoryState, setSelectedCategoryState] = useState(
     categories[0].id,
   )
