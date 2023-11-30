@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import FavouriteButton from './FavouriteButton'
 
 export default function ItemCard({
   linkHref,
+  cardKey,
   cardName,
   cardPrice,
   cardImgSrc,
@@ -9,8 +11,11 @@ export default function ItemCard({
   seller_name = null,
   seller_id = null,
   grid_direction = 'grid-cols-2',
+  favouriteItems,
+  user,
 }: {
   linkHref: string
+  cardKey?: number
   cardName: string
   cardPrice: number
   cardImgSrc: string
@@ -18,6 +23,8 @@ export default function ItemCard({
   seller_id?: string | null
   seller_name?: string | null
   grid_direction?: 'grid-cols-2' | 'grid-rows-2'
+  favouriteItems?: string[] | null
+  user?: string | null
 }) {
   return (
     <Link
@@ -37,6 +44,17 @@ export default function ItemCard({
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
+
+      {cardKey ? (
+        <FavouriteButton
+          user={user ? user : null}
+          itemID={`${cardKey}`}
+          className="self-end"
+          favouriteItems={favouriteItems}
+        />
+      ) : (
+        <></>
+      )}
     </Link>
   )
 }
