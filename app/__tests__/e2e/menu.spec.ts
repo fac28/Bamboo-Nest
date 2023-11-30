@@ -10,7 +10,7 @@ test('should navigate to the home page', async ({ page }) => {
 //test login button
 test('should navigate to the login page', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('link', { name: 'Login' }).click()
+  await page.getByRole('link', { name: 'Login' }).first().click()
   await expect(page).toHaveURL('/login')
 })
 
@@ -32,14 +32,14 @@ test('should navigate to the upload page (burger menu)', async ({ page }) => {
 test('should navigate to the account page (burger menu)', async ({ page }) => {
   await page.goto('/')
   await page.getByLabel('Open menu').click()
-  await page.getByRole('link', { name: 'Account' }).click()
+  await page.getByRole('link', { name: 'Account' }).nth(1).click()
   await expect(page).toHaveURL('/account')
 })
 
 test('should navigate to the contact page (burger menu)', async ({ page }) => {
   await page.goto('/')
   await page.getByLabel('Open menu').click()
-  await page.getByRole('link', { name: 'Contact' }).click()
+  await page.getByRole('link', { name: 'Contact' }).nth(1).click()
   await expect(page).toHaveURL('/contact')
 })
 

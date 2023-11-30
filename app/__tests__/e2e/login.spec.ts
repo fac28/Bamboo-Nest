@@ -20,7 +20,5 @@ test("should be able to log in (James's email, password is password)", async ({
   await page.getByPlaceholder('••••••••').fill('password')
   await page.getByRole('button', { name: 'Login' }).click()
   await expect(page).toHaveURL('/')
-  await expect(
-    page.getByText('Hey, jsandfordsmith@blueyonder.co.uk!'),
-  ).toBeVisible()
+  await expect(page.getByText('Hey, James!')).toBeVisible()
 })
