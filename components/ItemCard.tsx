@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import FavouriteButton from './FavouriteButton'
+import FavouriteButton from './button/FavouriteButton'
 
 export default function ItemCard({
   linkHref,

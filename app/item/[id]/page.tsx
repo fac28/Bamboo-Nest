@@ -1,8 +1,8 @@
-import FavouriteButton from '@/components/FavouriteButton'
+import FavouriteButton from '@/components/button/FavouriteButton'
 import PageContainer from '@/components/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
-import WideBlueButton from '@/components/WideBlueButton'
+import WideBlueButton from '@/components/button/WideBlueButton'
 import getUser from '@/utils/getUser'
 
 const itemQuery =

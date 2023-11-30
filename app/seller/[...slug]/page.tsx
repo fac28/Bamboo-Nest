@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { ItemWithImage, Review } from '@/utils/types'
-import WideBlueButton from '@/components/WideBlueButton'
+import WideBlueButton from '@/components/button/WideBlueButton'
 import PageContainer from '@/components/PageContainer'
 import ListingHistory from '@/components/ListingHistory'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
