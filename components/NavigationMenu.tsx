@@ -40,7 +40,7 @@ export default function NavigationMenu() {
       <NavbarMenu className="justify-evenly">
         {Object.entries(menuLinks).map(([item, route], index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full justify-center" href={route} size="lg">
+            <Link className="w-full justify-center" href={route} size="lg"
               className="w-full justify-center text-black"
               href={route}
               size="lg"
