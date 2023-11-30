@@ -9,7 +9,9 @@
 }
 
 .global-background {
-  background-image: url('/icecream.jpg');
+  background-image: url('/green-bonbon.jpg');
+  background-size: cover;
+  background-position: bottom;
 }
 
 .vh-without-nav {

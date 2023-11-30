@@ -51,7 +51,7 @@ export default async function Index() {
           </h2>
         </div>
         <Image
-          src="/green-gradient.jpg"
+          src="/grass-mint.jpg"
           alt="Description of the image"
           fill={true}
         />
