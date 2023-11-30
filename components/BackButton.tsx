@@ -1,9 +1,13 @@
-import Link from 'next/link'
+'use client'
+
+import { useRouter } from 'next/navigation'
 
 export default function BackButton() {
+  const router = useRouter()
+
   return (
-    <Link
-      href="/"
+    <button
+      onClick={() => router.back()}
       className="p-4 rounded-md no-underline text-foreground bg-btn-background flex items-center group text-sm"
     >
       <svg
@@ -21,6 +25,6 @@ export default function BackButton() {
         <polyline points="15 18 9 12 15 6" />
       </svg>{' '}
       Back
-    </Link>
+    </button>
   )
 }
