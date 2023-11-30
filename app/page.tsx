@@ -9,7 +9,6 @@ import { ItemForHomePage } from '@/utils/types'
 // import Header from '@/components/Header'
 
 export default async function Index() {
-
   const supabase = newClient()
 
   const { data: items } = await supabase
