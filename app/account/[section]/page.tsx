@@ -1,11 +1,10 @@
 import PageContainer from '@/components/PageContainer'
 import UpdateForm from '@/components/form/UpdateProfile'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import Purchase from '@/components/PurchaseHistory'
 import Favourites from '@/components/Favourites'
 import ListingHistory from '@/components/ListingHistory'
+import getUser from '@/utils/getUser'
 
 export default async function listing({
   params,
@@ -15,12 +14,8 @@ export default async function listing({
     message: string
   }
 }) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user } = await getUser()
 
   const sections: { [key: string]: string } = {
     details: 'Personal Details',
