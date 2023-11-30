@@ -4,10 +4,10 @@ import ItemCard from '@/components/ItemCard'
 import getUser from '@/utils/getUser'
 
 export default async function ListingHistory({ id = '' }) {
-  const { user, supabase } = await getUser();
-  const userID = await user?.id || ''
+  const { user, supabase } = await getUser()
+  const userID = (await user?.id) || ''
 
-  if(id === '') id = userID
+  if (id === '') id = userID
 
   console.log(id)
 
