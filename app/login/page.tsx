@@ -1,13 +1,12 @@
 import Link from 'next/link'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
-import FormFieldAndLabel from '@/components/FormFieldAndLabel'
+import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
 // import WideBlueButton from '@/components/WideBlueButton'
 // import BackButton from '@/components/BackButton'
 import getUser from '@/utils/getUser'
+import newClient from '@/utils/createNewClient'
 
 export default async function Login({
   searchParams,
@@ -21,8 +20,7 @@ export default async function Login({
 
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     const { error } = await supabase.auth.signInWithPassword({
       email,

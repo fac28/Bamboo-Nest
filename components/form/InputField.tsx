@@ -1,9 +1,8 @@
 import { Age, Category, Condition, SubCategory } from '@/utils/types'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
+import newClient from '@/utils/createNewClient'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
@@ -23,6 +22,8 @@ export async function InputField({
   seller: string
   existsOnUsersTable: boolean
 }) {
+  const inputStyle =
+    'peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue'
   const submit = async (formData: FormData) => {
     'use server'
     const image = formData.get('item-picture') as File
@@ -42,8 +43,7 @@ export async function InputField({
     const collection = formData.get('can-collect')
     collection === 'on' ? true : false
 
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     await supabase.storage
       .from('item-pictures')
@@ -78,7 +78,7 @@ export async function InputField({
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 py-6 lg:py-16">
       <h1>Upload Item</h1>
       <form className="grid grid-cols-1 gap-2">
         <label htmlFor="item-name">Item Name:</label>
@@ -86,6 +86,7 @@ export async function InputField({
           name="item-name"
           id="item-name"
           placeholder="Item Name"
+          className={inputStyle}
           required
         ></input>
         <label htmlFor="item-description">Description:</label>
@@ -93,20 +94,22 @@ export async function InputField({
           name="item-description"
           placeholder="Description"
           id="item-description"
+          className={inputStyle}
           required
-        ></input>
+        />
         <label htmlFor="item-price">Price:</label>
         <input
           name="item-price"
           id="item-price"
-          placeholder="price"
+          placeholder="Price"
           type="number"
           min="0"
           step="0.01"
+          className={inputStyle}
           required
-        ></input>
+        />
         <label htmlFor="age-group">Age Group:</label>
-        <select name="age-groups" id="age-groups">
+        <select name="age-groups" id="age-groups" className={inputStyle}>
           {ageGroups.map(ageGroup => (
             <option key={ageGroup.id} value={ageGroup.id}>
               {ageGroup.age_category}
@@ -118,7 +121,7 @@ export async function InputField({
           subCategories={subCategories}
         />
         <label htmlFor="item-condition">Condition:</label>
-        <select name="condition" id="condition">
+        <select name="condition" id="condition" className={inputStyle}>
           {conditions.map(condition => (
             <option key={condition.id} value={condition.id}>
               {condition.condition}
@@ -126,8 +129,13 @@ export async function InputField({
           ))}
         </select>
         <label htmlFor="brand">Brand:</label>
-        <input name="brand" id="brand" placeholder="Brand"></input>
-        <fieldset id="delivery">
+        <input
+          name="brand"
+          id="brand"
+          placeholder="Brand"
+          className={inputStyle}
+        />
+        <fieldset id="delivery" className={inputStyle}>
           <legend>Choose your delivery options</legend>
           <input type="checkbox" name="can-deliver" id="can-deliver" />
           <label htmlFor="can-deliver">Available for delivery</label>
@@ -138,7 +146,7 @@ export async function InputField({
           Please enter the first half of your postcode:
         </label>
         <input
-          className="invalid:bg-red-500"
+          className={`invalid:bg-red-500 ${inputStyle}`}
           type="text"
           name="postcode"
           id="postcode"

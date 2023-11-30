@@ -1,25 +1,59 @@
 import { test, expect } from '@playwright/test'
 
-test('should navigate to the login page', async ({ page }) => {
+// test link to search page
+test("should navigate to the search page (via 'View More')", async ({
+  page,
+}) => {
   await page.goto('/')
-  // Find an element with the text 'Login' and click on it
-  await page.getByRole('link', { name: 'Login' }).click()
-  // The new URL should be "/login"
-  await expect(page).toHaveURL('/login')
-})
-
-test('should navigate to the search page (buy button)', async ({ page }) => {
-  await page.goto('/')
-  // Find a link with the text 'Buy' and click on it
-  await page.getByRole('link', { name: 'Buy' }).click()
-  // The new URL should be "/search"
+  await page.getByRole('link', { name: 'View More' }).click()
   await expect(page).toHaveURL('/search')
 })
 
-test('should navigate to the upload page (sell button)', async ({ page }) => {
+// test category links
+test('should navigate to the clothing products page', async ({ page }) => {
   await page.goto('/')
-  // Find a link with the text 'Sell' and click on it
-  await page.getByRole('link', { name: 'Sell' }).click()
-  // The new URL should be "/upload"
-  await expect(page).toHaveURL('/upload')
+  await page.getByRole('link', { name: 'Clothing' }).click()
+  await expect(page).toHaveURL('/products/Clothing')
+})
+
+test('should navigate to the feeding products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Feeding' }).click()
+  await expect(page).toHaveURL('/products/Feeding')
+})
+
+test('should navigate to the sleeping products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Sleeping' }).click()
+  await expect(page).toHaveURL('/products/Sleeping')
+})
+
+test('should navigate to the travelling products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Travelling' }).click()
+  await expect(page).toHaveURL('/products/Travelling')
+})
+
+test('should navigate to the cleaning products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Cleaning' }).click()
+  await expect(page).toHaveURL('/products/Cleaning')
+})
+
+test('should navigate to the playing products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Playing' }).click()
+  await expect(page).toHaveURL('/products/Playing')
+})
+
+test('should navigate to the monitoring products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Monitoring' }).click()
+  await expect(page).toHaveURL('/products/Monitoring')
+})
+
+test('should navigate to the other products page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Other' }).click()
+  await expect(page).toHaveURL('/products/Other')
 })

@@ -1,10 +1,9 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
-import FormFieldAndLabel from '@/components/FormFieldAndLabel'
+import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
 import getUser from '@/utils/getUser'
+import newClient from '@/utils/createNewClient'
 
 export default async function Login({
   searchParams,
@@ -18,8 +17,7 @@ export default async function Login({
     const password = formData.get('password') as string
     const firstName = formData.get('First Name') as string
     const lastName = formData.get('Last Name') as string
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     const { data, error } = await supabase.auth.signUp({
       email,

@@ -1,16 +1,11 @@
 import Link from 'next/link'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
+import getUser from '@/utils/getUser'
+import newClient from '@/utils/createNewClient'
 
 export default async function UpdateForm() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user, supabase } = await getUser()
 
   const { data: userInfo } = await supabase
     .from('users')
@@ -31,8 +26,7 @@ export default async function UpdateForm() {
     const bio = formData.get('Bio') as string
     const profilePicture = formData.get('profile-picture') as File
 
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     await supabase.storage
       .from('profile-pictures')
