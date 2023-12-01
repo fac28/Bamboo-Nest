@@ -2,16 +2,16 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-white lg:bg-greenHighlight text-primaryBlue py-8">
+    <footer className="bg-white text-primaryBlue py-8">
       <div className="max-w-5xl mx-auto px-6 flex justify-between items-center">
         {/* Brand Name on the left side */}
-        <div className="text-2xl font-bold">Bamboo Nest</div>
+        <div className="lg:text-2xl font-bold">Bamboo Nest</div>
 
         {/* Three columns on the right side */}
         <div className="flex space-x-8">
           {/* Column 1 */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">General</h3>
+            <h3 className="lg:text-lg font-semibold mb-4">General</h3>
             <ul className="list-none">
               <li>
                 <Link href="/">Home</Link>
@@ -28,7 +28,7 @@ export default function Footer() {
 
           {/* Column 2 */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Items</h3>
+            <h3 className="lg:text-lg font-semibold mb-4">Items</h3>
             <ul className="list-none">
               <li>
                 <Link href="/search">Search</Link>
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Column 3 */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Help</h3>
+            <h3 className="lg:text-lg font-semibold mb-4">Help</h3>
             <ul className="list-none">
               <li>
                 <Link href="/contact">Contact</Link>

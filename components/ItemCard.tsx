@@ -13,6 +13,8 @@ export default function ItemCard({
   grid_direction = 'grid-cols-2',
   favouriteItems,
   user,
+  background_colour = 'bg-white',
+  backgroundImg = null,
 }: {
   linkHref: string
   cardKey?: number
@@ -25,11 +27,18 @@ export default function ItemCard({
   grid_direction?: 'grid-cols-2' | 'grid-rows-2'
   favouriteItems?: string[] | null
   user?: string | null
+  background_colour: 'bg-white' | 'bg-lightGreenHighlight'
+  backgroundImg?: string | null
 }) {
   return (
     <Link
       href={seller_id ? `/review/${seller_id}` : linkHref}
-      className={`bg-white hover:scale-95 transition-transform duration-300 transform origin-center p-2 rounded-2xl shadow-xl mb-2 grid grid-rows-2 lg:${grid_direction} gap-4`}
+      className={`${background_colour} hover:scale-95 hover:opacity-90 transition-transform duration-300 transform origin-center p-2 rounded-2xl shadow-xl mb-2 grid grid-rows-2 lg:${grid_direction} gap-4`}
+      style={{
+        backgroundImage: backgroundImg ? `url(${backgroundImg})` : 'none',
+        backgroundSize: '300%',
+        backgroundPosition: 'center bottom',
+      }}
     >
       <div className="sm:col-span-1 row-span-2">
         <img

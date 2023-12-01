@@ -40,15 +40,18 @@ export default async function Index() {
 
   return (
     <>
-      <div className="h-60 relative lg:h-96">
-        <div className="absolute inset-0 flex items-center justify-center mx-auto ">
-          <h2 className="text-xl z-10 text-center text-black lg:text-5xl w-1/2">
-            Rent, buy or sell your baby gear. A marketplace for you to rent, buy
-            or sell pre-loved baby items locally.
-          </h2>
-        </div>
+      <div className="h-60 relative lg:h-96 flex flex-col items-center justify-center">
+        <h1 className="text-xl z-10 text-center text-black mb-4 lg:text-5xl">
+          Rent, buy or sell your baby gear.
+        </h1>
+
+        <h2 className="text-xl z-10 text-center text-black lg:text-5xl w-1/2">
+          A marketplace for you to rent, buy or sell pre-loved baby items
+          locally.
+        </h2>
         <Image
           src="/grass-mint.jpg"
+          // src="/customgreen.png"
           alt="Description of the image"
           fill={true}
         />
@@ -82,6 +85,8 @@ export default async function Index() {
                 cardImgSrc={item.image_path}
                 cardImgAlt={`image of ${item.name}`}
                 grid_direction={'grid-rows-2'}
+                background_colour={'bg-white'}
+                // backgroundImg={'/grad_17.png'}
                 // seller_name={}
               />
             </div>
