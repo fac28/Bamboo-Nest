@@ -32,7 +32,6 @@ export default function SelectCategories({
         ))}
       </select>
       <label htmlFor="sub-category">Sub-category:</label>
-
       <select name="sub-category" id="sub-category" className={className}>
         {subCategories
           .filter(
