@@ -1,5 +1,5 @@
 import { Review } from '@/utils/types'
-import { Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, Divider } from '@nextui-org/react'
 
 export default function DisplayReview({
   reviewData,
@@ -12,11 +12,11 @@ export default function DisplayReview({
     }, 0) / reviewData.length
 
   return averageScores ? (
-    <Card className='mb-2'>
+    <Card className="mb-2">
       <CardHeader className="flex gap-3">
         <h2>Average Score: {averageScores.toFixed(2)}</h2>
       </CardHeader>
-      <Divider/>
+      <Divider />
       <CardBody>
         {reviewData.map((review, index) => {
           return (

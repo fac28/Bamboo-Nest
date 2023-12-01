@@ -41,7 +41,6 @@ export default async function listing({
 
     if (params.slug[1] == 'history') {
       return (
-
         <PageContainer>
           <h1>Reviews for {first_name} </h1>
           <DisplayReview reviewData={reviewData} />
