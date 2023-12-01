@@ -1,11 +1,9 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
+import newClient from '@/utils/createNewClient'
 
 export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   'use server'
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = newClient()
 
   const { data: sellerData } = await supabase
     .from('users')
@@ -17,8 +15,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   const submit = async (formData: FormData) => {
     'use server'
 
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     const { data: userData } = await supabase.auth.getUser()
 
@@ -39,7 +36,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
       console.error(error)
     }
 
-    return redirect('/account/purchases')
+    return redirect(`/seller/${seller_id}/history`)
   }
 
   return (

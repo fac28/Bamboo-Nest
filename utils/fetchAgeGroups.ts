@@ -1,9 +1,7 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
+import newClient from '@/utils/createNewClient'
 
 export default async function fetchAgeGroups() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = newClient()
 
   const { data, error } = await supabase.from('age').select()
 

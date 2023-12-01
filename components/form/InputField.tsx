@@ -1,9 +1,8 @@
 import { Age, Category, Condition, SubCategory } from '@/utils/types'
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
+import newClient from '@/utils/createNewClient'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
@@ -23,6 +22,8 @@ export async function InputField({
   seller: string
   existsOnUsersTable: boolean
 }) {
+  const inputStyle =
+    'peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue'
   const submit = async (formData: FormData) => {
     'use server'
     const image = formData.get('item-picture') as File
@@ -42,8 +43,7 @@ export async function InputField({
     const collection = formData.get('can-collect')
     collection === 'on' ? true : false
 
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = newClient()
 
     await supabase.storage
       .from('item-pictures')
@@ -87,6 +87,7 @@ export async function InputField({
           name="item-name"
           id="item-name"
           placeholder="Item Name"
+          className={inputStyle}
           required
         ></input>
         <label htmlFor="item-description">Description:</label>
@@ -95,8 +96,9 @@ export async function InputField({
           name="item-description"
           placeholder="Description"
           id="item-description"
+          className={inputStyle}
           required
-        ></input>
+        />
         <label htmlFor="item-price">Price:</label>
         <input
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
@@ -106,8 +108,9 @@ export async function InputField({
           type="number"
           min="0"
           step="0.01"
+          className={inputStyle}
           required
-        ></input>
+        />
         <label htmlFor="age-groups">Age Group:</label>
         <select
           name="age-groups"
@@ -146,16 +149,15 @@ export async function InputField({
           id="brand"
           placeholder="Brand"
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
-        ></input>
+        />
         <fieldset
           id="delivery"
-          className="flex flex-wrap gap-2 p-0 pb-6
-        "
+          className="flex flex-wrap gap-2 p-0 pb-6"
         >
-          <legend className="pb-2">How can you send the item?</legend>
+          <legend className="pb-2">Delivery options</legend>
           <div className="child:p-2">
             <input type="checkbox" name="can-deliver" id="can-deliver" />
-            <label htmlFor="can-deliver">Delivery</label>
+            <label htmlFor="can-deliver">Local Delivery</label>
           </div>
           <div className="child:p-2">
             <input type="checkbox" name="can-collect" id="can-collect" />

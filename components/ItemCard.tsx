@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import FavouriteButton from './button/FavouriteButton'
+import FavouriteButton from '@/components/button/FavouriteButton'
+import Image from 'next/image'
 
 export default function ItemCard({
   linkHref,
@@ -41,7 +42,9 @@ export default function ItemCard({
       }}
     >
       <div className="sm:col-span-1 row-span-2">
-        <img
+        <Image
+          width="500"
+          height="500"
           src={cardImgSrc}
           alt={cardImgAlt}
           className="w-full h-full aspect-square object-cover rounded-2xl"

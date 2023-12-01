@@ -1,4 +1,6 @@
 'use client'
+import { Button } from '@nextui-org/react'
+
 export default function UploadItemSubmit({
   submit,
   existsOnUsersTable,
@@ -24,6 +26,6 @@ export default function UploadItemSubmit({
       className="rounded-full px-4 py-2 border bg-primaryBlue border-primaryBlue my-6 text-white text-center italic focus:outline-primaryBlue"
     >
       Submit
-    </button>
+    </Button>
   )
 }
