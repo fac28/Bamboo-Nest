@@ -108,11 +108,11 @@ export async function InputField({
           step="0.01"
           required
         ></input>
-        <label htmlFor="age-group">Age Group:</label>
+        <label htmlFor="age-groups">Age Group:</label>
         <select
           name="age-groups"
           id="age-groups"
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic ocus:outline-primaryBlue"
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
         >
           {ageGroups.map(ageGroup => (
             <option key={ageGroup.id} value={ageGroup.id}>
@@ -131,7 +131,8 @@ export async function InputField({
         <select
           name="condition"
           id="condition"
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italicfocus:outline-primaryBlue"
+          defaultValue=""
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
         >
           {conditions.map(condition => (
             <option key={condition.id} value={condition.id}>
