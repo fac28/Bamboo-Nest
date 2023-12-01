@@ -11,7 +11,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
     .select('first_name')
     .eq('id', seller_id)
 
-  if(sellerData && !sellerData[0]){
+  if (sellerData && !sellerData[0]) {
     return <div>Seller does not exist</div>
   }
 
