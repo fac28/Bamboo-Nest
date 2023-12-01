@@ -31,12 +31,8 @@ export default function SelectCategories({
           </option>
         ))}
       </select>
-      <select
-        name="sub-category"
-        id="sub-category"
-        className={className}
-      >
       <label htmlFor="item-sub-category">Sub-category:</label>
+      <select name="sub-category" id="sub-category" className={className}>
         {subCategories
           .filter(
             subCategory => subCategory.category_id === selectedCategoryState,
