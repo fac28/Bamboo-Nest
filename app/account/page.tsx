@@ -16,15 +16,15 @@ export default async function Login() {
   return (
     <PageContainer>
       <h1>Your Account</h1>
-      <div className="gap-4 grid grid-cols-2 grid-rows-2">
+      <div className="w-full gap-4 grid lg:grid-cols-2 lg:grid-rows-2">
         {linkData.map(({ href, text }) => (
           <Link href={href} key={href}>
-            <Card className="border-2 border-solid border-primaryBlue rounded-3xl h-20">
-              <CardHeader className="flex items-center justify-center h-full">
-                <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
-                  {text}
-                </h4>
-              </CardHeader>
+            <Card className="border-2 p-16 border-solid border-primaryBlue rounded-3xl h-20 flex items-center justify-center ">
+              {/* <CardHeader className="flex items-center justify-center h-full"> */}
+              <h4 className="text-primaryBlue font-medium lg:text-xl">
+                {text}
+              </h4>
+              {/* </CardHeader> */}
             </Card>
           </Link>
         ))}

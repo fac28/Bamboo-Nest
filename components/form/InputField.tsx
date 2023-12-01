@@ -145,10 +145,7 @@ export async function InputField({
           placeholder="Brand"
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
         />
-        <fieldset
-          id="delivery"
-          className="flex flex-wrap gap-2 p-0 pb-6"
-        >
+        <fieldset id="delivery" className="flex flex-wrap gap-2 p-0 pb-6">
           <legend className="pb-2">Delivery options</legend>
           <div className="child:p-2">
             <input type="checkbox" name="can-deliver" id="can-deliver" />
