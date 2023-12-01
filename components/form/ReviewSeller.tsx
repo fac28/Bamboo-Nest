@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import newClient from '@/utils/createNewClient'
+import Star from '@/components/Star'
 
 export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   'use server'
@@ -9,6 +10,11 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
     .from('users')
     .select('first_name')
     .eq('id', seller_id)
+
+  if(sellerData && !sellerData[0]){
+    return <div>Seller does not exist</div>
+  }
+
   let seller_name = ''
   seller_name = sellerData && sellerData[0].first_name
 
@@ -19,9 +25,8 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
 
     const { data: userData } = await supabase.auth.getUser()
 
-    const review_score = Math.round(
-      Number(formData.get('review-score')) / 25 + 1,
-    )
+    const review_score = Number(formData.get('review-score'))
+
     const review_comment = formData.get('review-comment') as string
     const seller_id = formData.get('seller-id') as string
 
@@ -42,6 +47,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   return (
     <div>
       <h1>Review {seller_name} </h1>
+
       <form className="grid grid-cols-1 gap-2">
         <input
           id="seller-id"
@@ -50,19 +56,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
           className="hidden"
         />
         <label htmlFor="review">Review</label>
-        <input
-          type="range"
-          id="review-score"
-          name="review-score"
-          list="values"
-        />
-        <datalist style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <option value="1" label="1" />
-          <option value="2" label="2" />
-          <option value="3" label="3" />
-          <option value="4" label="4" />
-          <option value="5" label="5" />
-        </datalist>
+        <Star />
         <label htmlFor="review-comment">Comment</label>
         <textarea
           id="review-comment"
