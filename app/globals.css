@@ -8,8 +8,18 @@
   box-sizing: border-box;
 }
 
+.gradient-background {
+  /* background: rgb(234, 232, 220); */
+  background: radial-gradient(
+      circle,
+      rgba(234, 232, 220, 1) 0%,
+      rgba(151, 232, 181, 1) 100%
+    ),
+    url(/noise.svg);
+}
+
 .global-background {
-  background-image: url('/green-bonbon.jpg');
+  background-image: url('/icecream.jpg');
   background-size: cover;
   background-position: bottom;
 }
