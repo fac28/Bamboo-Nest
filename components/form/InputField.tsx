@@ -79,7 +79,9 @@ export async function InputField({
     <div>
       <h1 className="text-center">Upload Item</h1>
       <form className="grid grid-cols-1 gap-2">
-        <label htmlFor="item-name">Item Name:<span className='invalid:red-500'>*</span></label>
+        <label htmlFor="item-name">
+          Item Name:<span className="invalid:red-500">*</span>
+        </label>
         <input
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           name="item-name"
@@ -88,7 +90,9 @@ export async function InputField({
           required
           aria-required="true"
         ></input>
-        <label htmlFor="item-description">Description:<span>*</span></label>
+        <label htmlFor="item-description">
+          Description:<span>*</span>
+        </label>
         <input
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           name="item-description"
@@ -97,7 +101,9 @@ export async function InputField({
           required
           aria-required="true"
         />
-        <label htmlFor="item-price">Price:<span>*</span></label>
+        <label htmlFor="item-price">
+          Price:<span>*</span>
+        </label>
         <input
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           name="item-price"
@@ -109,7 +115,9 @@ export async function InputField({
           required
           aria-required="true"
         />
-        <label htmlFor="age-groups">Age Group:<span>*</span></label>
+        <label htmlFor="age-groups">
+          Age Group:<span>*</span>
+        </label>
         <select
           name="age-groups"
           id="age-groups"
@@ -128,7 +136,9 @@ export async function InputField({
             'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
           }
         />
-        <label htmlFor="item-condition">Condition:<span>*</span></label>
+        <label htmlFor="item-condition">
+          Condition:<span>*</span>
+        </label>
         <select
           name="condition"
           id="condition"
@@ -141,7 +151,9 @@ export async function InputField({
             </option>
           ))}
         </select>
-        <label htmlFor="brand">Brand:<span>*</span></label>
+        <label htmlFor="brand">
+          Brand:<span>*</span>
+        </label>
         <input
           name="brand"
           id="brand"
@@ -149,7 +161,9 @@ export async function InputField({
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
         />
         <fieldset id="delivery" className="flex flex-wrap gap-2 p-0 pb-6">
-          <legend className="pb-2">Delivery options<span>*</span></legend>
+          <legend className="pb-2">
+            Delivery options<span>*</span>
+          </legend>
           <div className="child:p-2">
             <input type="checkbox" name="can-deliver" id="can-deliver" />
             <label htmlFor="can-deliver">Local Delivery</label>
@@ -171,7 +185,9 @@ export async function InputField({
           required
           aria-required="true"
         />
-        <label htmlFor="item-picture">Add pictures of your item:<span>*</span></label>
+        <label htmlFor="item-picture">
+          Add pictures of your item:<span>*</span>
+        </label>
         <input
           type="file"
           id="item-picture"
