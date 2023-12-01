@@ -12,7 +12,7 @@ interface CategoryCardProps {
 
 export default function CategoryCard({ cardTitle, height }: CategoryCardProps) {
   return (
-    <div className="gap-4 grid grid-cols-3 lg:grid-cols-4 grid-rows-2">
+    <div className="gap-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-2">
       {cardTitle.map((item, index) => (
         <Link key={index} href={`/products/${encodeURIComponent(item.title)}`}>
           <Card
