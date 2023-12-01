@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import PageContainer from '@/components/PageContainer'
 import getUser from '@/utils/getUser'
-import { Card, CardHeader } from '@nextui-org/react'
+import { Card } from '@nextui-org/react'
 import { linkData } from '@/utils/constants'
 
 export default async function Login() {
