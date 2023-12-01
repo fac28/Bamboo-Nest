@@ -9,9 +9,7 @@ export default async function Review({ params }: { params: { id: string } }) {
 
   return user ? (
     <PageContainer>
-      <div>
         <ReviewSeller seller_id={seller_id} />
-      </div>
     </PageContainer>
   ) : (
     <PageContainer>

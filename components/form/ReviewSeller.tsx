@@ -36,7 +36,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
       console.error(error)
     }
 
-    return redirect('/account/purchases')
+    return redirect(`/seller/${seller_id}/history`)
   }
 
   return (
