@@ -6,9 +6,11 @@ import { useState } from 'react'
 export default function SelectCategories({
   categories,
   subCategories,
+  className,
 }: {
   categories: Category[]
   subCategories: SubCategory[]
+  className: string
 }) {
   const [selectedCategoryState, setSelectedCategoryState] = useState(
     categories[0].id,
@@ -21,6 +23,7 @@ export default function SelectCategories({
         id="category"
         value={selectedCategoryState}
         onChange={e => setSelectedCategoryState(parseInt(e.target.value))}
+        className={className}
       >
         {categories.map(category => (
           <option key={category.id} value={category.id}>
@@ -28,8 +31,8 @@ export default function SelectCategories({
           </option>
         ))}
       </select>
-      <label htmlFor="item-sub-category">sub-category:</label>
-      <select name="sub-category" id="sub-category">
+      <label htmlFor="item-sub-category">Sub-category:</label>
+      <select name="sub-category" id="sub-category" className={className}>
         {subCategories
           .filter(
             subCategory => subCategory.category_id === selectedCategoryState,

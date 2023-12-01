@@ -79,10 +79,11 @@ export async function InputField({
 
   return (
     <div>
-      <h1>Upload Item</h1>
+      <h1 className="text-center">Upload Item</h1>
       <form className="grid grid-cols-1 gap-2">
         <label htmlFor="item-name">Item Name:</label>
         <input
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           name="item-name"
           id="item-name"
           placeholder="Item Name"
@@ -90,6 +91,7 @@ export async function InputField({
         ></input>
         <label htmlFor="item-description">Description:</label>
         <input
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           name="item-description"
           placeholder="Description"
           id="item-description"
@@ -97,16 +99,21 @@ export async function InputField({
         ></input>
         <label htmlFor="item-price">Price:</label>
         <input
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           name="item-price"
           id="item-price"
-          placeholder="price"
+          placeholder="Price"
           type="number"
           min="0"
           step="0.01"
           required
         ></input>
         <label htmlFor="age-group">Age Group:</label>
-        <select name="age-groups" id="age-groups">
+        <select
+          name="age-groups"
+          id="age-groups"
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic ocus:outline-primaryBlue"
+        >
           {ageGroups.map(ageGroup => (
             <option key={ageGroup.id} value={ageGroup.id}>
               {ageGroup.age_category}
@@ -116,9 +123,16 @@ export async function InputField({
         <SelectCategories
           categories={categories}
           subCategories={subCategories}
+          className={
+            'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
+          }
         />
         <label htmlFor="item-condition">Condition:</label>
-        <select name="condition" id="condition">
+        <select
+          name="condition"
+          id="condition"
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italicfocus:outline-primaryBlue"
+        >
           {conditions.map(condition => (
             <option key={condition.id} value={condition.id}>
               {condition.condition}
@@ -126,31 +140,45 @@ export async function InputField({
           ))}
         </select>
         <label htmlFor="brand">Brand:</label>
-        <input name="brand" id="brand" placeholder="Brand"></input>
-        <fieldset id="delivery">
-          <legend>Choose your delivery options</legend>
-          <input type="checkbox" name="can-deliver" id="can-deliver" />
-          <label htmlFor="can-deliver">Available for delivery</label>
-          <input type="checkbox" name="can-collect" id="can-collect" />
-          <label htmlFor="can-collect">Available for collection</label>
+        <input
+          name="brand"
+          id="brand"
+          placeholder="Brand"
+          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+        ></input>
+        <fieldset
+          id="delivery"
+          className="flex flex-wrap gap-2 p-0 pb-6
+        "
+        >
+          <legend className="pb-2">How can you send the item?</legend>
+          <div className="child:p-2">
+            <input type="checkbox" name="can-deliver" id="can-deliver" />
+            <label htmlFor="can-deliver">Delivery</label>
+          </div>
+          <div className="child:p-2">
+            <input type="checkbox" name="can-collect" id="can-collect" />
+            <label htmlFor="can-collect">Collection</label>
+          </div>
         </fieldset>
         <label htmlFor="postcode">
           Please enter the first half of your postcode:
         </label>
         <input
-          className="invalid:bg-red-500"
+          className="invalid:bg-red-500 rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
           type="text"
           name="postcode"
           id="postcode"
           pattern={regexForOutCode}
         />
-        <label htmlFor="item-picture">Select an item picture:</label>
+        <label htmlFor="item-picture">Add pictures of your item:</label>
         <input
           type="file"
           id="item-picture"
           name="item-picture"
           accept="image/png, image/jpeg"
         />
+
         <UploadItemSubmit
           submit={submit}
           existsOnUsersTable={existsOnUsersTable}
