@@ -9,8 +9,6 @@ export default async function ListingHistory({ id = '' }) {
 
   if (id === '') id = userID
 
-  console.log(id)
-
   const itemDetails: ItemWithImage[] = await fetchItemsBySeller(supabase, id)
 
   return itemDetails.length > 0 ? (
