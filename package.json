@@ -12,8 +12,11 @@
     "update": "supabase gen types typescript --project-id umgltemlffceoehkynug > database.types.ts"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fontsource/dm-sans": "^5.0.17",
     "@heroicons/react": "^2.0.18",
+    "@mui/material": "^5.14.19",
     "@nextui-org/react": "^2.2.9",
     "@sentry/nextjs": "^7.81.1",
     "@supabase/ssr": "latest",
