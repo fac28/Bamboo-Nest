@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
 import newClient from '@/utils/createNewClient'
+import { Tooltip } from '@nextui-org/react'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
@@ -80,44 +81,53 @@ export async function InputField({
       <h1 className="text-center">Upload Item</h1>
       <form className="grid grid-cols-1 gap-2">
         <label htmlFor="item-name">
-          Item Name:<span className="invalid:red-500">*</span>
+          Item Name:<span className="text-red-700"> *</span>
         </label>
-        <input
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
-          name="item-name"
-          id="item-name"
-          placeholder="Item Name"
-          required
-          aria-required="true"
-        ></input>
+        <Tooltip closeDelay={500} content="Max 50 characters">
+          <input
+            className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            name="item-name"
+            id="item-name"
+            placeholder="Provide the name of your item"
+            type="text"
+            required
+            aria-required="true"
+            aria-label=""
+          />
+        </Tooltip>
         <label htmlFor="item-description">
-          Description:<span>*</span>
+          Description:<span className="text-red-700"> *</span>
         </label>
-        <input
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
-          name="item-description"
-          placeholder="Description"
-          id="item-description"
-          required
-          aria-required="true"
-        />
+        <Tooltip closeDelay={500} content="Max 500 characters">
+          <input
+            className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            name="item-description"
+            placeholder="Provide a description of your item"
+            id="item-description"
+            required
+            aria-required="true"
+          />
+        </Tooltip>
         <label htmlFor="item-price">
-          Price:<span>*</span>
+          Price:<span className="text-red-700"> *</span>
         </label>
-        <input
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
-          name="item-price"
-          id="item-price"
-          placeholder="Price"
-          type="number"
-          min="0"
-          step="0.01"
-          required
-          aria-required="true"
-        />
-        <label htmlFor="age-groups">
-          Age Group:<span>*</span>
-        </label>
+        <Tooltip
+          closeDelay={500}
+          content="Enter a price for your item"
+        >
+          <input
+            className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            name="item-price"
+            id="item-price"
+            placeholder="0.00"
+            type="number"
+            min="0"
+            step="0.01"
+            required
+            aria-required="true"
+          />
+        </Tooltip>
+        <label htmlFor="age-groups">Age Group:</label>
         <select
           name="age-groups"
           id="age-groups"
@@ -136,9 +146,7 @@ export async function InputField({
             'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
           }
         />
-        <label htmlFor="item-condition">
-          Condition:<span>*</span>
-        </label>
+        <label htmlFor="item-condition">Condition:</label>
         <select
           name="condition"
           id="condition"
@@ -152,51 +160,67 @@ export async function InputField({
           ))}
         </select>
         <label htmlFor="brand">
-          Brand:<span>*</span>
+          Brand:<span className="text-red-700"> *</span>
         </label>
         <input
           name="brand"
           id="brand"
-          placeholder="Brand"
+          placeholder="Provide the brand of your item"
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
         />
-        <fieldset id="delivery" className="flex flex-wrap gap-2 p-0 pb-6">
-          <legend className="pb-2">
-            Delivery options<span>*</span>
-          </legend>
-          <div className="child:p-2">
-            <input type="checkbox" name="can-deliver" id="can-deliver" />
-            <label htmlFor="can-deliver">Local Delivery</label>
-          </div>
-          <div className="child:p-2">
-            <input type="checkbox" name="can-collect" id="can-collect" />
-            <label htmlFor="can-collect">Collection</label>
-          </div>
-        </fieldset>
-        <label htmlFor="postcode">
-          Please enter the first half of your postcode:<span>*</span>
-        </label>
-        <input
-          className="invalid:bg-red-500 rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
-          type="text"
-          name="postcode"
-          id="postcode"
-          pattern={regexForOutCode}
-          required
-          aria-required="true"
-        />
-        <label htmlFor="item-picture">
-          Add pictures of your item:<span>*</span>
-        </label>
-        <input
-          type="file"
-          id="item-picture"
-          name="item-picture"
-          accept="image/png, image/jpeg"
-          required
-          aria-required="true"
-        />
+        <Tooltip
+          closeDelay={500}
+          content="Please select at least one option"
+        >
+          <fieldset id="delivery" className="flex flex-wrap gap-2 p-0 pb-6">
+            <legend className="pb-2">
+              Delivery options<span className="text-red-700"> *</span>
+            </legend>
+            <div className="child:p-2">
+              <input type="checkbox" name="can-deliver" id="can-deliver" />
+              <label htmlFor="can-deliver">Local Delivery</label>
+            </div>
+            <div className="child:p-2">
+              <input type="checkbox" name="can-collect" id="can-collect" />
+              <label htmlFor="can-collect">Collection</label>
+            </div>
+          </fieldset>
+        </Tooltip>
 
+        <label htmlFor="postcode">
+          Please enter the first half of your postcode:
+          <span className="text-red-700"> *</span>
+        </label>
+        <Tooltip
+          closeDelay={500}
+          content="Please enter the first half of a valid postcode e.g. SE14"
+        >
+          <input
+            className="invalid:bg-red-500 rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            type="text"
+            name="postcode"
+            id="postcode"
+            pattern={regexForOutCode}
+            required
+            aria-required="true"
+          />
+        </Tooltip>
+        <label htmlFor="item-picture">
+          Add pictures of your item:<span className="text-red-700"> *</span>
+        </label>
+        <Tooltip
+          closeDelay={500}
+          content="Upload an image of your item. Only .jpg & .png are accepted"
+        >
+          <input
+            type="file"
+            id="item-picture"
+            name="item-picture"
+            accept="image/png, image/jpeg"
+            required
+            aria-required="true"
+          />
+        </Tooltip>
         <UploadItemSubmit
           submit={submit}
           existsOnUsersTable={existsOnUsersTable}
