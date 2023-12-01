@@ -50,7 +50,7 @@ export default async function Index() {
 
         <div className="flex justify-between px-8 pt-8 items-center">
           <p className="text-xl font-medium">Recently Listed</p>
-          <Link href={'/Search'} className="hover:opacity-30">
+          <Link href={'/search'} className="hover:opacity-30">
             See more &#8594;
           </Link>
         </div>
