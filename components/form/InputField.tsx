@@ -22,8 +22,6 @@ export async function InputField({
   seller: string
   existsOnUsersTable: boolean
 }) {
-  const inputStyle =
-    'peer block w-full rounded-md border border-primaryBlue py-[3px] pl-5 text-xl text-primaryBlue'
   const submit = async (formData: FormData) => {
     'use server'
     const image = formData.get('item-picture') as File
@@ -87,7 +85,6 @@ export async function InputField({
           name="item-name"
           id="item-name"
           placeholder="Item Name"
-          className={inputStyle}
           required
         ></input>
         <label htmlFor="item-description">Description:</label>
@@ -96,7 +93,6 @@ export async function InputField({
           name="item-description"
           placeholder="Description"
           id="item-description"
-          className={inputStyle}
           required
         />
         <label htmlFor="item-price">Price:</label>
@@ -108,7 +104,6 @@ export async function InputField({
           type="number"
           min="0"
           step="0.01"
-          className={inputStyle}
           required
         />
         <label htmlFor="age-groups">Age Group:</label>
