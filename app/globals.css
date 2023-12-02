@@ -19,13 +19,14 @@
 }
 
 .global-background {
-  background-image: url('/icecream.jpg');
+  /* background-image: url('/icecream.jpg');
   background-size: cover;
-  background-position: bottom;
+  background-position: bottom; */
+  background-color: #dff3ec;
 }
 
 .vh-without-nav {
-  min-height: calc(100vh - 6rem);
+  min-height: calc(100vh - 20rem);
 }
 
 .margin-left-auto {

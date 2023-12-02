@@ -13,6 +13,9 @@ export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: 'Bamboo Nest',
   description: 'leading baby clothing marketplace',
+  icons: {
+    icon: '/icon.png',
+  },
 }
 
 export default function RootLayout({
