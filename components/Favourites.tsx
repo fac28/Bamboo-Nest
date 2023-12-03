@@ -8,7 +8,8 @@ export default async function Purchase() {
 
   const userID = user?.id || ''
 
-  const itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
+  let itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
+  itemDetails = itemDetails.filter(item => item !== undefined)
   const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id)
 
   return (
