@@ -1,10 +1,6 @@
 export default async function checkItemInitialFavouriteState(
-  favouriteItems: string[] | unknown,
+  favouriteItems: string[] | null | undefined,
   item_id: string,
 ) {
-  if (!Array.isArray(favouriteItems)) return false
-  const initialIsFavourite: boolean = favouriteItems
-    ? favouriteItems.includes(parseInt(item_id))
-    : false
-  return initialIsFavourite
+  return (favouriteItems ?? []).includes(item_id)
 }

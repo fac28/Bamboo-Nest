@@ -1,7 +1,7 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
+import { createClient } from '@/utils/supabase/server'
 
 export default async function fetchReviewBySeller(
-  supabase: any,
+  supabase: ReturnType<typeof createClient>,
   sellerId: string,
 ) {
   const { data: reviewData, error } = await supabase
