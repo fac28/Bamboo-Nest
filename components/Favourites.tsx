@@ -16,6 +16,7 @@ export default async function Purchase() {
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
           <div key={item.item_id}>
+            {/* I would maybe just pass item here as one object instead of splitting out each individual field */}
             <ItemCard
               linkHref={`/item/${item.item_id}`}
               cardName={item.name}

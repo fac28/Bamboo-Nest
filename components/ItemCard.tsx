@@ -57,15 +57,13 @@ export default function ItemCard({
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
 
-      {cardKey ? (
+      {cardKey && (
         <FavouriteButton
           user={user ? user : null}
           itemID={`${cardKey}`}
           className="self-end"
           favouriteItems={favouriteItems}
         />
-      ) : (
-        <></>
       )}
     </Link>
   )
