@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import newClient from '@/utils/createNewClient'
 import Star from '@/components/Star'
+import { Button } from '@nextui-org/react'
 
 export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   'use server'
@@ -55,18 +56,21 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
           value={seller_id}
           className="hidden"
         />
-        <label htmlFor="review">Review</label>
         <Star />
         <label htmlFor="review-comment">Comment</label>
         <textarea
           id="review-comment"
           name="review-comment"
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-md px-4 py-2 bg-inherit border mb-6 h-20 resize-none"
           placeholder="leave a comment"
         />
-        <button type="submit" formAction={submit}>
+        <Button
+          type="submit"
+          formAction={submit}
+          className="bg-primaryBlue text-white rounded-full"
+        >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   )
