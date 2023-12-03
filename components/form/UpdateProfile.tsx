@@ -27,16 +27,16 @@ export default async function UpdateForm() {
 
     const supabase = newClient()
 
-    if(profilePictureNew.name ==='undefined') {
+    if (profilePictureNew.name === 'undefined') {
       await supabase
-      .from('users')
-      .upsert({
-        id: user?.id,
-        first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
-        last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
-        bio: bioNew.length === 0 ? bio : bioNew,
-      })
-      .select()
+        .from('users')
+        .upsert({
+          id: user?.id,
+          first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
+          last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
+          bio: bioNew.length === 0 ? bio : bioNew,
+        })
+        .select()
       return redirect('/account')
     }
 
@@ -55,7 +55,10 @@ export default async function UpdateForm() {
         first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
         last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
         bio: bioNew.length === 0 ? bio : bioNew,
-        image_path: profilePictureNew.name.length === 0 ? profilePicture : publicUrl.publicUrl,
+        image_path:
+          profilePictureNew.name.length === 0
+            ? profilePicture
+            : publicUrl.publicUrl,
       })
       .select()
 
@@ -64,7 +67,6 @@ export default async function UpdateForm() {
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-
       <h1>Update your profile</h1>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">

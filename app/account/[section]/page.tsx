@@ -26,7 +26,6 @@ export default async function listing({
   return user ? (
     <PageContainer>
       <h1>Your Account</h1>
-      <h1>{sections[params.section].title}</h1>
       {sections[params.section].component}
     </PageContainer>
   ) : (
