@@ -17,7 +17,7 @@ export default async function ListingHistory({ id = '' }) {
   return itemDetails.length > 0 ? (
     <div className="flex flex-col gap-4 py-16">
       <h1>Reviews you have received</h1>
-      <DisplayReview reviewData={reviewData }/>
+      <DisplayReview reviewData={reviewData} />
       <h1>All Listings</h1>
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
