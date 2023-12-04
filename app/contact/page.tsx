@@ -1,14 +1,13 @@
 import PageContainer from '@/components/PageContainer'
 import nodemailer from 'nodemailer'
 const tailwindForInputs =
-  ' px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
+  'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
 
 export default function ContactPage() {
   async function submit(formData: FormData) {
     'use server'
     const email = formData.get('contact-email') as string
     const message = formData.get('contact-message') as string
-    const subject = formData.get('contact-subject') as string
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -21,7 +20,7 @@ export default function ContactPage() {
     const mailOptions = {
       from: 'bamboonesttfb@gmail.com',
       to: 'bamboonesttfb@gmail.com',
-      subject: subject,
+      subject: 'Bamboo Nest contact',
       text: message,
       html: `<p>from: ${email}</p>
       <p>message: ${message}</p>`,
