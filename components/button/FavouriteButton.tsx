@@ -39,7 +39,11 @@ export default function FavouriteButton({
   }
 
   return (
-    <button className={className} onClick={handleClick}>
+    <button
+      aria-label="favourite an item"
+      className={className}
+      onClick={handleClick}
+    >
       {isFavourite ? <FaHeart color="red" /> : <FaRegHeart />}
     </button>
   )
