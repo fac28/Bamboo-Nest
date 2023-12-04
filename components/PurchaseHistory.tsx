@@ -9,7 +9,7 @@ export default async function Purchase() {
   const userID = user?.id || ''
 
   const itemDetails = await getItemDetails(supabase, 'purchase_history', userID)
-  const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id)
+  const seller_name = await fetchSellerName(supabase, itemDetails[0] && itemDetails[0].seller_id)
 
   return (
     <div className="flex flex-col gap-4 py-16">
