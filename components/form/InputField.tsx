@@ -26,6 +26,7 @@ export async function InputField({
 }) {
   const submit = async (formData: FormData) => {
     'use server'
+    let successFlag = false
     try {
       const ItemSchema = z.object({
         name: z.string().max(50),
@@ -91,10 +92,15 @@ export async function InputField({
       if (error) {
         console.error(error)
       }
-      redirect('/search')
+      successFlag = true
     } catch (error) {
-      console.log('error')
+      // need to handle error handling here
       console.error(error)
+    }
+    finally {
+      if(successFlag) {
+        redirect('/search')
+      }
     }
   }
 
