@@ -1,7 +1,7 @@
 import PageContainer from '@/components/PageContainer'
 import nodemailer from 'nodemailer'
 const tailwindForInputs =
-  'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
+  ' px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
 
 export default function ContactPage() {
   async function submit(formData: FormData) {
@@ -23,7 +23,7 @@ export default function ContactPage() {
       to: 'bamboonesttfb@gmail.com',
       subject: subject,
       text: message,
-      html: `<h1>from: ${email}</h1>
+      html: `<p>from: ${email}</p>
       <p>message: ${message}</p>`,
       replyTo: email,
     }
@@ -47,14 +47,7 @@ export default function ContactPage() {
           type="email"
           name="contact-email"
           id="contact-email"
-        />
-        <label htmlFor="contact-subject">subject</label>
-        <input
-          placeholder="subject of your email"
-          className={tailwindForInputs}
-          type="text"
-          name="contact-subject"
-          id="contact-subject"
+          required
         />
         <label htmlFor="contact-message">Message</label>
         <textarea
