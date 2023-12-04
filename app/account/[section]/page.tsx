@@ -10,47 +10,28 @@ export default async function listing({
   params,
 }: {
   params: {
-    section: string
+    section: keyof typeof sections
     message: string
   }
 }) {
   const { user } = await getUser()
 
-  const sections: { [key: string]: string } = {
-    details: 'Personal Details',
-    favourites: 'Favourites',
-    purchases: 'Purchases',
-    listings: 'Listings',
-  }
-
-  let component = null
-  switch (params.section) {
-    case 'details':
-      component = <UpdateForm />
-      break
-    case 'favourites':
-      component = <Favourites />
-      break
-    case 'purchases':
-      component = <Purchase />
-      break
-    case 'listings':
-      component = <ListingHistory />
-      break
-    default:
-      break
+  const sections = {
+    details: { title: 'Personal Details', component: <UpdateForm /> },
+    favourites: { title: 'Favourites', component: <Favourites /> },
+    purchases: { title: 'Purchases', component: <Purchase /> },
+    listings: { title: 'Listings', component: <ListingHistory /> },
   }
 
   return user ? (
     <PageContainer>
       <h1>Your Account</h1>
-      <h1>{sections[params.section]}</h1>
-      {component}
+      {sections[params.section].component}
     </PageContainer>
   ) : (
     <PageContainer>
       <h1>Your Account</h1>
-      <h1>{sections[params.section]}</h1>
+      <h1>{sections[params.section].title}</h1>
       <Link href={'/login'}>Log in to see your account details</Link>
     </PageContainer>
   )
