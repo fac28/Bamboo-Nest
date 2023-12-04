@@ -1,5 +1,7 @@
 import PageContainer from '@/components/PageContainer'
 import nodemailer from 'nodemailer'
+const tailwindForInputs =
+  'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
 
 export default function ContactPage() {
   async function submit(formData: FormData) {
@@ -18,11 +20,11 @@ export default function ContactPage() {
     // Define the email content
     const mailOptions = {
       from: 'bamboonesttfb@gmail.com',
-      to: 'jesandfordsmith@gmail.com',
+      to: email,
       subject: subject,
       text: message,
       html: `<p>${message}</p>`,
-      replyTo: email
+      replyTo: email,
     }
     // Send the email
     transporter.sendMail(mailOptions, (error, info) => {
@@ -36,13 +38,30 @@ export default function ContactPage() {
   return (
     <PageContainer>
       <h1>Contact Page</h1>
-      <form>
+      <form className="grid grid-cols-1 gap-2">
         <label htmlFor="contact-email">Email</label>
-        <input type="email" name='contact-email' id="contact-email" />
+        <input
+          placeholder="example@example.com"
+          className={tailwindForInputs}
+          type="email"
+          name="contact-email"
+          id="contact-email"
+        />
         <label htmlFor="contact-subject">subject</label>
-        <input type="text" name="contact-subject" id="contact-subject" />
+        <input
+          placeholder="subject of your email"
+          className={tailwindForInputs}
+          type="text"
+          name="contact-subject"
+          id="contact-subject"
+        />
         <label htmlFor="contact-message">Message</label>
-        <input type="text" name="contact-message" id="contact-message" />
+        <textarea
+          placeholder="What would you like to let us know"
+          className={tailwindForInputs}
+          name="contact-message"
+          id="contact-message"
+        />
         <button type="submit" formAction={submit}>
           Submit
         </button>
