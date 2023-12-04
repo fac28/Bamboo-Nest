@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import FavouriteButton from '@/components/button/FavouriteButton'
 import Image from 'next/image'
-import { Item, ItemForHomePage } from '@/utils/types'
+import {
+  Item,
+  ItemForHomePage,
+  ItemWithImage,
+  ItemForListingPage,
+} from '@/utils/types'
 
 export default function ItemCard({
   seller_name = null,
@@ -16,11 +21,11 @@ export default function ItemCard({
   seller_id?: string | null
   seller_name?: string | null
   grid_direction?: 'grid-cols-2' | 'grid-rows-2'
-  favouriteItems?: string[] | null
+  favouriteItems?: number[] | null
   user?: string | null
   background_colour?: 'bg-white' | 'bg-lightGreenHighlight'
   backgroundImg?: string | null
-  item: Item | ItemForHomePage | null
+  item: Item | ItemForHomePage | ItemWithImage | ItemForListingPage | null
 }) {
   const linkHref = `/item/${item?.item_id}`
   const cardKey = item?.item_id
@@ -50,20 +55,18 @@ export default function ItemCard({
       </div>
       <div className="md:col-span-1 row-span-2 flex flex-col justify-around p-2 min-h-[6rem]">
         <p className="text-md">{cardName}</p>
-        <p className="text-sm">£{cardPrice}</p>
+        <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
 
-      {cardKey ? (
+      {cardKey && (
         <FavouriteButton
           user={user ? user : null}
           itemID={`${cardKey}`}
           className="self-end"
           favouriteItems={favouriteItems}
         />
-      ) : (
-        <></>
       )}
     </Link>
   )

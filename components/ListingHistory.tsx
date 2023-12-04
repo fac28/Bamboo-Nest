@@ -1,5 +1,5 @@
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
-import { ItemWithImage, Review } from '@/utils/types'
+import { Review, ItemForListingPage } from '@/utils/types'
 import ItemCard from '@/components/ItemCard'
 import getUser from '@/utils/getUser'
 import DisplayReview from '@/components/DisplayReview'
@@ -11,7 +11,10 @@ export default async function ListingHistory({ id = '' }) {
 
   if (id === '') id = userID
 
-  const itemDetails: ItemWithImage[] = await fetchItemsBySeller(supabase, id)
+  let itemDetails: ItemForListingPage[] = []
+
+  itemDetails = await fetchItemsBySeller(supabase, id)
+
   const reviewData: Review[] = await fetchReviewBySeller(supabase, id)
 
   return itemDetails.length > 0 ? (
