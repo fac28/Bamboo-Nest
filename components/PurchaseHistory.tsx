@@ -13,6 +13,7 @@ export default async function Purchase() {
 
   return (
     <div className="flex flex-col gap-4 py-16">
+      <h1>Your Purchase History</h1>
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
           <div key={item.item_id}>
