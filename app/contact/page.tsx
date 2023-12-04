@@ -20,10 +20,11 @@ export default function ContactPage() {
     // Define the email content
     const mailOptions = {
       from: 'bamboonesttfb@gmail.com',
-      to: email,
+      to: 'bamboonesttfb@gmail.com',
       subject: subject,
       text: message,
-      html: `<p>${message}</p>`,
+      html: `<h1>from: ${email}</h1>
+      <p>message: ${message}</p>`,
       replyTo: email,
     }
     // Send the email
