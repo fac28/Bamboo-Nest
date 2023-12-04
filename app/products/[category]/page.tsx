@@ -29,7 +29,7 @@ export default async function Page({
           {items.map(item => (
             <div key={item.item_id}>
               <ItemCard
-                item = {item}
+                item={item}
                 favouriteItems={favouriteItems}
                 user={userID}
               />

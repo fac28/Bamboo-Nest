@@ -58,7 +58,7 @@ export default async function Index() {
           {itemDetails.slice(0, 4).map(item => (
             <div key={item.item_id}>
               <ItemCard
-                item = {item}
+                item={item}
                 grid_direction={'grid-rows-2'}
                 background_colour={'bg-white'}
                 // backgroundImg={'/grad_17.png'}

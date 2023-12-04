@@ -22,9 +22,7 @@ export default async function ListingHistory({ id = '' }) {
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
           <div key={item.item_id}>
-            <ItemCard
-              item = {item}
-            />
+            <ItemCard item={item} />
           </div>
         ))}
       </div>

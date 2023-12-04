@@ -11,7 +11,7 @@ export default function ItemCard({
   user,
   background_colour = 'bg-white',
   backgroundImg = null,
-  item
+  item,
 }: {
   seller_id?: string | null
   seller_name?: string | null
@@ -20,16 +20,14 @@ export default function ItemCard({
   user?: string | null
   background_colour?: 'bg-white' | 'bg-lightGreenHighlight'
   backgroundImg?: string | null
-  item : Item | ItemForHomePage | null
+  item: Item | ItemForHomePage | null
 }) {
-
   const linkHref = `/item/${item?.item_id}`
   const cardKey = item?.item_id
   const cardName = item?.name
   const cardPrice = item?.price
   const cardImgSrc = item?.image_path as string
   const cardImgAlt = `image of ${item?.name}`
-
 
   return (
     <Link

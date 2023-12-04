@@ -51,7 +51,7 @@ export default function ClientPage({
           {searchResults.map(result => (
             <div key={result.item_id}>
               <ItemCard
-                item = {result}
+                item={result}
                 favouriteItems={favouriteItems}
                 user={user}
               />
