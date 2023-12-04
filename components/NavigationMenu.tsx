@@ -26,12 +26,6 @@ export default function NavigationMenu() {
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="w-min">
-      {/* <NavbarContent>
-        <NavbarBrand>
-          <p className="font-bold text-inherit">Bamboo Nest</p>
-        </NavbarBrand>
-      </NavbarContent> */}
-
       <NavbarContent justify="end">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}

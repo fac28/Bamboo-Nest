@@ -20,9 +20,7 @@ export default function CategoryCard({ cardTitle, height }: CategoryCardProps) {
             key={index}
           >
             <CardHeader className="flex items-center justify-center h-full">
-              <h4 className="text-sm text-primaryBlue font-medium lg:text-xl">
-                {item.title}
-              </h4>
+              <p className="text-sm font-medium lg:text-xl">{item.title}</p>
             </CardHeader>
           </Card>
         </Link>
