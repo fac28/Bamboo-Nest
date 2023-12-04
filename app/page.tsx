@@ -33,6 +33,7 @@ export default async function Index() {
           // src="/customgreen.png"
           alt="Description of the image"
           fill={true}
+          loading="lazy"
         />
       </div>
       <div className="max-w-5xl mx-auto pb-6">
