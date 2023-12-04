@@ -41,32 +41,29 @@ export default function ItemCard({
         backgroundPosition: 'center bottom',
       }}
     >
-      <div className="sm:col-span-1 row-span-2">
-        <Image
-          width="500"
-          height="500"
-          src={cardImgSrc}
-          alt={cardImgAlt}
-          className="w-full h-full aspect-square object-cover rounded-2xl"
-        />
-      </div>
+      <Image
+        width="500"
+        height="500"
+        src={cardImgSrc}
+        alt={cardImgAlt}
+        className="w-full h-full aspect-square object-cover rounded-2xl sm:col-span-1 row-span-2"
+      />
       <div className="md:col-span-1 row-span-2 flex flex-col justify-around p-2 min-h-[6rem]">
+        {cardKey ? (
+          <FavouriteButton
+            user={user ? user : null}
+            itemID={`${cardKey}`}
+            className="self-end"
+            favouriteItems={favouriteItems}
+          />
+        ) : (
+          <></>
+        )}
         <p className="text-md">{cardName}</p>
         <p className="text-sm">£{cardPrice}</p>
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
-
-      {cardKey ? (
-        <FavouriteButton
-          user={user ? user : null}
-          itemID={`${cardKey}`}
-          className="self-end"
-          favouriteItems={favouriteItems}
-        />
-      ) : (
-        <></>
-      )}
     </Link>
   )
 }

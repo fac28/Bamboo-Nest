@@ -103,7 +103,10 @@ export default async function Login({
           Register
         </button>
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+          <p
+            role="alert"
+            className="mt-4 p-4 bg-foreground/10 text-foreground text-center"
+          >
             {searchParams.message}
           </p>
         )}

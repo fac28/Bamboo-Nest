@@ -49,13 +49,13 @@ export default async function listing({
   return user ? (
     <PageContainer>
       <h1>Your Account</h1>
-      <h1>{sections[params.section]}</h1>
+      <h2 className="text-xl">{sections[params.section]}</h2>
       {component}
     </PageContainer>
   ) : (
     <PageContainer>
       <h1>Your Account</h1>
-      <h1>{sections[params.section]}</h1>
+      <h2 className="text-xl">{sections[params.section]}</h2>
       <Link href={'/login'}>Log in to see your account details</Link>
     </PageContainer>
   )
