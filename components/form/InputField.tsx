@@ -91,9 +91,9 @@ export async function InputField({
       const { error } = await supabase.from('items').insert(itemInfo).select()
 
       if (error) {
-        throw new Error(error)
+        throw new Error(`${error}`)
       }
-      successFlag=true;
+      successFlag = true
     } catch (error) {
       console.error(error)
     } finally {
