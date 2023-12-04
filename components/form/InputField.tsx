@@ -1,4 +1,4 @@
-import { Age, Category, Condition, SubCategory } from '@/utils/types'
+import { Age, Category, Condition, SubCategory, ItemInfo } from '@/utils/types'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
@@ -36,10 +36,11 @@ export async function InputField({
     const condition = parseInt(formData.get('condition') as string)
     const brand = formData.get('brand') as string
     const postcode = formData.get('postcode') as string
-    const delivery = formData.get('can-deliver')
-    delivery === 'on' ? true : false
-    const collection = formData.get('can-collect')
-    collection === 'on' ? true : false
+
+    const collectionValue: FormDataEntryValue | null = formData.get('can-collect')
+    const collection: boolean = collectionValue === 'true';
+    const deliveryValue: FormDataEntryValue | null = formData.get('can-deliver')
+    const delivery: boolean = deliveryValue === 'true';
 
     const supabase = newClient()
 
@@ -51,9 +52,9 @@ export async function InputField({
       .from('item-pictures')
       .getPublicUrl(imageName)
 
-    const itemInfo = {
-      name,
+    const itemInfo : ItemInfo= {
       description,
+      name,
       price,
       age_category,
       category_id,

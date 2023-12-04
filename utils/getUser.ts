@@ -1,4 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import newClient from '@/utils/createNewClient'
 
 export default async function getUser() {

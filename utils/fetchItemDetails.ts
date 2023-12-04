@@ -1,7 +1,8 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
+import { createClient } from '@/utils/supabase/server'
+
 export default async function getItemDetails(
-  supabase: any,
-  column_name: string,
+  supabase: ReturnType<typeof createClient>,
+  column_name: 'purchase_history' | 'favourite_items',
   user_id: string,
 ) {
   const { data } = await supabase
@@ -9,7 +10,7 @@ export default async function getItemDetails(
     .select(column_name as '*')
     .eq('id', user_id)
 
-  const itemIds: number[] = data && data[0][`${column_name}`]
+    const itemIds: number[] = data?.[0][`${column_name}`] ?? []
 
   if (itemIds) {
     const itemDetails = await Promise.all(

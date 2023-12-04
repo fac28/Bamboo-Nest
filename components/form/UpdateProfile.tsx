@@ -5,14 +5,15 @@ import newClient from '@/utils/createNewClient'
 
 export default async function UpdateForm() {
   const { user, supabase } = await getUser()
+  const userID = user?.id || ''
 
   const { data: userInfo } = await supabase
     .from('users')
     .select()
-    .eq('id', user?.id)
+    .eq('id', userID)
 
-  const firstName = userInfo?.[0]?.first_name
-  const lastName = userInfo?.[0]?.last_name
+  const firstName = userInfo?.[0]?.first_name || ''
+  const lastName = userInfo?.[0]?.last_name || ''
 
   const bio = userInfo?.[0]?.bio
   const profilePicture = userInfo?.[0]?.image_path
@@ -27,11 +28,13 @@ export default async function UpdateForm() {
 
     const supabase = newClient()
 
+    const userID = user?.id || ''
+
     if (profilePictureNew.name === 'undefined') {
       await supabase
         .from('users')
         .upsert({
-          id: user?.id,
+          id: userID,
           first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
           last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
           bio: bioNew.length === 0 ? bio : bioNew,
@@ -51,7 +54,7 @@ export default async function UpdateForm() {
     await supabase
       .from('users')
       .upsert({
-        id: user?.id,
+        id: userID,
         first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
         last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
         bio: bioNew.length === 0 ? bio : bioNew,
@@ -74,13 +77,13 @@ export default async function UpdateForm() {
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="First Name"
-          placeholder={firstName.length === 0 ? 'First Name' : firstName}
+          placeholder={firstName?.length === 0 ? 'First Name' : firstName}
         />
         <label htmlFor="Last Name">Last Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="Last Name"
-          placeholder={lastName.length === 0 ? 'Last Name' : lastName}
+          placeholder={lastName?.length === 0 ? 'Last Name' : lastName}
         />
         <label htmlFor="Bio">About Me</label>
         <textarea

@@ -2,15 +2,21 @@ import getItemDetails from '@/utils/fetchItemDetails'
 import ItemCard from '@/components/ItemCard'
 import fetchSellerName from '@/utils/fetchSellerName'
 import getUser from '@/utils/getUser'
+import { Item } from '@/utils/types'
 
 export default async function Purchase() {
   const { user, supabase } = await getUser()
 
   const userID = user?.id || ''
 
-  let itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
-  itemDetails = itemDetails.filter(item => item !== undefined)
-  const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id)
+  let itemDetails: Item[] = []
+  if (userID) {
+    itemDetails = (await getItemDetails(supabase, 'favourite_items', userID)) as Item[]
+    itemDetails = itemDetails.filter(item => item !== undefined)
+  }
+
+  console.log(itemDetails)
+  const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id || '')
 
   return (
     <div className="flex flex-col gap-4 py-16">

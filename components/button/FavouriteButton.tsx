@@ -14,13 +14,13 @@ export default function FavouriteButton({
   user: string | null
   itemID: string
   className?: string
-  favouriteItems?: string[] | null
+  favouriteItems?: number[] | null
 }) {
   const [isFavourite, setIsFavourite] = useState(false)
   useEffect(() => {
     const initialiseFavouriteState = async () => {
       const initialFavourite = await checkItemInitialFavouriteState(
-        favouriteItems,
+        favouriteItems?.map((item) => item.toString()),
         itemID,
       )
       setIsFavourite(initialFavourite)
