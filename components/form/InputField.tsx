@@ -4,18 +4,19 @@ import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
 import newClient from '@/utils/createNewClient'
 import { Tooltip } from '@nextui-org/react'
+import { z } from "zod";
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
-
-export async function InputField({
-  ageGroups,
-  categories,
-  subCategories,
-  conditions,
-  seller,
+  
+  export async function InputField({
+    ageGroups,
+    categories,
+    subCategories,
+    conditions,
+    seller,
   existsOnUsersTable,
-}: {
+}:{
   ageGroups: Age[]
   categories: Category[]
   subCategories: SubCategory[]
@@ -25,55 +26,73 @@ export async function InputField({
 }) {
   const submit = async (formData: FormData) => {
     'use server'
-    const image = formData.get('item-picture') as File
-    const imageName = image.name
-
-    const name = formData.get('item-name') as string
-    const description = formData.get('item-description') as string
-    const price = parseFloat(formData.get('item-price') as string)
-    const age_category = parseInt(formData.get('age-groups') as string)
-    const category_id = parseInt(formData.get('category') as string)
-    const sub_category_id = parseInt(formData.get('sub-category') as string)
-    const condition = parseInt(formData.get('condition') as string)
-    const brand = formData.get('brand') as string
-    const postcode = formData.get('postcode') as string
-    const delivery = formData.get('can-deliver')
-    delivery === 'on' ? true : false
-    const collection = formData.get('can-collect')
-    collection === 'on' ? true : false
-
-    const supabase = newClient()
-
-    await supabase.storage
-      .from('item-pictures')
-      .upload(imageName, image, { upsert: true })
-
-    const { data: publicUrl } = await supabase.storage
-      .from('item-pictures')
-      .getPublicUrl(imageName)
-
-    const itemInfo = {
-      name,
-      description,
-      price,
-      age_category,
-      category_id,
-      sub_category_id,
-      condition,
-      brand,
-      delivery,
-      collection,
-      seller_id: seller,
-      image_path: publicUrl.publicUrl,
-      postcode: postcode,
-    }
-
-    const { error } = await supabase.from('items').insert(itemInfo).select()
-
-    if (error) {
+    try {
+      const ItemSchema = z.object({
+        name: z.string().max(50),
+        description: z.string().max(500),
+        price: z.number(),
+        age_category: z.number(),
+        category_id: z.number(),
+        sub_category_id: z.number(),
+        condition: z.number(),
+        brand: z.string(),
+        postcode: z.string().toUpperCase(),
+        delivery: z.boolean(),
+        collection: z.boolean(),
+        seller_id: z.string(),
+        image_path: z.string()
+      })
+      const image = formData.get('item-picture') as File
+      const imageName = seller + image.name
+      const name = formData.get('item-name') as string
+      const description = formData.get('item-description') as string
+      const price = parseFloat(formData.get('item-price') as string)
+      const age_category = parseInt(formData.get('age-groups') as string)
+      const category_id = parseInt(formData.get('category') as string)
+      const sub_category_id = parseInt(formData.get('sub-category') as string)
+      const condition = parseInt(formData.get('condition') as string)
+      const brand = formData.get('brand') as string
+      const postcode = formData.get('postcode') as string
+      const delivery = formData.get('can-deliver')
+      const deliveryBool = delivery ==='on' ? true : false
+      const collection = formData.get('can-collect')
+      const collectionBool = collection ==='on' ? true : false
+      
+      const supabase = newClient()
+  
+      await supabase.storage
+        .from('item-pictures')
+        .upload(imageName, image, { upsert: true })
+  
+      const { data: publicUrl } = await supabase.storage
+        .from('item-pictures')
+        .getPublicUrl(imageName)
+  
+      const itemInfo = {
+        name,
+        description,
+        price,
+        age_category,
+        category_id,
+        sub_category_id,
+        condition,
+        brand,
+        delivery: deliveryBool,
+        collection: collectionBool,
+        seller_id: seller,
+        image_path: publicUrl.publicUrl,
+        postcode: postcode,
+      }
+      const validatedItemInfo = ItemSchema.parse(itemInfo)
+      const { error } = await supabase.from('items').insert(validatedItemInfo).select()
+      if (error) {
+        console.error(error)
+      }
+      redirect('/search')
+    } catch (error) {
+      console.log('error')
       console.error(error)
     }
-    return redirect('/search')
   }
 
   return (
