@@ -31,13 +31,13 @@ export default async function listing({
   return user ? (
     <PageContainer>
       <h1>Your Account</h1>
-      <h2 className="text-xl">{sections[params.section]}</h2>
+      <h2 className="text-xl">{sections[params.section].title}</h2>
       {sections[params.section].component}
     </PageContainer>
   ) : (
     <PageContainer>
       <h1>Your Account</h1>
-      <h2 className="text-xl">{sections[params.section].title}</h1>
+      <h2 className="text-xl">{sections[params.section].title}</h2>
       <Link href={'/login'}>Log in to see your account details</Link>
     </PageContainer>
   )

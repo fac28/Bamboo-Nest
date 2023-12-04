@@ -55,17 +55,11 @@ export default async function Index() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-8">
           {itemDetails.slice(0, 4).map(item => (
-
             <div key={item.item_id}>
               <ItemCard
-              key={item.item_id}
-              linkHref={`/item/${item.item_id}`}
-              cardName={item.name}
-              cardPrice={item.price}
-              cardImgSrc={item.image_path}
-              cardImgAlt={`image of ${item.name}`}
-              grid_direction={'grid-rows-2'}
-              background_colour={'bg-white'}
+                item={item}
+                grid_direction={'grid-rows-2'}
+                background_colour={'bg-white'}
               />
             </div>
           ))}
