@@ -51,12 +51,7 @@ export default function ClientPage({
           {searchResults.map(result => (
             <div key={result.item_id}>
               <ItemCard
-                linkHref={`item/${result.item_id}`}
-                cardKey={result.item_id}
-                cardName={result.name}
-                cardPrice={result.price}
-                cardImgSrc={result.image_path}
-                cardImgAlt={result.name}
+                item={result}
                 favouriteItems={favouriteItems}
                 user={user}
               />

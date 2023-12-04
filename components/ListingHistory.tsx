@@ -22,13 +22,7 @@ export default async function ListingHistory({ id = '' }) {
       <div className="grid grid-cols-2 gap-4">
         {itemDetails.map(item => (
           <div key={item.item_id}>
-            <ItemCard
-              linkHref={`/item/${item.item_id}`}
-              cardName={item.name}
-              cardPrice={item.price}
-              cardImgSrc={item.image_path}
-              cardImgAlt={`image of ${item.name}`}
-            />
+            <ItemCard item={item} />
           </div>
         ))}
       </div>

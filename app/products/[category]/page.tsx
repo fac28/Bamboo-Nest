@@ -29,12 +29,7 @@ export default async function Page({
           {items.map(item => (
             <div key={item.item_id}>
               <ItemCard
-                linkHref={`/item/${item.item_id}`}
-                cardName={item.name}
-                cardPrice={item.price}
-                cardImgSrc={item.image_path}
-                cardImgAlt={`image of ${item.name}`}
-                cardKey={item.item_id}
+                item={item}
                 favouriteItems={favouriteItems}
                 user={userID}
               />
