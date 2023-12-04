@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
-import { ItemWithImage, Review } from '@/utils/types'
+import { Review, Item } from '@/utils/types'
 import WideBlueButton from '@/components/button/WideBlueButton'
 import PageContainer from '@/components/PageContainer'
 import ListingHistory from '@/components/ListingHistory'
@@ -32,10 +32,7 @@ export default async function listing({
     const { first_name, last_name, bio, image_path, created_at } = data[0]
 
     const fullName = `${first_name} ${last_name}`
-    const items_for_sale: ItemWithImage[] = await fetchItemsBySeller(
-      supabase,
-      sellerID,
-    )
+    const items_for_sale: Item[] = await fetchItemsBySeller(supabase, sellerID)
 
     const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
 
@@ -50,7 +47,7 @@ export default async function listing({
       )
     }
 
-    const sale_history: ItemWithImage[] = await items_for_sale.filter(
+    const sale_history: Item[] = await items_for_sale.filter(
       item => item.sold === true,
     )
 
@@ -78,7 +75,7 @@ export default async function listing({
           <h2 className="text-xl"> About me </h2>
           <p>{bio}</p>
           <h2 className="text-xl"> Member Since </h2>
-          <p>{created_at.split('T')[0]}</p>
+          <p>{created_at ? created_at.split('T')[0] : 'N/A'}</p>
           <div className="flex flex-col w-40 gap-2 pt-2">
             <WideBlueButton
               buttonTitle={`See All ${first_name}'s Items`}

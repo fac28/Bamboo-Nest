@@ -1,4 +1,4 @@
-import { Age, Category, Condition, SubCategory } from '@/utils/types'
+import { Age, Category, Condition, SubCategory, ItemInfo } from '@/utils/types'
 import { redirect } from 'next/navigation'
 import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
@@ -54,11 +54,13 @@ export async function InputField({
       const condition = parseInt(formData.get('condition') as string)
       const brand = formData.get('brand') as string
       const postcode = formData.get('postcode') as string
-      const delivery = formData.get('can-deliver')
-      const deliveryBool = delivery === 'on' ? true : false
-      const collection = formData.get('can-collect')
-      const collectionBool = collection === 'on' ? true : false
 
+      const collectionValue: FormDataEntryValue | null =
+        formData.get('can-collect')
+      const collection: boolean = collectionValue === 'true'
+      const deliveryValue: FormDataEntryValue | null =
+        formData.get('can-deliver')
+      const delivery: boolean = deliveryValue === 'true'
       const supabase = newClient()
 
       await supabase.storage
@@ -69,32 +71,30 @@ export async function InputField({
         .from('item-pictures')
         .getPublicUrl(imageName)
 
-      const itemInfo = {
-        name,
+      const itemInfo: ItemInfo = {
         description,
+        name,
         price,
         age_category,
         category_id,
         sub_category_id,
         condition,
         brand,
-        delivery: deliveryBool,
-        collection: collectionBool,
+        delivery,
+        collection,
         seller_id: seller,
         image_path: publicUrl.publicUrl,
         postcode: postcode,
       }
       const validatedItemInfo = ItemSchema.parse(itemInfo)
-      const { error } = await supabase
-        .from('items')
-        .insert(validatedItemInfo)
-        .select()
+      console.log(validatedItemInfo)
+      const { error } = await supabase.from('items').insert(itemInfo).select()
+
       if (error) {
-        console.error(error)
+        throw new Error(`${error}`)
       }
       successFlag = true
     } catch (error) {
-      // need to handle error handling here
       console.error(error)
     } finally {
       if (successFlag) {
@@ -102,7 +102,6 @@ export async function InputField({
       }
     }
   }
-
   return (
     <div>
       <h1 className="text-center">Upload Item</h1>
