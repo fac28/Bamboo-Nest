@@ -11,7 +11,7 @@ export default async function Page({
   const items = await fetchItemsByCategory(decodeURIComponent(params.category))
   const { user, supabase } = await getUser()
 
-  const userID = user ? user.id : ""
+  const userID = user ? user.id : ''
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')
@@ -19,7 +19,6 @@ export default async function Page({
 
   const favouriteItems: number[] | null =
     favourites && favourites[0].favourite_items
-
 
   return (
     <PageContainer justify="justify-start">

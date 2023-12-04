@@ -62,18 +62,18 @@ export type ItemForListingPage = {
   condition: number | null
 }
 
-export interface ItemInfo   {
-    name: string
-    description: string
-    price: number
-    age_category: number
-    category_id: number
-    sub_category_id: number
-    condition: number
-    brand: string
-    delivery: boolean
-    collection: boolean
-    seller_id: string
-    image_path: string
-    postcode: string 
-  }
+export interface ItemInfo {
+  name: string
+  description: string
+  price: number
+  age_category: number
+  category_id: number
+  sub_category_id: number
+  condition: number
+  brand: string
+  delivery: boolean
+  collection: boolean
+  seller_id: string
+  image_path: string
+  postcode: string
+}

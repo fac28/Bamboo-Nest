@@ -37,10 +37,11 @@ export async function InputField({
     const brand = formData.get('brand') as string
     const postcode = formData.get('postcode') as string
 
-    const collectionValue: FormDataEntryValue | null = formData.get('can-collect')
-    const collection: boolean = collectionValue === 'true';
+    const collectionValue: FormDataEntryValue | null =
+      formData.get('can-collect')
+    const collection: boolean = collectionValue === 'true'
     const deliveryValue: FormDataEntryValue | null = formData.get('can-deliver')
-    const delivery: boolean = deliveryValue === 'true';
+    const delivery: boolean = deliveryValue === 'true'
 
     const supabase = newClient()
 
@@ -52,7 +53,7 @@ export async function InputField({
       .from('item-pictures')
       .getPublicUrl(imageName)
 
-    const itemInfo : ItemInfo= {
+    const itemInfo: ItemInfo = {
       description,
       name,
       price,

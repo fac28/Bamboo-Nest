@@ -10,7 +10,7 @@ export default async function getItemDetails(
     .select(column_name as '*')
     .eq('id', user_id)
 
-    const itemIds: number[] = data?.[0][`${column_name}`] ?? []
+  const itemIds: number[] = data?.[0][`${column_name}`] ?? []
 
   if (itemIds) {
     const itemDetails = await Promise.all(

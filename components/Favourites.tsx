@@ -11,12 +11,19 @@ export default async function Purchase() {
 
   let itemDetails: Item[] = []
   if (userID) {
-    itemDetails = (await getItemDetails(supabase, 'favourite_items', userID)) as Item[]
+    itemDetails = (await getItemDetails(
+      supabase,
+      'favourite_items',
+      userID,
+    )) as Item[]
     itemDetails = itemDetails.filter(item => item !== undefined)
   }
 
   console.log(itemDetails)
-  const seller_name = await fetchSellerName(supabase, itemDetails[0].seller_id || '')
+  const seller_name = await fetchSellerName(
+    supabase,
+    itemDetails[0].seller_id || '',
+  )
 
   return (
     <div className="flex flex-col gap-4 py-16">

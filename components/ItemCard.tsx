@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import FavouriteButton from '@/components/button/FavouriteButton'
 import Image from 'next/image'
-import { Item, ItemForHomePage, ItemWithImage, ItemForListingPage } from '@/utils/types'
+import {
+  Item,
+  ItemForHomePage,
+  ItemWithImage,
+  ItemForListingPage,
+} from '@/utils/types'
 
 export default function ItemCard({
   seller_name = null,
@@ -62,7 +67,7 @@ export default function ItemCard({
           className="self-end"
           favouriteItems={favouriteItems}
         />
-      ) }
+      )}
     </Link>
   )
 }

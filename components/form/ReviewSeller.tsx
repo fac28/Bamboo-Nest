@@ -17,7 +17,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   }
 
   let seller_name = ''
-  seller_name = sellerData && sellerData[0].first_name || ''
+  seller_name = (sellerData && sellerData[0].first_name) || ''
 
   const submit = async (formData: FormData) => {
     'use server'

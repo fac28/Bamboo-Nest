@@ -40,7 +40,7 @@ export default async function Login({
     await supabase
       .from('users')
       .upsert({
-        id: userID ,
+        id: userID,
         first_name: firstName,
         last_name: lastName,
         created_at: new Date(),

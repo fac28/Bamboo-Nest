@@ -10,7 +10,6 @@ export default async function page() {
     .select('favourite_items')
     .eq('id', userID)
 
-
   let favouriteItems: number[] | [] = []
   if (favourites && favourites[0]) {
     favouriteItems = favourites[0].favourite_items || []

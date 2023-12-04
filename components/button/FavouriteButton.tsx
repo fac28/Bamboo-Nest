@@ -20,7 +20,7 @@ export default function FavouriteButton({
   useEffect(() => {
     const initialiseFavouriteState = async () => {
       const initialFavourite = await checkItemInitialFavouriteState(
-        favouriteItems?.map((item) => item.toString()),
+        favouriteItems?.map(item => item.toString()),
         itemID,
       )
       setIsFavourite(initialFavourite)

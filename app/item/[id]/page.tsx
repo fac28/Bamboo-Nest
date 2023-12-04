@@ -60,7 +60,7 @@ export default async function listing({
     const conditionDescription = data[0] && data[0].conditions?.description
     const category = data[0] && data[0].categories?.category_name
 
-    const userID = user ? user.id : ""
+    const userID = user ? user.id : ''
 
     const { data: favourites } = await supabase
       .from('users')
@@ -80,7 +80,7 @@ export default async function listing({
           />
 
           <Image
-            src={image_path?? ''}
+            src={image_path ?? ''}
             width={300}
             height={300}
             alt={`image of ${name}`}
