@@ -12,7 +12,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: 'Bamboo Nest',
-  description: 'leading baby clothing marketplace',
+  description: 'Rent, buy or sell your baby gear',
   icons: {
     icon: '/icon.png',
   },

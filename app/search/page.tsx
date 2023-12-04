@@ -1,5 +1,10 @@
 import ClientPage from '../../components/SearchPageClient'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Search Listings - Bamboo Nest',
+}
 
 export default async function page() {
   const { user, supabase } = await getUser()

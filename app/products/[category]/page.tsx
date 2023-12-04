@@ -2,6 +2,11 @@ import fetchItemsByCategory from '@/utils/fetchItemsByCategory'
 import PageContainer from '@/components/PageContainer'
 import ItemCard from '@/components/ItemCard'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Category Results - Bamboo Nest',
+}
 
 export default async function Page({
   params,

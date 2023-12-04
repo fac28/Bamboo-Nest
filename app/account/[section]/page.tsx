@@ -5,6 +5,11 @@ import Purchase from '@/components/PurchaseHistory'
 import Favourites from '@/components/Favourites'
 import ListingHistory from '@/components/ListingHistory'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Account Home - Bamboo Nest',
+}
 
 export default async function listing({
   params,
@@ -26,12 +31,13 @@ export default async function listing({
   return user ? (
     <PageContainer>
       <h1>Your Account</h1>
+      <h2 className="text-xl">{sections[params.section].title}</h2>
       {sections[params.section].component}
     </PageContainer>
   ) : (
     <PageContainer>
       <h1>Your Account</h1>
-      <h1>{sections[params.section].title}</h1>
+      <h2 className="text-xl">{sections[params.section].title}</h2>
       <Link href={'/login'}>Log in to see your account details</Link>
     </PageContainer>
   )

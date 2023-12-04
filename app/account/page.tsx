@@ -9,26 +9,22 @@ export default async function Login() {
   if (!user) {
     return (
       <PageContainer>
-        <h1> Please Log in first </h1>
+        <h1> Please Login first </h1>
       </PageContainer>
     )
   }
   return (
     <PageContainer>
       <h1>Your Account</h1>
-      <div className="w-full gap-4 grid lg:grid-cols-2 lg:grid-rows-2">
+      <section className="w-full gap-4 grid lg:pt-8 lg:grid-cols-2 lg:grid-rows-2">
         {linkData.map(({ href, text }) => (
           <Link href={href} key={href}>
             <Card className="border-2 p-16 border-solid border-primaryBlue rounded-3xl h-20 flex items-center justify-center ">
-              {/* <CardHeader className="flex items-center justify-center h-full"> */}
-              <h4 className="text-primaryBlue font-medium lg:text-xl">
-                {text}
-              </h4>
-              {/* </CardHeader> */}
+              <p className="text-primaryBlue font-medium lg:text-xl">{text}</p>
             </Card>
           </Link>
         ))}
-      </div>
+      </section>
     </PageContainer>
   )
 }

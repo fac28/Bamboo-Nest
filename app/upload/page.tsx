@@ -5,6 +5,11 @@ import { InputField } from '@/components/form/InputField'
 import PageContainer from '@/components/PageContainer'
 import fetchSubCategories from '@/utils/fetchSubCategories'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Upload Listing - Bamboo Nest',
+}
 
 export default async function Page() {
   const [ageGroups, categories, conditions, subCategories] = await Promise.all([

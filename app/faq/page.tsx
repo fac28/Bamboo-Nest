@@ -1,6 +1,11 @@
 // pages/index.tsx
 import PageContainer from '@/components/PageContainer'
 import Accordion from '@/components/Accordion'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'FAQs - Bamboo Nest',
+}
 
 const Home: React.FC = () => {
   return (

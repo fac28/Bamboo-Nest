@@ -7,6 +7,11 @@ import ListingHistory from '@/components/ListingHistory'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 import DisplayReview from '@/components/DisplayReview'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Seller Overview - Bamboo Nest',
+}
 
 export default async function listing({
   params,

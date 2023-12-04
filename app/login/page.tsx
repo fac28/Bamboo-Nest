@@ -7,6 +7,11 @@ import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
 // import BackButton from '@/components/BackButton'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Login - Bamboo Nest',
+}
 
 export default async function Login({
   searchParams,
@@ -42,52 +47,57 @@ export default async function Login({
     </PageContainer>
   ) : (
     <PageContainer>
-      <div className="gap-2">
-        <h1 className="mb-10 w-[80%] text-center mx-auto">
-          Welcome to Bamboo Nest
-        </h1>
-        <form
-          className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
-          action={signIn}
+      <h1 className="mb-10 w-[80%] text-center mx-auto">
+        Welcome to Bamboo Nest
+      </h1>
+      <form
+        aria-label="login to account"
+        className="animate-in flex-1 flex flex-col w-full max-w-xl justify-center gap-2 text-foreground"
+        action={signIn}
+      >
+        <FormFieldAndLabel
+          htmlForInput="email"
+          labelName="Email"
+          inputType="email"
+          inputName="email"
+          inputPlaceholder="you@example.com"
+          required
+        />
+
+        <FormFieldAndLabel
+          htmlForInput="password"
+          labelName="Password"
+          inputType="password"
+          inputName="password"
+          inputPlaceholder="••••••••"
+          required
+        />
+
+        <button
+          aria-label="login to account"
+          className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full"
         >
-          <FormFieldAndLabel
-            htmlForInput="email"
-            labelName="Email"
-            inputType="email"
-            inputName="email"
-            inputPlaceholder="you@example.com"
-            required
-          />
-
-          <FormFieldAndLabel
-            htmlForInput="password"
-            labelName="Password"
-            inputType="password"
-            inputName="password"
-            inputPlaceholder="••••••••"
-            required
-          />
-
-          <button className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full">
-            Login
-          </button>
-          {searchParams?.message && (
-            <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-              {searchParams.message}
-            </p>
-          )}
-        </form>
-
-        <p>
-          Not with us? &nbsp;
-          <Link
-            href="/signup"
-            className="text-primaryBlue italic hover:underline"
+          Login
+        </button>
+        {searchParams?.message && (
+          <p
+            role="alert"
+            className="mt-4 p-4 bg-foreground/10 text-foreground text-center"
           >
-            Create an account
-          </Link>
-        </p>
-      </div>
+            {searchParams.message}
+          </p>
+        )}
+      </form>
+
+      <p>
+        Not with us? &nbsp;
+        <Link
+          href="/signup"
+          className="text-primaryBlue italic hover:underline"
+        >
+          Create an account
+        </Link>
+      </p>
     </PageContainer>
   )
 }
