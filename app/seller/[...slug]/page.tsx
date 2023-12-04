@@ -1,11 +1,9 @@
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
-import { Review, Item } from '@/utils/types'
+import { Item } from '@/utils/types'
 import WideBlueButton from '@/components/button/WideBlueButton'
 import PageContainer from '@/components/PageContainer'
 import ListingHistory from '@/components/ListingHistory'
-import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
-import DisplayReview from '@/components/DisplayReview'
 import getUser from '@/utils/getUser'
 
 export default async function listing({
@@ -34,13 +32,9 @@ export default async function listing({
     const fullName = `${first_name} ${last_name}`
     const items_for_sale: Item[] = await fetchItemsBySeller(supabase, sellerID)
 
-    const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
-
     if (params.slug[1] == 'history') {
       return (
         <PageContainer>
-          <h1>Reviews for {first_name} </h1>
-          <DisplayReview reviewData={reviewData} />
           <h1>All Listings by {first_name}</h1>
           <ListingHistory id={sellerID} />
         </PageContainer>
