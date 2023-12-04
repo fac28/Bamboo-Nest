@@ -96,9 +96,8 @@ export async function InputField({
     } catch (error) {
       // need to handle error handling here
       console.error(error)
-    }
-    finally {
-      if(successFlag) {
+    } finally {
+      if (successFlag) {
         redirect('/search')
       }
     }

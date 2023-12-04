@@ -50,7 +50,7 @@ export default function ItemCard({
       </div>
       <div className="md:col-span-1 row-span-2 flex flex-col justify-around p-2 min-h-[6rem]">
         <p className="text-md">{cardName}</p>
-        <p className="text-sm">£{cardPrice}</p>
+        <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
