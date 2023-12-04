@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import getUser from '@/utils/getUser'
@@ -6,14 +5,15 @@ import newClient from '@/utils/createNewClient'
 
 export default async function UpdateForm() {
   const { user, supabase } = await getUser()
+  const userID = user?.id || ''
 
   const { data: userInfo } = await supabase
     .from('users')
     .select()
-    .eq('id', user?.id)
+    .eq('id', userID)
 
-  const firstName = userInfo?.[0]?.first_name
-  const lastName = userInfo?.[0]?.last_name
+  const firstName = userInfo?.[0]?.first_name || ''
+  const lastName = userInfo?.[0]?.last_name || ''
 
   const bio = userInfo?.[0]?.bio
   const profilePicture = userInfo?.[0]?.image_path
@@ -21,29 +21,47 @@ export default async function UpdateForm() {
   const update = async (formData: FormData) => {
     'use server'
 
-    const firstName = formData.get('First Name') as string
-    const lastName = formData.get('Last Name') as string
-    const bio = formData.get('Bio') as string
-    const profilePicture = formData.get('profile-picture') as File
+    const firstNameNew = formData.get('First Name') as string
+    const lastNameNew = formData.get('Last Name') as string
+    const bioNew = formData.get('Bio') as string
+    const profilePictureNew = formData.get('profile-picture') as File
 
     const supabase = newClient()
 
+    const userID = user?.id || ''
+
+    if (profilePictureNew.name === 'undefined') {
+      await supabase
+        .from('users')
+        .upsert({
+          id: userID,
+          first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
+          last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
+          bio: bioNew.length === 0 ? bio : bioNew,
+        })
+        .select()
+      return redirect('/account')
+    }
+
     await supabase.storage
       .from('profile-pictures')
-      .upload(profilePicture.name, profilePicture, { upsert: true })
+      .upload(profilePictureNew.name, profilePictureNew, { upsert: true })
 
     const { data: publicUrl } = await supabase.storage
       .from('profile-pictures')
-      .getPublicUrl(profilePicture.name)
+      .getPublicUrl(profilePictureNew.name)
 
     await supabase
       .from('users')
       .upsert({
-        id: user?.id,
-        first_name: firstName,
-        last_name: lastName,
-        bio: bio,
-        image_path: publicUrl.publicUrl,
+        id: userID,
+        first_name: firstNameNew.length === 0 ? firstName : firstNameNew,
+        last_name: lastNameNew.length === 0 ? lastName : lastNameNew,
+        bio: bioNew.length === 0 ? bio : bioNew,
+        image_path:
+          profilePictureNew.name.length === 0
+            ? profilePicture
+            : publicUrl.publicUrl,
       })
       .select()
 
@@ -52,27 +70,6 @@ export default async function UpdateForm() {
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-      <Link
-        href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
-        >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>{' '}
-        Back
-      </Link>
-
       <h1>Update your profile</h1>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
@@ -80,13 +77,13 @@ export default async function UpdateForm() {
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="First Name"
-          placeholder={firstName.length === 0 ? 'First Name' : firstName}
+          placeholder={firstName?.length === 0 ? 'First Name' : firstName}
         />
         <label htmlFor="Last Name">Last Name</label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="Last Name"
-          placeholder={lastName.length === 0 ? 'Last Name' : lastName}
+          placeholder={lastName?.length === 0 ? 'Last Name' : lastName}
         />
         <label htmlFor="Bio">About Me</label>
         <textarea
@@ -97,7 +94,7 @@ export default async function UpdateForm() {
           }
         />
         <label htmlFor="profile-picture">Profile Picture</label>
-        <p>Your current profile</p>
+        <p>Your current picture</p>
         <Image
           src={profilePicture || ''}
           width={100}

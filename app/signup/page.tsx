@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { redirect } from 'next/navigation'
 import UpdateForm from '@/components/form/UpdateProfile'
 import PageContainer from '@/components/PageContainer'
@@ -22,7 +24,7 @@ export default async function Login({
     const password = formData.get('password') as string
     const firstName = formData.get('First Name') as string
     const lastName = formData.get('Last Name') as string
-    const supabase = newClient()
+    const supabase = newClient() as unknown as any
 
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -34,10 +36,16 @@ export default async function Login({
       return redirect(`/login?message=${error.message}`)
     }
 
+    const userID = data?.user?.id
+
+    if (userID) {
+      return redirect(`/login?message=Error creating user`)
+    }
+
     await supabase
       .from('users')
       .upsert({
-        id: data?.user?.id,
+        id: userID,
         first_name: firstName,
         last_name: lastName,
         created_at: new Date(),

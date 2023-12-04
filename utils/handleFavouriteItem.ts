@@ -10,7 +10,7 @@ export default async function toggleFavourite(user: string, itemID: number) {
       .eq('id', user)
     const favouriteItems: number[] | null = data && data[0].favourite_items
     if (error || !data || data.length === 0) {
-      throw new Error('Error fetching data')
+      throw new Error(`Error fetching data ${error?.message}`)
     }
     if (!favouriteItems || favouriteItems.length === 0) {
       updateSupabaseFavouriteItems(user, [itemID])

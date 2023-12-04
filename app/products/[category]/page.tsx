@@ -16,15 +16,14 @@ export default async function Page({
   const items = await fetchItemsByCategory(decodeURIComponent(params.category))
   const { user, supabase } = await getUser()
 
+  const userID = user ? user.id : ''
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')
-    .eq('id', user && user.id)
+    .eq('id', userID)
 
-  const favouriteItems: string[] | null =
+  const favouriteItems: number[] | null =
     favourites && favourites[0].favourite_items
-
-  const userID = user ? user.id : null
 
   return (
     <PageContainer justify="justify-start">
@@ -34,12 +33,7 @@ export default async function Page({
           {items.map(item => (
             <div key={item.item_id}>
               <ItemCard
-                linkHref={`/item/${item.item_id}`}
-                cardName={item.name}
-                cardPrice={item.price}
-                cardImgSrc={item.image_path}
-                cardImgAlt={`image of ${item.name}`}
-                cardKey={item.item_id}
+                item={item}
                 favouriteItems={favouriteItems}
                 user={userID}
               />

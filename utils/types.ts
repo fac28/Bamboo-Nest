@@ -46,8 +46,34 @@ export type Purchase =
 export type Review = Database['public']['Tables']['reviews']['Row']
 export interface ItemForHomePage {
   item_id: number
+  name: string | null
+  price: number | null
+  image_path: string | null
+  brand: string | null
+}
+
+export type ItemForListingPage = {
+  item_id: number | null
+  name: string | null
+  price: number | null
+  image_path: string | null
+  brand: string | null
+  description: string | null
+  condition: number | null
+}
+
+export interface ItemInfo {
   name: string
+  description: string
   price: number
-  image_path: string
+  age_category: number
+  category_id: number
+  sub_category_id: number
+  condition: number
   brand: string
+  delivery: boolean
+  collection: boolean
+  seller_id: string
+  image_path: string
+  postcode: string
 }

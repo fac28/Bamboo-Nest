@@ -4,7 +4,7 @@ import PageContainer from '@/components/PageContainer'
 import fetchCategories from '@/utils/fetchCategories'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
-import { Category, ItemWithImage } from '@/utils/types'
+import { Category, Item } from '@/utils/types'
 import ItemCard from '@/components/ItemCard'
 import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
 
@@ -12,10 +12,10 @@ export default function ClientPage({
   favouriteItems,
   user,
 }: {
-  favouriteItems: string[] | null
+  favouriteItems: number[] | null
   user: string | null
 }) {
-  const [searchResults, setSearchResults] = useState<ItemWithImage[]>([])
+  const [searchResults, setSearchResults] = useState<Item[]>([])
   const [categories, setCategories] = useState<Category[]>([])
 
   async function handleSearch(term: string) {
@@ -51,12 +51,7 @@ export default function ClientPage({
           {searchResults.map(result => (
             <div key={result.item_id}>
               <ItemCard
-                linkHref={`item/${result.item_id}`}
-                cardKey={result.item_id}
-                cardName={result.name}
-                cardPrice={result.price}
-                cardImgSrc={result.image_path}
-                cardImgAlt={result.name}
+                item={result}
                 favouriteItems={favouriteItems}
                 user={user}
               />

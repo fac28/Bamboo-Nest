@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import FavouriteButton from '@/components/button/FavouriteButton'
 import Image from 'next/image'
+import {
+  Item,
+  ItemForHomePage,
+  ItemWithImage,
+  ItemForListingPage,
+} from '@/utils/types'
 
 export default function ItemCard({
-  linkHref,
-  cardKey,
-  cardName,
-  cardPrice,
-  cardImgSrc,
-  cardImgAlt,
   seller_name = null,
   seller_id = null,
   grid_direction = 'grid-cols-2',
@@ -16,21 +16,24 @@ export default function ItemCard({
   user,
   background_colour = 'bg-white',
   backgroundImg = null,
+  item,
 }: {
-  linkHref: string
-  cardKey?: number
-  cardName: string
-  cardPrice: number
-  cardImgSrc: string
-  cardImgAlt: string
   seller_id?: string | null
   seller_name?: string | null
   grid_direction?: 'grid-cols-2' | 'grid-rows-2'
-  favouriteItems?: string[] | null
+  favouriteItems?: number[] | null
   user?: string | null
   background_colour?: 'bg-white' | 'bg-lightGreenHighlight'
   backgroundImg?: string | null
+  item: Item | ItemForHomePage | ItemWithImage | ItemForListingPage | null
 }) {
+  const linkHref = `/item/${item?.item_id}`
+  const cardKey = item?.item_id
+  const cardName = item?.name
+  const cardPrice = item?.price
+  const cardImgSrc = item?.image_path as string
+  const cardImgAlt = `image of ${item?.name}`
+
   return (
     <Link
       href={seller_id ? `/review/${seller_id}` : linkHref}
@@ -60,7 +63,7 @@ export default function ItemCard({
           <></>
         )}
         <p className="text-md">{cardName}</p>
-        <p className="text-sm">£{cardPrice}</p>
+        <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>

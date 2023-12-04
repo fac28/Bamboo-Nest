@@ -31,6 +31,22 @@ export default async function listing({
       throw new Error('Error fetching data')
     }
 
+    // const {
+    //   item_id,
+    //   name,
+    //   price,
+    //   description,
+    //   brand,
+    //   delivery,
+    //   collection,
+    //   age: { age_category: age },
+    //   conditions: { condition: condition, description: conditionDescription },
+    //   categories: { category_name: category },
+    //   seller_id,
+    //   users: { first_name},
+    //   image_path,
+    // } = data[0]
+
     const {
       item_id,
       name,
@@ -39,44 +55,47 @@ export default async function listing({
       brand,
       delivery,
       collection,
-      age: { age_category: age },
-      conditions: { condition: condition, description: conditionDescription },
-      categories: { category_name: category },
+      // age,
+      condition,
       seller_id,
-      users: { first_name },
       image_path,
     } = data[0]
+
+    const first_name = data[0] && data[0].users?.first_name
+    const conditionDescription = data[0] && data[0].conditions?.description
+    const category = data[0] && data[0].categories?.category_name
+
+    const userID = user ? user.id : ''
 
     const { data: favourites } = await supabase
       .from('users')
       .select('favourite_items')
-      .eq('id', user && user.id)
-    const favouriteItems: string[] | null =
+      .eq('id', userID)
+    const favouriteItems: number[] | null =
       favourites && favourites[0].favourite_items
-    const userID = user ? user.id : null
 
     return (
       <PageContainer>
         <div className="flex flex-col gap-y-6">
           <FavouriteButton
             user={userID}
-            itemID={item_id}
+            itemID={item_id.toString()}
             className="self-end"
             aria-label="favourite an item"
             favouriteItems={favouriteItems}
           />
 
           <Image
-            src={image_path}
+            src={image_path ?? ''}
             width={300}
             height={300}
             alt={`${name}`}
             className="self-center rounded-lg"
           />
-          <p className="font-light">{brand.toUpperCase()}</p>
+          <p className="font-light">{brand && brand.toUpperCase()}</p>
           <div className="flex flex-wrap justify-between text-xl font-medium">
             <p>{name}</p>
-            <p>£{price}</p>
+            <p>£{price.toFixed(2)}</p>
           </div>
           <Link href={`/seller/${seller_id}`} className="self-center">
             <p>Seller: {first_name}</p>
@@ -84,7 +103,7 @@ export default async function listing({
           <div className="italic font-light child:py-1">
             <p>Condition: {condition}</p>
             <p>Item condition expanded: {conditionDescription}</p>
-            <p>Age category: {age}</p>
+            {/* <p>Age category: {age}</p> */}
             <p>Item category: {category}</p>
 
             <p>
