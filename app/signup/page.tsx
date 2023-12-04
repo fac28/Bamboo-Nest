@@ -57,61 +57,57 @@ export default async function Login({
     </PageContainer>
   ) : (
     <PageContainer>
-      {/* <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2"> */}
-      <div className="gap-2">
-        <h1 className="mb-10 w-[80%] text-center mx-auto">
-          Create an account{' '}
-        </h1>
-        <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-          <FormFieldAndLabel
-            htmlForInput="email"
-            labelName="Email"
-            inputType="email"
-            inputName="email"
-            inputPlaceholder="you@example.com"
-            required
-          />
+      <h1 className="mb-10 w-[80%] text-center mx-auto">Create an account </h1>
+      <form className="animate-in flex-1 flex flex-col max-w-xl w-full justify-center gap-2 text-foreground">
+        <FormFieldAndLabel
+          htmlForInput="email"
+          labelName="Email"
+          inputType="email"
+          inputName="email"
+          inputPlaceholder="you@example.com"
+          required
+        />
 
-          <FormFieldAndLabel
-            htmlForInput="password"
-            labelName="Password"
-            inputType="password"
-            inputName="password"
-            inputPlaceholder="••••••••"
-            required
-          />
+        <FormFieldAndLabel
+          htmlForInput="password"
+          labelName="Password"
+          inputType="password"
+          inputName="password"
+          inputPlaceholder="••••••••"
+          required
+        />
 
-          <FormFieldAndLabel
-            htmlForInput="First Name"
-            labelName="First Name"
-            inputType="text"
-            inputName="First Name"
-            inputPlaceholder="First Name"
-            required
-          />
+        <FormFieldAndLabel
+          htmlForInput="First Name"
+          labelName="First Name"
+          inputType="text"
+          inputName="First Name"
+          inputPlaceholder="First Name"
+          required
+        />
 
-          <FormFieldAndLabel
-            htmlForInput="Last Name"
-            labelName="Last Name"
-            inputType="text"
-            inputName="Last Name"
-            inputPlaceholder="Last Name"
-            required
-          />
+        <FormFieldAndLabel
+          htmlForInput="Last Name"
+          labelName="Last Name"
+          inputType="text"
+          inputName="Last Name"
+          inputPlaceholder="Last Name"
+          required
+        />
 
-          <button
-            formAction={signUp}
-            className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full"
-          >
-            Register
-          </button>
-          {searchParams?.message && (
-            <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-              {searchParams.message}
-            </p>
-          )}
-        </form>
-      </div>
+        <button
+          aria-label="create account"
+          formAction={signUp}
+          className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full"
+        >
+          Register
+        </button>
+        {searchParams?.message && (
+          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+            {searchParams.message}
+          </p>
+        )}
+      </form>
     </PageContainer>
   )
 }
