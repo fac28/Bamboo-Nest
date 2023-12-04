@@ -30,7 +30,10 @@ export default function Search({
         value={searchTerm}
         onChange={handleChange}
       />
-      <MagnifyingGlassIcon aria-label="magnifying class icon" className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+      <MagnifyingGlassIcon
+        aria-label="magnifying class icon"
+        className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
+      />
     </div>
   )
 }
