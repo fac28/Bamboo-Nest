@@ -70,7 +70,7 @@ export default async function listing({
           <p className="font-light">{brand.toUpperCase()}</p>
           <div className="flex flex-wrap justify-between text-xl font-medium">
             <p>{name}</p>
-            <p>£{price}</p>
+            <p>£{price.toFixed(2)}</p>
           </div>
           <Link href={`/seller/${seller_id}`} className="self-center">
             <p>Seller: {first_name}</p>
