@@ -7,6 +7,11 @@ import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
 // import BackButton from '@/components/BackButton'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Login - Bamboo Nest',
+}
 
 export default async function Login({
   searchParams,
@@ -42,11 +47,12 @@ export default async function Login({
     </PageContainer>
   ) : (
     <PageContainer>
-      <div className="gap-2">
+      <section className="gap-2">
         <h1 className="mb-10 w-[80%] text-center mx-auto">
           Welcome to Bamboo Nest
         </h1>
         <form
+          aria-label="login to account"
           className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
           action={signIn}
         >
@@ -68,7 +74,10 @@ export default async function Login({
             required
           />
 
-          <button className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full">
+          <button
+            aria-label="login to account"
+            className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full"
+          >
             Login
           </button>
           {searchParams?.message && (
@@ -87,7 +96,7 @@ export default async function Login({
             Create an account
           </Link>
         </p>
-      </div>
+      </section>
     </PageContainer>
   )
 }

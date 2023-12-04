@@ -4,6 +4,11 @@ import PageContainer from '@/components/PageContainer'
 import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Signup - Bamboo Nest',
+}
 
 export default async function Login({
   searchParams,

@@ -5,6 +5,11 @@ import Purchase from '@/components/PurchaseHistory'
 import Favourites from '@/components/Favourites'
 import ListingHistory from '@/components/ListingHistory'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Account Home - Bamboo Nest',
+}
 
 export default async function listing({
   params,

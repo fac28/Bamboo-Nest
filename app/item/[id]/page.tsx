@@ -4,6 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import WideBlueButton from '@/components/button/WideBlueButton'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Item Listing - Bamboo Nest',
+}
 
 const itemQuery =
   '*, age(age_category), categories(category_name), conditions(condition,description), users(first_name,last_name)'
@@ -57,6 +62,7 @@ export default async function listing({
             user={userID}
             itemID={item_id}
             className="self-end"
+            aria-label="favourite an item"
             favouriteItems={favouriteItems}
           />
 
@@ -64,7 +70,7 @@ export default async function listing({
             src={image_path}
             width={300}
             height={300}
-            alt={`image of ${name}`}
+            alt={`${name}`}
             className="self-center rounded-lg"
           />
           <p className="font-light">{brand.toUpperCase()}</p>

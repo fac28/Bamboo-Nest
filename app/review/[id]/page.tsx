@@ -1,6 +1,11 @@
 import PageContainer from '@/components/PageContainer'
 import { ReviewSeller } from '@/components/form/ReviewSeller'
 import getUser from '@/utils/getUser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Review - Bamboo Nest',
+}
 
 export default async function Review({ params }: { params: { id: string } }) {
   const seller_id = params.id
