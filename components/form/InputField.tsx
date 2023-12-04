@@ -4,19 +4,19 @@ import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
 import newClient from '@/utils/createNewClient'
 import { Tooltip } from '@nextui-org/react'
-import { z } from "zod";
+import { z } from 'zod'
 
 const regexForOutCode =
   '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
-  
-  export async function InputField({
-    ageGroups,
-    categories,
-    subCategories,
-    conditions,
-    seller,
+
+export async function InputField({
+  ageGroups,
+  categories,
+  subCategories,
+  conditions,
+  seller,
   existsOnUsersTable,
-}:{
+}: {
   ageGroups: Age[]
   categories: Category[]
   subCategories: SubCategory[]
@@ -40,7 +40,7 @@ const regexForOutCode =
         delivery: z.boolean(),
         collection: z.boolean(),
         seller_id: z.string(),
-        image_path: z.string()
+        image_path: z.string(),
       })
       const image = formData.get('item-picture') as File
       const imageName = seller + image.name
@@ -54,20 +54,20 @@ const regexForOutCode =
       const brand = formData.get('brand') as string
       const postcode = formData.get('postcode') as string
       const delivery = formData.get('can-deliver')
-      const deliveryBool = delivery ==='on' ? true : false
+      const deliveryBool = delivery === 'on' ? true : false
       const collection = formData.get('can-collect')
-      const collectionBool = collection ==='on' ? true : false
-      
+      const collectionBool = collection === 'on' ? true : false
+
       const supabase = newClient()
-  
+
       await supabase.storage
         .from('item-pictures')
         .upload(imageName, image, { upsert: true })
-  
+
       const { data: publicUrl } = await supabase.storage
         .from('item-pictures')
         .getPublicUrl(imageName)
-  
+
       const itemInfo = {
         name,
         description,
@@ -84,7 +84,10 @@ const regexForOutCode =
         postcode: postcode,
       }
       const validatedItemInfo = ItemSchema.parse(itemInfo)
-      const { error } = await supabase.from('items').insert(validatedItemInfo).select()
+      const { error } = await supabase
+        .from('items')
+        .insert(validatedItemInfo)
+        .select()
       if (error) {
         console.error(error)
       }
@@ -130,10 +133,7 @@ const regexForOutCode =
         <label htmlFor="item-price">
           Price:<span className="text-red-700"> *</span>
         </label>
-        <Tooltip
-          closeDelay={500}
-          content="Enter a price for your item"
-        >
+        <Tooltip closeDelay={500} content="Enter a price for your item">
           <input
             className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
             name="item-price"
@@ -187,10 +187,7 @@ const regexForOutCode =
           placeholder="Provide the brand of your item"
           className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
         />
-        <Tooltip
-          closeDelay={500}
-          content="Please select at least one option"
-        >
+        <Tooltip closeDelay={500} content="Please select at least one option">
           <fieldset id="delivery" className="flex flex-wrap gap-2 p-0 pb-6">
             <legend className="pb-2">
               Delivery options<span className="text-red-700"> *</span>
