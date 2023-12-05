@@ -19,7 +19,7 @@ export default function ClientPage({
   const [categories, setCategories] = useState<Category[]>([])
   const [maxPrice, setMaxPrice] = useState(200)
   const [filterPrice, setFilterPrice] = useState<number>(200)
-
+  const [sortByPrice, setSortByPrice] = useState<string | null>(null)
   useEffect(() => {
     const prices = searchResults.map(result => result.price)
     const newMaxPrice = Math.max(...prices)
@@ -59,23 +59,27 @@ export default function ClientPage({
           </div>
         )} */}
         <label htmlFor="filter-by-price">Filter by price:</label>
-        <div className='flex flex-inline'>
+        <div className="flex flex-inline flex-auto">
           <input
-          id="filter-by-price"
-          type="range"
-          min={0}
-          max={maxPrice}
-          value={filterPrice}
-          onChange={e => {
-            setFilterPrice(parseInt(e.target.value))
-          }}
+            id="filter-by-price"
+            type="range"
+            min={0}
+            max={maxPrice}
+            value={filterPrice}
+            onChange={e => {
+              setFilterPrice(parseInt(e.target.value))
+            }}
           />
           <p> £{filterPrice} </p>
         </div>
+        <button onClick={() => setSortByPrice(sortByPrice === 'ascending' ? 'descending' : 'ascending')}>Sort by price {sortByPrice === 'ascending' ? '↑' : '↓'}</button>
         <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults
             .filter(result => {
               return result.price <= filterPrice
+            })
+            .toSorted((a,b) => {
+              return sortByPrice === 'ascending' ? b.price - a.price : a.price - b.price
             })
             .map(result => (
               <div key={result.item_id}>
