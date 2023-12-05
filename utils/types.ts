@@ -50,6 +50,7 @@ export interface ItemForHomePage {
   price: number | null
   image_path: string | null
   brand: string | null
+  rent_available: boolean | null
 }
 
 export type ItemForListingPage = {
@@ -60,6 +61,7 @@ export type ItemForListingPage = {
   brand: string | null
   description: string | null
   condition: number | null
+  rent_available: boolean | null
 }
 
 export interface ItemInfo {

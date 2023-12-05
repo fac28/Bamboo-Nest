@@ -64,6 +64,7 @@ export default function ItemCard({
         )}
         <p className="text-md">{cardName}</p>
         <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
+        <p className="text-sm">Rent: {item&&item.rent_available ? <span className='text-green-400'>'✓'</span> : <span className='text-red-500'>'✗'</span>}</p>
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>
