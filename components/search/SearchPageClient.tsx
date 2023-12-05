@@ -7,7 +7,8 @@ import searchItem from '@/utils/searchByName'
 import { Category, Item } from '@/utils/types'
 import ItemCard from '@/components/cards/ItemCard'
 import { Slider } from '@nextui-org/react'
-import SearchPageCategoryCard from '@/components/search/SearchPageCategoryCard'
+import ShowCategories from '@/components/cards/ShowCategories'
+
 export default function ClientPage({
   favouriteItems,
   user,
@@ -39,8 +40,8 @@ export default function ClientPage({
     setCategories(categoriesData)
   }
   function handleFilterValues(value: number[]) {
-    const newMin = parseFloat(value[0] as unknown as string)
-    const newMax = parseFloat(value[1] as unknown as string)
+    const newMin = parseFloat(value[0].toString())
+    const newMax = parseFloat(value[1].toString())
     setFilterPrice([newMin, newMax])
   }
 
@@ -53,15 +54,7 @@ export default function ClientPage({
       <div className="w-full flex flex-col gap-4 py-6 lg:py-16">
         <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
         {searchResults.length === 0 ? (
-          <div className="grid grid-cols-2 gap-4">
-            {categories.map(category => (
-              <SearchPageCategoryCard
-                cardKey={category.category_name}
-                linkHref={`/products/${category.category_name}`}
-                cardName={category.category_name}
-              />
-            ))}
-          </div>
+          <ShowCategories categories={categories} />
         ) : (
           <>
             <div>
@@ -97,30 +90,20 @@ export default function ClientPage({
               </button>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-4">
-              {searchResults.length > 0 &&
-                searchResults
-                  .filter(result => {
-                    return (
-                      result.price >= filterPrice[0] &&
-                      result.price <= filterPrice[1]
-                    )
-                  })
-                  .toSorted((a, b) => {
-                    return sortByPrice === 'descending'
-                      ? b.price - a.price
-                      : sortByPrice === 'ascending'
-                        ? a.price - b.price
-                        : 1
-                  })
-                  .map(result => (
-                    <div key={result.item_id}>
-                      <ItemCard
-                        item={result}
-                        favouriteItems={favouriteItems}
-                        user={user}
-                      />
-                    </div>
-                  ))}
+              {searchResults
+                .filter(result => result.price >= filterPrice[0] && result.price <= filterPrice[1])
+                .sort((a, b) => {
+                  return sortByPrice === 'descending'
+                    ? b.price - a.price
+                    : sortByPrice === 'ascending'
+                    ? a.price - b.price
+                    : 1;
+                })
+                .map(result => (
+                  <div key={result.item_id}>
+                    <ItemCard item={result} favouriteItems={favouriteItems} user={user} />
+                  </div>
+                ))}
             </div>
           </>
         )}
