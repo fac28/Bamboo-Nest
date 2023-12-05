@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, Item } from '@/utils/types'
 import ItemCard from '@/components/cards/ItemCard'
+import { Slider } from '@nextui-org/react'
 import SearchPageCategoryCard from '@/components/search/SearchPageCategoryCard'
 // import ShowCategories from '@/components/cards/ShowCategories'
 export default function ClientPage({
@@ -18,14 +19,14 @@ export default function ClientPage({
   const [searchResults, setSearchResults] = useState<Item[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [maxPrice, setMaxPrice] = useState(200)
-  const [filterPrice, setFilterPrice] = useState<number>(200)
+  const [filterPrice, setFilterPrice] = useState<number[]>([0, 200])
   const [sortByPrice, setSortByPrice] = useState<string | null>(null)
   useEffect(() => {
     const prices = searchResults.map(result => result.price)
     const newMaxPrice = Math.max(...prices)
     if (!isNaN(newMaxPrice) && isFinite(newMaxPrice)) {
       setMaxPrice(newMaxPrice)
-      setFilterPrice(newMaxPrice)
+      setFilterPrice([filterPrice[0], newMaxPrice])
     }
   }, [searchResults])
 
@@ -37,6 +38,11 @@ export default function ClientPage({
   async function fetchCategoriesData() {
     const categoriesData = await fetchCategories()
     setCategories(categoriesData)
+  }
+  function handleFilterValues(value: string[]) {
+    const newMin = parseFloat(value[0])
+    const newMax = parseFloat(value[1])
+    setFilterPrice([newMin, newMax])
   }
 
   useEffect(() => {
@@ -58,28 +64,40 @@ export default function ClientPage({
           ))}
           </div>
         )} */}
-        <label htmlFor="filter-by-price">Filter by price:</label>
-        <div className="flex flex-inline flex-auto">
-          <input
-            id="filter-by-price"
-            type="range"
-            min={0}
-            max={maxPrice}
-            value={filterPrice}
-            onChange={e => {
-              setFilterPrice(parseInt(e.target.value))
-            }}
+        <div>
+          <Slider
+            label="Filter by price:"
+            step={0.5}
+            maxValue={maxPrice}
+            minValue={0}
+            defaultValue={[0, filterPrice[1]]}
+            value={[filterPrice[0], filterPrice[1]]}
+            formatOptions={{ style: 'currency', currency: 'GBP' }}
+            className="max-w-md"
+            onChange={value => handleFilterValues(value)}
           />
-          <p> £{filterPrice} </p>
+          <button
+            className="rounded-full px-4 py-2 border bg-primaryBlue border-primaryBlue my-6 text-white text-center italic focus:outline-primaryBlue"
+            onClick={() =>
+              setSortByPrice(
+                sortByPrice === 'ascending' ? 'descending' : 'ascending',
+              )
+            }
+          >
+            Sort by price {sortByPrice === 'ascending' ? '↑' : '↓'}
+          </button>
         </div>
-        <button onClick={() => setSortByPrice(sortByPrice === 'ascending' ? 'descending' : 'ascending')}>Sort by price {sortByPrice === 'ascending' ? '↑' : '↓'}</button>
         <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults
             .filter(result => {
-              return result.price <= filterPrice
+              return (result.price >= filterPrice[0]) && (result.price <= filterPrice[1])
             })
-            .toSorted((a,b) => {
-              return sortByPrice === 'ascending' ? b.price - a.price : a.price - b.price
+            .toSorted((a, b) => {
+              return sortByPrice === 'descending'
+                ? b.price - a.price
+                : sortByPrice === 'ascending'
+                  ? a.price - b.price
+                  : 1
             })
             .map(result => (
               <div key={result.item_id}>
