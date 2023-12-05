@@ -41,6 +41,7 @@ export default async function listing({
       collection,
       seller_id,
       image_path,
+      rent_available,
     } = data[0]
 
     const first_name = data[0] && data[0].users?.first_name
@@ -89,6 +90,11 @@ export default async function listing({
             {/* <p>Item condition expanded: {conditionDescription}</p> */}
             <p>For: {age}</p>
             <p>Item category: {category}</p>
+            {rent_available && (
+              <p>
+                Item available for rent, contact the seller for more information
+              </p>
+            )}
             <p>
               Postage options:{' '}
               {delivery && collection
