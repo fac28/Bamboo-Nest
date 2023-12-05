@@ -31,22 +31,6 @@ export default async function listing({
       throw new Error('Error fetching data')
     }
 
-    // const {
-    //   item_id,
-    //   name,
-    //   price,
-    //   description,
-    //   brand,
-    //   delivery,
-    //   collection,
-    //   age: { age_category: age },
-    //   conditions: { condition: condition, description: conditionDescription },
-    //   categories: { category_name: category },
-    //   seller_id,
-    //   users: { first_name},
-    //   image_path,
-    // } = data[0]
-
     const {
       item_id,
       name,
@@ -55,15 +39,15 @@ export default async function listing({
       brand,
       delivery,
       collection,
-      // age,
-      condition,
       seller_id,
       image_path,
     } = data[0]
 
     const first_name = data[0] && data[0].users?.first_name
-    const conditionDescription = data[0] && data[0].conditions?.description
+    // const conditionDescription = data[0] && data[0].conditions?.description
     const category = data[0] && data[0].categories?.category_name
+    const age = data[0] && data[0].age?.age_category
+    const condition = data[0] && data[0].conditions?.condition
 
     const userID = user ? user.id : ''
 
@@ -102,19 +86,23 @@ export default async function listing({
           </Link>
           <div className="italic font-light child:py-1">
             <p>Condition: {condition}</p>
-            <p>Item condition expanded: {conditionDescription}</p>
-            {/* <p>Age category: {age}</p> */}
+            {/* <p>Item condition expanded: {conditionDescription}</p> */}
+            <p>For: {age}</p>
             <p>Item category: {category}</p>
-
             <p>
-              Postage options: {delivery && `post`} {collection && `collect`}
+              Postage options:{' '}
+              {delivery && collection
+                ? `Post or Collect`
+                : (delivery && `Post`) || (collection && `Collect`)}
             </p>
           </div>
           <p>{description}</p>
-          <WideBlueButton
-            buttonTitle={`Request ${first_name}'s Contact Info`}
-            pageUrl={`/seller/${seller_id}`}
-          />
+          {userID === seller_id ? null : (
+            <WideBlueButton
+              buttonTitle={`Request ${first_name}'s Contact Info`}
+              pageUrl={`/seller/${seller_id}`}
+            />
+          )}
         </div>
       </PageContainer>
     )
