@@ -1,4 +1,4 @@
-import ClientPage from '../../components/SearchPageClient'
+import ClientPage from '../../components/search/SearchPageClient'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
 

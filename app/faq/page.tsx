@@ -1,5 +1,5 @@
 // pages/index.tsx
-import PageContainer from '@/components/PageContainer'
+import PageContainer from '@/components/global-layout/PageContainer'
 import Accordion from '@/components/Accordion'
 import { Metadata } from 'next'
 

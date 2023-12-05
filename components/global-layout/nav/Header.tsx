@@ -1,5 +1,5 @@
-import AuthButton from '@/components/button/AuthButton'
-import NavigationMenu from '@/components/NavigationMenu'
+import AuthButton from '@/components/buttons/AuthButton'
+import NavigationMenu from '@/components/global-layout/nav/NavigationMenu'
 import Link from 'next/link'
 
 export default async function Header() {

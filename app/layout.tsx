@@ -2,8 +2,8 @@ import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 import { Providers } from './providers'
 import 'normalize.css/normalize.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/components/global-layout/nav/Header'
+import Footer from '@/components/global-layout/Footer'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

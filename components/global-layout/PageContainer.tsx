@@ -1,5 +1,5 @@
 // import Image from 'next/image'
-import BackButton from './button/BackButton'
+import BackButton from '../buttons/BackButton'
 
 export default function PageContainer({
   children,

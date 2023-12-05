@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import newClient from '@/utils/createNewClient'
-import Star from '@/components/Star'
+import Star from '@/components/reviews/Star'
 import { Button } from '@nextui-org/react'
 
 export async function ReviewSeller({ seller_id }: { seller_id: string }) {
