@@ -5,10 +5,15 @@ import { ReactNode, useState } from 'react'
 interface AccordionProps {
   title: string
   children: ReactNode
+  defaultOpen?: boolean
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false)
+const Accordion: React.FC<AccordionProps> = ({
+  title,
+  children,
+  defaultOpen = false,
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen)
@@ -17,7 +22,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
   return (
     <div className="p-4 mb-2">
       <div
-        className="flex justify-between items-center cursor-pointer border-b border-black p-4"
+        className="flex justify-between items-center cursor-pointer custom-dotted-border-bottom p-4"
         onClick={toggleAccordion}
       >
         <h2 className="text-lg">{title}</h2>

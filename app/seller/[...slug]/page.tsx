@@ -44,7 +44,15 @@ export default async function listing({
     if (params.slug[1] == 'history') {
       return (
         <PageContainer>
-          <h1>All Listings by {first_name}</h1>
+          <Image
+            src={image_path || ''}
+            alt={`${fullName}'s profile picture`}
+            priority={true}
+            width={200}
+            height={200}
+            className="border pb-2 rounded-full object-cover aspect-square"
+          />
+          <h1>{fullName}'s Overview</h1>
           <ListingHistory id={sellerID} />
         </PageContainer>
       )

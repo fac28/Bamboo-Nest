@@ -24,7 +24,7 @@ body {
 }
 
 .custom-dotted-border-bottom {
-  border-bottom: 6px dotted #077467;
+  border-bottom: 6px dotted var(--foundation);
 }
 
 .custom-input {

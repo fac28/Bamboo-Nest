@@ -1,5 +1,20 @@
 import { Review } from '@/utils/types'
-import { Card, CardHeader, CardBody, Divider } from '@nextui-org/react'
+
+function generateStars(score: number | null) {
+  if (score === null) {
+    return null // or display some default value for no score
+  }
+
+  const stars = []
+  for (let i = 0; i < score; i++) {
+    stars.push(
+      <span key={i} className="text-yellow-500">
+        &#9733;
+      </span>,
+    )
+  }
+  return stars
+}
 
 export default function DisplayReview({
   reviewData,
@@ -12,22 +27,27 @@ export default function DisplayReview({
     }, 0) / reviewData.length
 
   return averageScores ? (
-    <Card className="mb-2">
-      <CardHeader className="flex gap-3">
-        <h2>Average Score: {averageScores.toFixed(2)}</h2>
-      </CardHeader>
-      <Divider />
-      <CardBody>
-        {reviewData.map((review, index) => {
-          return (
-            <div key={index + 1}>
-              <q>{review.comment}</q>
-              <p>{review.review_score}</p>
-            </div>
-          )
-        })}
-      </CardBody>
-    </Card>
+    <div className="mb-2 flex flex-col gap-4">
+      <h2 className="font-medium text-center pb-2 text-foundation">
+        Average rating: {averageScores.toFixed(2)}/5
+      </h2>
+      {reviewData.map((review, index) => (
+        <div
+          key={index + 1}
+          className="border border-foundation leading-relaxed  bg-white text-center p-4 rounded-md shadow-md gap-4"
+        >
+          <q>{review.comment}</q>
+          <p>
+            Rating: {review.review_score}/5
+            {generateStars(
+              review.review_score !== null
+                ? Math.round(review.review_score)
+                : null,
+            )}
+          </p>
+        </div>
+      ))}
+    </div>
   ) : (
     <div>
       <h2>No reviews yet</h2>
