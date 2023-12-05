@@ -1,5 +1,5 @@
-import PageContainer from '@/components/PageContainer'
-import { ReviewSeller } from '@/components/form/ReviewSeller'
+import PageContainer from '@/components/global-layout/PageContainer'
+import { ReviewSeller } from '@/components/forms/ReviewSeller'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
 

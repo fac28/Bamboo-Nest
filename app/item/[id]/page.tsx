@@ -1,8 +1,8 @@
-import FavouriteButton from '@/components/button/FavouriteButton'
-import PageContainer from '@/components/PageContainer'
+import FavouriteButton from '@/components/buttons/FavouriteButton'
+import PageContainer from '@/components/global-layout/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
-import WideBlueButton from '@/components/button/WideBlueButton'
+import WideBlueButton from '@/components/buttons/WideBlueButton'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
 

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { Item } from '@/utils/types'
-import WideBlueButton from '@/components/button/WideBlueButton'
-import PageContainer from '@/components/PageContainer'
-import ListingHistory from '@/components/ListingHistory'
+import WideBlueButton from '@/components/buttons/WideBlueButton'
+import PageContainer from '@/components/global-layout/PageContainer'
+import ListingHistory from '@/components/user-info/UserListingHistory'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
 

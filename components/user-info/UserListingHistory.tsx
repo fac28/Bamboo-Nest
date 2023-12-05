@@ -1,8 +1,8 @@
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { Review, ItemForListingPage } from '@/utils/types'
-import ItemCard from '@/components/ItemCard'
+import ItemCard from '@/components/cards/ItemCard'
 import getUser from '@/utils/getUser'
-import DisplayReview from '@/components/DisplayReview'
+import DisplayReview from '@/components/reviews/DisplayReview'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 
 export default async function ListingHistory({ id = '' }) {

@@ -1,6 +1,6 @@
 import fetchItemsByCategory from '@/utils/fetchItemsByCategory'
-import PageContainer from '@/components/PageContainer'
-import ItemCard from '@/components/ItemCard'
+import PageContainer from '@/components/global-layout/PageContainer'
+import ItemCard from '@/components/cards/ItemCard'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
 

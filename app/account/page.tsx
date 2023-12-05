@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import PageContainer from '@/components/PageContainer'
+import PageContainer from '@/components/global-layout/PageContainer'
 import getUser from '@/utils/getUser'
 import { Card } from '@nextui-org/react'
 import { linkData } from '@/utils/constants'

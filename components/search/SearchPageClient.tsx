@@ -1,12 +1,12 @@
 'use client'
-import Search from '@/components/Search'
-import PageContainer from '@/components/PageContainer'
+import Search from '@/components/search/Search'
+import PageContainer from '@/components/global-layout/PageContainer'
 import fetchCategories from '@/utils/fetchCategories'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
 import { Category, Item } from '@/utils/types'
-import ItemCard from '@/components/ItemCard'
-import SearchPageCategoryCard from '@/components/SearchPageCategoryCard'
+import ItemCard from '@/components/cards/ItemCard'
+import SearchPageCategoryCard from '@/components/search/SearchPageCategoryCard'
 
 export default function ClientPage({
   favouriteItems,

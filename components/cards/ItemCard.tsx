@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import FavouriteButton from '@/components/button/FavouriteButton'
+import FavouriteButton from '@/components/buttons/FavouriteButton'
 import Image from 'next/image'
 import {
   Item,

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { redirect } from 'next/navigation'
-import UpdateForm from '@/components/form/UpdateProfile'
-import PageContainer from '@/components/PageContainer'
-import FormFieldAndLabel from '@/components/form/FormFieldAndLabel'
+import UpdateForm from '@/components/forms/UpdateProfile'
+import PageContainer from '@/components/global-layout/PageContainer'
+import FormFieldAndLabel from '@/components/forms/FormFieldAndLabel'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
 import { Metadata } from 'next'
