@@ -3,10 +3,13 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-export default function PreviewImage(
-  { image_path, item_picture=false }:
-  { image_path: string,
-    item_picture?: boolean }) {
+export default function PreviewImage({
+  image_path,
+  item_picture = false,
+}: {
+  image_path: string
+  item_picture?: boolean
+}) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string>('')
 
@@ -32,23 +35,25 @@ export default function PreviewImage(
         alt="Preview"
       />
 
-      {item_picture?
-      (<input
-        type="file"
-        id="item-picture"
-        name="item-picture"
-        accept="image/png, image/jpeg"
-        onChange={handleImageChange}
-        required
-        aria-required="true"
-      />):
-      (<input
-        type="file"
-        id="profile-picture"
-        name="profile-picture"
-        accept="image/png, image/jpeg"
-        onChange={handleImageChange}
-      />)}
+      {item_picture ? (
+        <input
+          type="file"
+          id="item-picture"
+          name="item-picture"
+          accept="image/png, image/jpeg"
+          onChange={handleImageChange}
+          required
+          aria-required="true"
+        />
+      ) : (
+        <input
+          type="file"
+          id="profile-picture"
+          name="profile-picture"
+          accept="image/png, image/jpeg"
+          onChange={handleImageChange}
+        />
+      )}
     </>
   )
 }
