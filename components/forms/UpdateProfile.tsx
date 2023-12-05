@@ -93,7 +93,8 @@ export default async function UpdateForm() {
             !bio || (bio && bio.length === 0) ? 'Tell us about yourself' : bio
           }
         />
-        <PreviewImage profile={profilePicture || ''} />
+        <label htmlFor="profile-picture">Profile Picture</label>
+        <PreviewImage image_path={profilePicture || ''} />
         <button
           formAction={update}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
