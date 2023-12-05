@@ -8,6 +8,7 @@ import FormFieldAndLabel from '@/components/forms/FormFieldAndLabel'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
 import { Metadata } from 'next'
+import { z } from 'zod'
 
 export const metadata: Metadata = {
   title: 'Login - Bamboo Nest',
@@ -22,10 +23,20 @@ export default async function Login({
 
   const signIn = async (formData: FormData) => {
     'use server'
+    const SignInSchema = z.object({
+      email: z.string().email(),
+      password: z.string(),
+    })
 
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
+    const emailUnverified = formData.get('email') as string
+    const passwordUnverified = formData.get('password') as string
+
     const supabase = newClient()
+
+    const { email, password } = SignInSchema.parse({
+      email: emailUnverified,
+      password: passwordUnverified,
+    })
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
