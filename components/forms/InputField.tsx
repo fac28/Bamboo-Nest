@@ -91,7 +91,7 @@ export async function InputField({
         rent_available,
       }
       const validatedItemInfo = ItemSchema.parse(itemInfo)
-      console.log(rentValue,rent_available)
+      console.log(rentValue, rent_available)
       console.log(validatedItemInfo)
       const { error } = await supabase.from('items').insert(itemInfo).select()
 
