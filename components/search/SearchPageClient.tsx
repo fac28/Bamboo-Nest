@@ -47,27 +47,27 @@ export default function ClientPage({
 
   return (
     <PageContainer justify="justify-start" className="gap-4 child:w-full">
-        <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
-        {searchResults.length === 0 ? (
-          <ShowCategories categories={categories} />
-        ) : (
-          <>
-            <Filter
-              maxPrice={maxPrice}
-              filterPrice={filterPrice}
-              sortByPrice={sortByPrice}
-              setSortByPrice={setSortByPrice}
-              setFilterPrice={setFilterPrice}
-            />
-            <FilteredResults
-              searchResults={searchResults}
-              filterPrice={filterPrice}
-              favouriteItems={favouriteItems}
-              user={user}
-              sortByPrice={sortByPrice}
-            />
-          </>
-        )}
+      <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
+      {searchResults.length === 0 ? (
+        <ShowCategories categories={categories} />
+      ) : (
+        <>
+          <Filter
+            maxPrice={maxPrice}
+            filterPrice={filterPrice}
+            sortByPrice={sortByPrice}
+            setSortByPrice={setSortByPrice}
+            setFilterPrice={setFilterPrice}
+          />
+          <FilteredResults
+            searchResults={searchResults}
+            filterPrice={filterPrice}
+            favouriteItems={favouriteItems}
+            user={user}
+            sortByPrice={sortByPrice}
+          />
+        </>
+      )}
     </PageContainer>
   )
 }

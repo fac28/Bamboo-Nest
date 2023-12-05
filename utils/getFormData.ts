@@ -1,4 +1,4 @@
-export default function getFormData (formData: FormData, seller: string){
+export default function getFormData(formData: FormData, seller: string) {
   const image = formData.get('item-picture') as File
   const imageName = seller + image.name
   const name = formData.get('item-name') as string
@@ -11,11 +11,23 @@ export default function getFormData (formData: FormData, seller: string){
   const brand = formData.get('brand') as string
   const postcode = formData.get('postcode') as string
 
-  const collectionValue: FormDataEntryValue | null =
-    formData.get('can-collect')
+  const collectionValue: FormDataEntryValue | null = formData.get('can-collect')
   const collection: boolean = collectionValue === 'true'
-  const deliveryValue: FormDataEntryValue | null =
-    formData.get('can-deliver')
+  const deliveryValue: FormDataEntryValue | null = formData.get('can-deliver')
   const delivery: boolean = deliveryValue === 'true'
-  return {image,imageName,name,description,price,age_category,category_id,sub_category_id,condition,brand,postcode,collection,delivery}
+  return {
+    image,
+    imageName,
+    name,
+    description,
+    price,
+    age_category,
+    category_id,
+    sub_category_id,
+    condition,
+    brand,
+    postcode,
+    collection,
+    delivery,
+  }
 }

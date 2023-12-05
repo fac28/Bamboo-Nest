@@ -42,7 +42,8 @@ export async function InputField({
         brand,
         postcode,
         collection,
-        delivery} = getFormData(formData, seller)
+        delivery,
+      } = getFormData(formData, seller)
 
       const supabase = newClient()
 
