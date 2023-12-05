@@ -65,7 +65,8 @@ export default function ClientPage({
               filterPrice={filterPrice}
               favouriteItems={favouriteItems}
               user={user}
-              sortByPrice={sortByPrice} />
+              sortByPrice={sortByPrice}
+            />
           </>
         )}
       </div>

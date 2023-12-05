@@ -79,11 +79,11 @@ export interface ItemInfo {
 }
 
 export interface FilterProps {
-  maxPrice: number;
-  filterPrice: number[];
-  sortByPrice: string | null;
-  setSortByPrice: (value: string | null) => void;
-  setFilterPrice: (value: number[]) => void;
+  maxPrice: number
+  filterPrice: number[]
+  sortByPrice: string | null
+  setSortByPrice: (value: string | null) => void
+  setFilterPrice: (value: number[]) => void
 }
 
 export interface FilteredResultsProps {
