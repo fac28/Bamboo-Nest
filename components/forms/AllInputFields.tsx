@@ -90,14 +90,14 @@ export default async function AllInputFields({
     <div>
       <h1 className="text-center">Upload Item</h1>
       <form className="grid grid-cols-1 gap-2">
-        <TextFields/>
+        <TextFields />
         <SelectionFields
           ageGroups={ageGroups}
           categories={categories}
           subCategories={subCategories}
           conditions={conditions}
-          />
-        <PostcodeInput/>
+        />
+        <PostcodeInput />
         <UploadItemSubmit
           submit={submit}
           existsOnUsersTable={existsOnUsersTable}
