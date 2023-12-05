@@ -20,9 +20,7 @@ export default async function Login() {
         {linkData.map(({ href, text }) => (
           <Link href={href} key={href}>
             <Card className="border-2 p-16 border-solid border-foundation rounded-3xl h-20 flex items-center justify-center ">
-              <p className="text-foundation font-medium lg:text-xl">
-                {text}
-              </p>
+              <p className="text-foundation font-medium lg:text-xl">{text}</p>
             </Card>
           </Link>
         ))}

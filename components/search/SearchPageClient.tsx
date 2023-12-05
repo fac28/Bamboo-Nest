@@ -33,31 +33,32 @@ export default function ClientPage({
   }, [])
 
   return (
-    <PageContainer justify="justify-start">
-      <div className="flex flex-col gap-4 py-6 lg:py-16">
-        <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
-        {searchResults.length === 0 && (
-          <div className="grid grid-cols-2 gap-4">
-            {categories.map(category => (
-              <SearchPageCategoryCard
-                cardKey={category.category_name}
-                linkHref={`/products/${category.category_name}`}
-                cardName={category.category_name}
-              />
-            ))}
-          </div>
-        )}
-        <div className="mt-4 grid grid-cols-2 gap-4">
-          {searchResults.map(result => (
-            <div key={result.item_id}>
-              <ItemCard
-                item={result}
-                favouriteItems={favouriteItems}
-                user={user}
-              />
-            </div>
+    <PageContainer justify="justify-start" className="gap-4 child:w-full">
+      <Search
+        placeholder={'Search all products'}
+        onSearch={handleSearch}
+      />{' '}
+      {searchResults.length === 0 && (
+        <div className="grid grid-cols-2 gap-4">
+          {categories.map(category => (
+            <SearchPageCategoryCard
+              cardKey={category.category_name}
+              linkHref={`/products/${category.category_name}`}
+              cardName={category.category_name}
+            />
           ))}
         </div>
+      )}
+      <div className="mt-4 grid grid-cols-2 gap-4">
+        {searchResults.map(result => (
+          <div key={result.item_id}>
+            <ItemCard
+              item={result}
+              favouriteItems={favouriteItems}
+              user={user}
+            />
+          </div>
+        ))}
       </div>
     </PageContainer>
   )
