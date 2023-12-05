@@ -2,13 +2,11 @@ import SearchPageCategoryCard from '@/components/search/SearchPageCategoryCard'
 import { Category } from '@/utils/types'
 
 interface ShowCategoriesProps {
-  categories: Category[];
+  categories: Category[]
 }
 
-export default function ShowCategories(
-  props: ShowCategoriesProps,
-) {
-  const { categories } = props;
+export default function ShowCategories(props: ShowCategoriesProps) {
+  const { categories } = props
   return (
     <div className="grid grid-cols-2 gap-4">
       {categories.map(category => (

@@ -91,17 +91,25 @@ export default function ClientPage({
             </div>
             <div className="mt-4 grid grid-cols-2 gap-4">
               {searchResults
-                .filter(result => result.price >= filterPrice[0] && result.price <= filterPrice[1])
+                .filter(
+                  result =>
+                    result.price >= filterPrice[0] &&
+                    result.price <= filterPrice[1],
+                )
                 .sort((a, b) => {
                   return sortByPrice === 'descending'
                     ? b.price - a.price
                     : sortByPrice === 'ascending'
-                    ? a.price - b.price
-                    : 1;
+                      ? a.price - b.price
+                      : 1
                 })
                 .map(result => (
                   <div key={result.item_id}>
-                    <ItemCard item={result} favouriteItems={favouriteItems} user={user} />
+                    <ItemCard
+                      item={result}
+                      favouriteItems={favouriteItems}
+                      user={user}
+                    />
                   </div>
                 ))}
             </div>
