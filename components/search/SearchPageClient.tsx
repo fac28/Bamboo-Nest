@@ -39,9 +39,9 @@ export default function ClientPage({
     const categoriesData = await fetchCategories()
     setCategories(categoriesData)
   }
-  function handleFilterValues(value: string[]) {
-    const newMin = parseFloat(value[0])
-    const newMax = parseFloat(value[1])
+  function handleFilterValues(value: number[]) {
+    const newMin = parseFloat(value[0] as unknown as string)
+    const newMax = parseFloat(value[1] as unknown as string)
     setFilterPrice([newMin, newMax])
   }
 
@@ -51,7 +51,7 @@ export default function ClientPage({
   // console.log({ filterPrice })
   return (
     <PageContainer justify="justify-start">
-      <div className="flex flex-col gap-4 py-6 lg:py-16">
+      <div className="w-full flex flex-col gap-4 py-6 lg:py-16">
         <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
         {/* {searchResults.length === 0 && (
           <div className="grid grid-cols-2 gap-4">
@@ -73,8 +73,11 @@ export default function ClientPage({
             defaultValue={[0, filterPrice[1]]}
             value={[filterPrice[0], filterPrice[1]]}
             formatOptions={{ style: 'currency', currency: 'GBP' }}
-            className="max-w-md"
-            onChange={value => handleFilterValues(value)}
+            className="max-w-sm"
+            onChange={value => {
+              if (Array.isArray(value)) handleFilterValues(value)
+              else handleFilterValues([0,100])
+            }}
           />
           <button
             className="rounded-full px-4 py-2 border bg-primaryBlue border-primaryBlue my-6 text-white text-center italic focus:outline-primaryBlue"
@@ -90,7 +93,9 @@ export default function ClientPage({
         <div className="mt-4 grid grid-cols-2 gap-4">
           {searchResults
             .filter(result => {
-              return (result.price >= filterPrice[0]) && (result.price <= filterPrice[1])
+              return (
+                result.price >= filterPrice[0] && result.price <= filterPrice[1]
+              )
             })
             .toSorted((a, b) => {
               return sortByPrice === 'descending'
