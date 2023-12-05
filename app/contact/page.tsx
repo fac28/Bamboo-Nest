@@ -1,11 +1,17 @@
 import PageContainer from '@/components/global-layout/PageContainer'
 import nodemailer from 'nodemailer'
+import { z } from 'zod'
+
 const tailwindForInputs =
   'rounded-full px-4 py-2 bg-white border border-foundation mb-6 text-center italic focus:outline-foundation'
 
 export default function ContactPage() {
   async function submit(formData: FormData) {
     'use server'
+    const ContactSchema = z.object({
+      email: z.string().email(),
+      message: z.string().max(500),
+    })
     const email = formData.get('contact-email') as string
     const message = formData.get('contact-message') as string
     const transporter = nodemailer.createTransport({
@@ -15,18 +21,17 @@ export default function ContactPage() {
         pass: process.env.EMAIL_PASSWORD,
       },
     })
-
-    // Define the email content
+    const { email: validatedEmail, message: validatedMessage } =
+      ContactSchema.parse({ email, message })
     const mailOptions = {
       from: 'bamboonesttfb@gmail.com',
       to: 'bamboonesttfb@gmail.com',
       subject: 'Bamboo Nest contact',
-      text: message,
-      html: `<p>from: ${email}</p>
-      <p>message: ${message}</p>`,
-      replyTo: email,
+      text: validatedMessage,
+      html: `<p>from: ${validatedEmail}</p>
+      <p>message: ${validatedMessage}</p>`,
+      replyTo: validatedEmail,
     }
-    // Send the email
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return console.log(error)

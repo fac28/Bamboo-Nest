@@ -102,6 +102,7 @@ export interface Database {
           sold: boolean
           sold_at: string | null
           sub_category_id: number | null
+          rent_available: boolean | null
         }
         Insert: {
           age_category?: number | null
