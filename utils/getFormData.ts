@@ -10,7 +10,8 @@ export default function getFormData(formData: FormData, seller: string) {
   const condition = parseInt(formData.get('condition') as string)
   const brand = formData.get('brand') as string
   const postcode = formData.get('postcode') as string
-
+  const rentValue: FormDataEntryValue | null = formData.get('rent-available')
+  const rent_available: boolean = rentValue === 'on'
   const collectionValue: FormDataEntryValue | null = formData.get('can-collect')
   const collection: boolean = collectionValue === 'true'
   const deliveryValue: FormDataEntryValue | null = formData.get('can-deliver')
@@ -29,5 +30,6 @@ export default function getFormData(formData: FormData, seller: string) {
     postcode,
     collection,
     delivery,
+    rent_available,
   }
 }

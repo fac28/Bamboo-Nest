@@ -42,6 +42,7 @@ export default async function AllInputFields({
         postcode,
         collection,
         delivery,
+        rent_available,
       } = getFormData(formData, seller)
 
       const supabase = newClient()
@@ -68,6 +69,7 @@ export default async function AllInputFields({
         seller_id: seller,
         image_path: publicUrl.publicUrl,
         postcode: postcode,
+        rent_available,
       }
 
       const validatedItemInfo = ItemSchema.parse(itemInfo)

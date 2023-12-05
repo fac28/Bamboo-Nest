@@ -47,6 +47,10 @@ export default function TextFields() {
           aria-required="true"
         />
       </Tooltip>
+      <fieldset>
+        <input type="checkbox" name="rent-available" id="rent-available" />
+        <label htmlFor="rent-available">Available for rent</label>
+      </fieldset>
     </>
   )
 }

@@ -38,4 +38,5 @@ export const ItemSchema = z.object({
   collection: z.boolean(),
   seller_id: z.string(),
   image_path: z.string(),
+  rent_available: z.boolean(),
 })
