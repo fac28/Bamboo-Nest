@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 export const linkData = [
   { href: '/account/favourites', text: 'Favourites' },
   { href: '/account/purchases', text: 'Purchases' },
@@ -21,3 +23,19 @@ export const regexForOutCode =
 
 export const defaultImage = '/default-product-image.png'
 export const defaultProfileImage = '/default-avatar.png'
+
+export const ItemSchema = z.object({
+  name: z.string().max(50),
+  description: z.string().max(500),
+  price: z.number(),
+  age_category: z.number(),
+  category_id: z.number(),
+  sub_category_id: z.number(),
+  condition: z.number(),
+  brand: z.string(),
+  postcode: z.string().toUpperCase(),
+  delivery: z.boolean(),
+  collection: z.boolean(),
+  seller_id: z.string(),
+  image_path: z.string(),
+})

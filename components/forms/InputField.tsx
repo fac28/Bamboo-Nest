@@ -4,9 +4,10 @@ import SelectCategories from './CategoryDropDown'
 import UploadItemSubmit from './SubmitItemButton'
 import newClient from '@/utils/createNewClient'
 import { Tooltip } from '@nextui-org/react'
-import { z } from 'zod'
 import { regexForOutCode, defaultImage } from '@/utils/constants'
 import PreviewImage from '../UploadImage'
+import { ItemSchema } from '@/utils/constants'
+import getFormData from '@/utils/getFormData'
 
 export async function InputField({
   ageGroups,
@@ -28,39 +29,21 @@ export async function InputField({
 
     let successFlag = false
     try {
-      const ItemSchema = z.object({
-        name: z.string().max(50),
-        description: z.string().max(500),
-        price: z.number(),
-        age_category: z.number(),
-        category_id: z.number(),
-        sub_category_id: z.number(),
-        condition: z.number(),
-        brand: z.string(),
-        postcode: z.string().toUpperCase(),
-        delivery: z.boolean(),
-        collection: z.boolean(),
-        seller_id: z.string(),
-        image_path: z.string(),
-      })
-      const image = formData.get('item-picture') as File
-      const imageName = seller + image.name
-      const name = formData.get('item-name') as string
-      const description = formData.get('item-description') as string
-      const price = parseFloat(formData.get('item-price') as string)
-      const age_category = parseInt(formData.get('age-groups') as string)
-      const category_id = parseInt(formData.get('category') as string)
-      const sub_category_id = parseInt(formData.get('sub-category') as string)
-      const condition = parseInt(formData.get('condition') as string)
-      const brand = formData.get('brand') as string
-      const postcode = formData.get('postcode') as string
+      const {
+        image,
+        imageName,
+        name,
+        description,
+        price,
+        age_category,
+        category_id,
+        sub_category_id,
+        condition,
+        brand,
+        postcode,
+        collection,
+        delivery} = getFormData(formData, seller)
 
-      const collectionValue: FormDataEntryValue | null =
-        formData.get('can-collect')
-      const collection: boolean = collectionValue === 'true'
-      const deliveryValue: FormDataEntryValue | null =
-        formData.get('can-deliver')
-      const delivery: boolean = deliveryValue === 'true'
       const supabase = newClient()
 
       await supabase.storage
@@ -86,6 +69,7 @@ export async function InputField({
         image_path: publicUrl.publicUrl,
         postcode: postcode,
       }
+
       const validatedItemInfo = ItemSchema.parse(itemInfo)
       console.log(validatedItemInfo)
       const { error } = await supabase.from('items').insert(itemInfo).select()
