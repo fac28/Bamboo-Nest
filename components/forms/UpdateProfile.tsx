@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
 import PreviewImage from '@/components/UploadImage'
+import { defaultProfileImage } from '@/utils/constants'
 
 export default async function UpdateForm() {
   const { user, supabase } = await getUser()
@@ -94,7 +95,7 @@ export default async function UpdateForm() {
           }
         />
         <label htmlFor="profile-picture">Profile Picture</label>
-        <PreviewImage image_path={profilePicture || ''} />
+        <PreviewImage image_path={profilePicture || defaultProfileImage} />
         <button
           formAction={update}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
