@@ -5,9 +5,8 @@ import UploadItemSubmit from './SubmitItemButton'
 import newClient from '@/utils/createNewClient'
 import { Tooltip } from '@nextui-org/react'
 import { z } from 'zod'
-
-const regexForOutCode =
-  '[A-Za-z]{1,2}\\d[A-Za-z\\d]?|[A-Za-z]{2}\\d[A-Za-z\\d]?|[A-Za-z]\\d[A-Za-z\\d]?|[A-Za-z]{1,2}\\d{2}[A-Za-z]?|[A-Za-z]\\d{2}[A-Za-z]?'
+import { regexForOutCode, defaultImage } from '@/utils/constants'
+import PreviewImage from '../UploadImage'
 
 export async function InputField({
   ageGroups,
@@ -26,6 +25,7 @@ export async function InputField({
 }) {
   const submit = async (formData: FormData) => {
     'use server'
+
     let successFlag = false
     try {
       const ItemSchema = z.object({
@@ -220,20 +220,13 @@ export async function InputField({
           />
         </Tooltip>
         <label htmlFor="item-picture">
-          Add pictures of your item:<span className="text-red-700"> *</span>
+          Add a picture of your item:<span className="text-red-700"> *</span>
         </label>
         <Tooltip
           closeDelay={500}
           content="Upload an image of your item. Only .jpg & .png are accepted"
         >
-          <input
-            type="file"
-            id="item-picture"
-            name="item-picture"
-            accept="image/png, image/jpeg"
-            required
-            aria-required="true"
-          />
+          <PreviewImage image_path={defaultImage} item_picture={true} />
         </Tooltip>
         <UploadItemSubmit
           submit={submit}

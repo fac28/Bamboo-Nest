@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation'
-import Image from 'next/image'
 import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
+import PreviewImage from '@/components/UploadImage'
+import { defaultProfileImage } from '@/utils/constants'
 
 export default async function UpdateForm() {
   const { user, supabase } = await getUser()
@@ -94,19 +95,7 @@ export default async function UpdateForm() {
           }
         />
         <label htmlFor="profile-picture">Profile Picture</label>
-        <p>Your current picture</p>
-        <Image
-          src={profilePicture || ''}
-          width={100}
-          height={100}
-          alt={firstName}
-        />
-        <input
-          type="file"
-          id="profile-picture"
-          name="profile-picture"
-          accept="image/png, image/jpeg"
-        />
+        <PreviewImage image_path={profilePicture || defaultProfileImage} />
         <button
           formAction={update}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"

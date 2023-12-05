@@ -12,7 +12,7 @@ export default async function AuthButton() {
     .select('first_name')
     .eq('id', userID)
 
-  const userName = (data && data[0].first_name) || 'User'
+  const userName = (data && data[0] && data[0].first_name) || 'User'
 
   const signOut = async () => {
     'use server'
