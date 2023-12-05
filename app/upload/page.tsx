@@ -1,7 +1,7 @@
 import fetchAgeGroups from '@/utils/fetchAgeGroups'
 import fetchCategories from '@/utils/fetchCategories'
 import fetchConditions from '@/utils/fetchConditions'
-import { InputField } from '@/components/forms/InputField'
+import AllInputFields from '@/components/forms/AllInputFields'
 import PageContainer from '@/components/global-layout/PageContainer'
 import fetchSubCategories from '@/utils/fetchSubCategories'
 import getUser from '@/utils/getUser'
@@ -30,7 +30,7 @@ export default async function Page() {
   return (
     <PageContainer>
       {user ? (
-        <InputField
+        <AllInputFields
           ageGroups={ageGroups}
           categories={categories}
           subCategories={subCategories}
