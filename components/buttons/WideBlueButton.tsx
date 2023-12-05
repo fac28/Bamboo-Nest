@@ -9,7 +9,7 @@ export default function WideBlueButton({
   pageUrl: string
 }) {
   return (
-    <Button className="bg-primaryBlue text-white rounded-full">
+    <Button className="bg-foundation text-white rounded-full">
       <Link href={pageUrl}>{buttonTitle}</Link>
     </Button>
   )

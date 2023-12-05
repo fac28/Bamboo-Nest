@@ -20,7 +20,7 @@ export default function FormFieldAndLabel({
         {required && <span className="text-red-500">&nbsp;*</span>}
       </label>
       <input
-        className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic mb-10 focus:outline-primaryBlue"
+        className="custom-input"
         type={inputType}
         name={inputName}
         placeholder={inputPlaceholder}

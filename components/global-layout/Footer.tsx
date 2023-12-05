@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-primaryBlue py-8">
+    <footer className="bg-white text-foundation py-8">
       <div className="mx-auto px-6 flex justify-between items-center">
         {/* Brand Name on the left side */}
         <div className="lg:text-2xl font-bold">Bamboo Nest</div>

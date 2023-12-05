@@ -111,7 +111,7 @@ export async function InputField({
         </label>
         <Tooltip closeDelay={500} content="Max 50 characters">
           <input
-            className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            className="custom-input"
             name="item-name"
             id="item-name"
             placeholder="Provide the name of your item"
@@ -126,7 +126,7 @@ export async function InputField({
         </label>
         <Tooltip closeDelay={500} content="Max 500 characters">
           <input
-            className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            className="custom-input"
             name="item-description"
             placeholder="Provide a description of your item"
             id="item-description"
@@ -139,7 +139,7 @@ export async function InputField({
         </label>
         <Tooltip closeDelay={500} content="Enter a price for your item">
           <input
-            className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            className="custom-input"
             name="item-price"
             id="item-price"
             placeholder="0.00"
@@ -151,11 +151,7 @@ export async function InputField({
           />
         </Tooltip>
         <label htmlFor="age-groups">Age Group:</label>
-        <select
-          name="age-groups"
-          id="age-groups"
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
-        >
+        <select name="age-groups" id="age-groups" className="custom-input">
           {ageGroups.map(ageGroup => (
             <option key={ageGroup.id} value={ageGroup.id}>
               {ageGroup.age_category}
@@ -165,16 +161,14 @@ export async function InputField({
         <SelectCategories
           categories={categories}
           subCategories={subCategories}
-          className={
-            'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
-          }
+          className={'custom-input'}
         />
         <label htmlFor="item-condition">Condition:</label>
         <select
           name="condition"
           id="condition"
           defaultValue=""
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+          className="custom-input"
         >
           {conditions.map(condition => (
             <option key={condition.id} value={condition.id}>
@@ -189,7 +183,7 @@ export async function InputField({
           name="brand"
           id="brand"
           placeholder="Provide the brand of your item"
-          className="rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+          className="custom-input"
         />
         <Tooltip closeDelay={500} content="Please select at least one option">
           <fieldset id="delivery" className="flex flex-wrap gap-2 p-0 pb-6">
@@ -216,7 +210,7 @@ export async function InputField({
           content="Please enter the first half of a valid postcode e.g. SE14"
         >
           <input
-            className="invalid:bg-red-500 rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue"
+            className="invalid:bg-red-500 custom-input"
             type="text"
             name="postcode"
             id="postcode"

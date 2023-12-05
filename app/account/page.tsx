@@ -19,8 +19,10 @@ export default async function Login() {
       <section className="w-full gap-4 grid lg:pt-8 lg:grid-cols-2 lg:grid-rows-2">
         {linkData.map(({ href, text }) => (
           <Link href={href} key={href}>
-            <Card className="border-2 p-16 border-solid border-primaryBlue rounded-3xl h-20 flex items-center justify-center ">
-              <p className="text-primaryBlue font-medium lg:text-xl">{text}</p>
+            <Card className="border-2 p-16 border-solid border-foundation rounded-3xl h-20 flex items-center justify-center ">
+              <p className="text-foundation font-medium lg:text-xl">
+                {text}
+              </p>
             </Card>
           </Link>
         ))}
