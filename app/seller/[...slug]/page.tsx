@@ -6,6 +6,9 @@ import PageContainer from '@/components/global-layout/PageContainer'
 import ListingHistory from '@/components/user-info/UserListingHistory'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
+import DisplayRatingSummary from '@/components/reviews/DisplayRatingSummary'
+import { Review } from '@/utils/types'
+import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 
 export const metadata: Metadata = {
   title: 'Seller Overview - Bamboo Nest',
@@ -19,7 +22,6 @@ export default async function listing({
   }
 }) {
   const sellerID = params.slug[0]
-
   const { supabase } = await getUser()
 
   try {
@@ -31,6 +33,8 @@ export default async function listing({
     if (error || !data || data.length === 0) {
       throw new Error('Error fetching data')
     }
+
+    const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
 
     const { first_name, last_name, bio, image_path, created_at } = data[0]
 
@@ -60,6 +64,7 @@ export default async function listing({
           height={200}
           className="border rounded-full object-cover aspect-square"
         />
+        <DisplayRatingSummary reviewData={reviewData}/>
         <div className="w-full pb-6 leading-relaxed">
           <h1 className="text-center">{fullName}</h1>
           <p className="text-foundation text-center italic pb-6">

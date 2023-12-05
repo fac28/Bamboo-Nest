@@ -22,6 +22,7 @@ export default function DisplayReview({
           return (
             <div key={index + 1}>
               <q>{review.comment}</q>
+              <p>{review.review_score}</p>
             </div>
           )
         })}
