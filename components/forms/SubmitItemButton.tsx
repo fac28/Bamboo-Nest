@@ -22,7 +22,7 @@ export default function UploadItemSubmit({
     <button
       type="submit"
       formAction={formHandler}
-      className="rounded-full px-4 py-2 border bg-primaryBlue border-primaryBlue my-6 text-white text-center italic focus:outline-primaryBlue"
+      className="rounded-full px-4 py-2 border bg-foundation border-foundation my-6 text-white text-center italic focus:outline-foundation"
     >
       Submit
     </button>

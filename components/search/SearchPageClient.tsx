@@ -46,8 +46,7 @@ export default function ClientPage({
   }, [])
 
   return (
-    <PageContainer justify="justify-start">
-      <div className="w-full flex flex-col gap-4 py-6 lg:py-16">
+    <PageContainer justify="justify-start" className="gap-4 child:w-full">
         <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
         {searchResults.length === 0 ? (
           <ShowCategories categories={categories} />
@@ -69,7 +68,6 @@ export default function ClientPage({
             />
           </>
         )}
-      </div>
     </PageContainer>
   )
 }

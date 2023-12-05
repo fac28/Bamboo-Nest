@@ -11,12 +11,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryBlue: '#27c8a0',
-        greenText: '#0B9774',
-        customBg: '#F6F4F5',
-        greenHighlight: '#44AF94',
-        lightGreenHighlight: '#cdbdb5',
-        background: 'hsl(var(--background))',
+        lightMauve: '#cdbdb5',
+        foundation: '#27c8a0',
+        background: '#F6F4F5',
         foreground: 'hsl(var(--foreground))',
         btn: {
           background: 'hsl(var(--btn-background))',

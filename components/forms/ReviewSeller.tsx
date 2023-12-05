@@ -67,7 +67,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
         <Button
           type="submit"
           formAction={submit}
-          className="bg-primaryBlue text-white rounded-full"
+          className="bg-foundation text-white rounded-full"
         >
           Submit
         </Button>

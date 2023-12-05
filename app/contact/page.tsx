@@ -1,7 +1,7 @@
 import PageContainer from '@/components/global-layout/PageContainer'
 import nodemailer from 'nodemailer'
 const tailwindForInputs =
-  'rounded-full px-4 py-2 bg-white border border-primaryBlue mb-6 text-center italic focus:outline-primaryBlue'
+  'rounded-full px-4 py-2 bg-white border border-foundation mb-6 text-center italic focus:outline-foundation'
 
 export default function ContactPage() {
   async function submit(formData: FormData) {

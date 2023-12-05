@@ -75,7 +75,7 @@ export default async function Login({
 
         <button
           aria-label="login to account"
-          className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full"
+          className="px-4 py-2 mb-2 bg-foundation text-white rounded-full"
         >
           Login
         </button>
@@ -91,10 +91,7 @@ export default async function Login({
 
       <p>
         Not with us? &nbsp;
-        <Link
-          href="/signup"
-          className="text-primaryBlue italic hover:underline"
-        >
+        <Link href="/signup" className="text-foundation italic hover:underline">
           Create an account
         </Link>
       </p>

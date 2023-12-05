@@ -23,14 +23,32 @@ body {
   margin-left: auto;
 }
 
-.cust-dotted-border-bottom {
-  border-bottom: 6px dotted #077467;
+.custom-dotted-border-bottom {
+  border-bottom: 6px dotted var(--foundation);
+}
+
+.custom-input {
+  border-radius: 9999px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--foundation);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.custom-input:focus {
+  outline-color: var(--foundation);
 }
 
 @layer base {
   :root {
-    --background: #dff3ec;
-    --btn-background: #dff3ec;
+    --foundation: #27c8a0;
     --btn-background-hover: 200 10% 89%;
     --foreground: 200 50% 3%;
   }

@@ -16,7 +16,7 @@ export default function CategoryCard({ cardTitle, height }: CategoryCardProps) {
       {cardTitle.map((item, index) => (
         <Link key={index} href={`/products/${encodeURIComponent(item.title)}`}>
           <Card
-            className={`h-${height} border-2 border-solid border-primaryBlue rounded-3xl hover:scale-95 transition-transform duration-300 transform origin-center`}
+            className={`h-${height} border-2 border-solid border-foundation rounded-3xl hover:scale-95 transition-transform duration-300 transform origin-center`}
             key={index}
           >
             <CardHeader className="flex items-center justify-center h-full">

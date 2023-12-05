@@ -6,6 +6,9 @@ import PageContainer from '@/components/global-layout/PageContainer'
 import ListingHistory from '@/components/user-info/UserListingHistory'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
+import DisplayRatingSummary from '@/components/reviews/DisplayRatingSummary'
+import { Review } from '@/utils/types'
+import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 
 export const metadata: Metadata = {
   title: 'Seller Overview - Bamboo Nest',
@@ -19,7 +22,6 @@ export default async function listing({
   }
 }) {
   const sellerID = params.slug[0]
-
   const { supabase } = await getUser()
 
   try {
@@ -32,6 +34,8 @@ export default async function listing({
       throw new Error('Error fetching data')
     }
 
+    const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
+
     const { first_name, last_name, bio, image_path, created_at } = data[0]
 
     const fullName = `${first_name} ${last_name}`
@@ -40,7 +44,15 @@ export default async function listing({
     if (params.slug[1] == 'history') {
       return (
         <PageContainer>
-          <h1>All Listings by {first_name}</h1>
+          <Image
+            src={image_path || ''}
+            alt={`${fullName}'s profile picture`}
+            priority={true}
+            width={200}
+            height={200}
+            className="border mb-16 rounded-full object-cover aspect-square"
+          />
+          <h1>{fullName}'s Overview</h1>
           <ListingHistory id={sellerID} />
         </PageContainer>
       )
@@ -50,39 +62,41 @@ export default async function listing({
       item => item.sold === true,
     )
 
-    const imageStyle = {
-      borderRadius: '50%',
-      border: '1px solid #fff',
-    }
-
     return (
-      <PageContainer>
-        <div className="pb-2 gap-2">
-          <Image
-            src={image_path || ''}
-            alt={`${fullName}'s avatar photo`}
-            width={200}
-            height={200}
-            style={imageStyle}
-          />
-          <h1 className="text-xl">{fullName}</h1>
-          <p className="text-slate-500">
-            {sale_history && sale_history.length} items sold
-          </p>
-        </div>
-        <div>
-          <h2 className="text-xl"> About me </h2>
-          <p>{bio}</p>
-          <h2 className="text-xl"> Member Since </h2>
-          <p>{created_at ? created_at.split('T')[0] : 'N/A'}</p>
-          <div className="flex flex-col w-40 gap-2 pt-2">
-            <WideBlueButton
-              buttonTitle={`See All ${first_name}'s Items`}
-              pageUrl={`${sellerID}/history`}
-            />
-            <WideBlueButton buttonTitle={`Message ${first_name}`} pageUrl="" />
+      <PageContainer className="pb-2 gap-2 child:max-w-md ">
+        <Image
+          src={image_path || ''}
+          alt={`${fullName}'s profile picture`}
+          priority={true}
+          width={200}
+          height={200}
+          className="border rounded-full object-cover aspect-square"
+        />
+        <div className="w-full pb-6 leading-relaxed">
+          <h1 className="text-center">{fullName}</h1>
+          <div className="flex gap-2 justify-center">
+            <p className="text-foundation pb-6">
+              {sale_history && sale_history.length} items sold
+            </p>
+            <DisplayRatingSummary reviewData={reviewData} sellerID={sellerID} />
           </div>
+          <h2 className="font-medium">About {first_name}</h2>
+          <p className="pb-6">
+            {bio || `${first_name} hasn't added an about me yet.`}
+          </p>
+          <h2 className="font-medium">Member Since</h2>
+          <p>{created_at ? created_at.split('T')[0] : 'N/A'}</p>
         </div>
+        <WideBlueButton
+          buttonTitle={`See All ${first_name}'s Items`}
+          pageUrl={`${sellerID}/history`}
+          className="w-full"
+        />
+        <WideBlueButton
+          buttonTitle={`Message ${first_name}`}
+          pageUrl=""
+          className="w-full"
+        />
       </PageContainer>
     )
   } catch (error) {

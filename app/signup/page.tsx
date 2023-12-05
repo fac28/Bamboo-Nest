@@ -106,7 +106,7 @@ export default async function Login({
         <button
           aria-label="create account"
           formAction={signUp}
-          className="px-4 py-2 mb-2 bg-primaryBlue text-white rounded-full"
+          className="px-4 py-2 mb-2 bg-foundation text-white rounded-full"
         >
           Register
         </button>

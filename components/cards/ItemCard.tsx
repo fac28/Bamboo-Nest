@@ -23,7 +23,7 @@ export default function ItemCard({
   grid_direction?: 'grid-cols-2' | 'grid-rows-2'
   favouriteItems?: number[] | null
   user?: string | null
-  background_colour?: 'bg-white' | 'bg-lightGreenHighlight'
+  background_colour?: 'bg-white' | 'bg-lightMauve'
   backgroundImg?: string | null
   item: Item | ItemForHomePage | ItemWithImage | ItemForListingPage | null
 }) {
