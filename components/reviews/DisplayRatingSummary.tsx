@@ -1,9 +1,12 @@
 import { Review } from '@/utils/types'
+import Link from 'next/link'
 
 export default function DisplayRatingSummary({
   reviewData,
+  sellerID,
 }: {
   reviewData: Review[]
+  sellerID: string
 }) {
   const averageScores =
     reviewData.reduce((acc, review) => {
@@ -11,10 +14,13 @@ export default function DisplayRatingSummary({
     }, 0) / reviewData.length
 
   return averageScores ? (
-    <h2>Average Score: {averageScores.toFixed(2)}</h2>
+    <Link href={`${sellerID}/history`}>
+      <p className="hover:no-underline underline opacity-70">
+        Rating: {averageScores.toFixed(2)}/5{' '}
+        <span className="text-yellow-500">&#9733;</span>
+      </p>
+    </Link>
   ) : (
-    <div>
-      <h2>No reviews yet</h2>
-    </div>
+    <p>No reviews yet</p>
   )
 }

@@ -64,12 +64,14 @@ export default async function listing({
           height={200}
           className="border rounded-full object-cover aspect-square"
         />
-        <DisplayRatingSummary reviewData={reviewData}/>
         <div className="w-full pb-6 leading-relaxed">
           <h1 className="text-center">{fullName}</h1>
-          <p className="text-foundation text-center italic pb-6">
-            {sale_history && sale_history.length} items sold
-          </p>
+          <div className="flex gap-2 justify-center">
+            <p className="text-foundation pb-6">
+              {sale_history && sale_history.length} items sold
+            </p>
+            <DisplayRatingSummary reviewData={reviewData} sellerID={sellerID} />
+          </div>
           <h2 className="font-medium">About {first_name}</h2>
           <p className="pb-6">
             {bio || `${first_name} hasn't added an about me yet.`}
