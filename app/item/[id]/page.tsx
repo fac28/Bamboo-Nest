@@ -90,16 +90,19 @@ export default async function listing({
             <p>For: {age}</p>
             <p>Item category: {category}</p>
             <p>
-              Postage options: {delivery && collection? `Post or Collect` : delivery && `Post` || collection && `Collect`}
+              Postage options:{' '}
+              {delivery && collection
+                ? `Post or Collect`
+                : (delivery && `Post`) || (collection && `Collect`)}
             </p>
           </div>
           <p>{description}</p>
-          {userID === seller_id ?
-          null :
-          <WideBlueButton
-            buttonTitle={`Request ${first_name}'s Contact Info`}
-            pageUrl={`/seller/${seller_id}`}
-          />}
+          {userID === seller_id ? null : (
+            <WideBlueButton
+              buttonTitle={`Request ${first_name}'s Contact Info`}
+              pageUrl={`/seller/${seller_id}`}
+            />
+          )}
         </div>
       </PageContainer>
     )
