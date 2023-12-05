@@ -1,6 +1,7 @@
 'use client'
 // src/components/Accordion.tsx
 import { ReactNode, useState } from 'react'
+import Image from 'next/image'
 
 interface AccordionProps {
   title: string
@@ -26,7 +27,13 @@ const Accordion: React.FC<AccordionProps> = ({
         onClick={toggleAccordion}
       >
         <h2 className="text-lg">{title}</h2>
-        <span>{isOpen ? '-' : '+'}</span>
+        <span>
+          {isOpen ? (
+            <Image src="/up.svg" alt="Close" width={20} height={20} />
+          ) : (
+            <Image src="/down.svg" alt="Open" width={20} height={20} />
+          )}
+        </span>
       </div>
       {isOpen && <div className="mt-2 p-4 font-light">{children}</div>}
     </div>
