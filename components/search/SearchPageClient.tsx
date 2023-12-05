@@ -73,10 +73,16 @@ export default function ClientPage({
             defaultValue={[0, filterPrice[1]]}
             value={[filterPrice[0], filterPrice[1]]}
             formatOptions={{ style: 'currency', currency: 'GBP' }}
-            className="max-w-sm"
+            classNames={{
+              base: 'max-w-sm ',
+              filler: 'bg-primaryBlue',
+              thumb: 'bg-primaryBlue',
+            }}
+            startContent={0}
+            endContent={maxPrice}
             onChange={value => {
               if (Array.isArray(value)) handleFilterValues(value)
-              else handleFilterValues([0,100])
+              else handleFilterValues([0, 200])
             }}
           />
           <button
