@@ -77,3 +77,19 @@ export interface ItemInfo {
   image_path: string
   postcode: string
 }
+
+export interface FilterProps {
+  maxPrice: number;
+  filterPrice: number[];
+  sortByPrice: string | null;
+  setSortByPrice: (value: string | null) => void;
+  setFilterPrice: (value: number[]) => void;
+}
+
+export interface FilteredResultsProps {
+  searchResults: Item[]
+  filterPrice: number[]
+  favouriteItems: number[] | null
+  user: string | null
+  sortByPrice: string | null
+}
