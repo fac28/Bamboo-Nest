@@ -40,6 +40,7 @@ export async function InputField({
         postcode: z.string().toUpperCase(),
         delivery: z.boolean(),
         collection: z.boolean(),
+        rent_available: z.boolean(),
         seller_id: z.string(),
         image_path: z.string(),
       })
@@ -54,7 +55,9 @@ export async function InputField({
       const condition = parseInt(formData.get('condition') as string)
       const brand = formData.get('brand') as string
       const postcode = formData.get('postcode') as string
-
+      const rentValue: FormDataEntryValue | null =
+        formData.get('rent-available')
+      const rent_available: boolean = rentValue === 'true'
       const collectionValue: FormDataEntryValue | null =
         formData.get('can-collect')
       const collection: boolean = collectionValue === 'true'
@@ -85,6 +88,7 @@ export async function InputField({
         seller_id: seller,
         image_path: publicUrl.publicUrl,
         postcode: postcode,
+        rent_available,
       }
       const validatedItemInfo = ItemSchema.parse(itemInfo)
       console.log(validatedItemInfo)
@@ -150,6 +154,10 @@ export async function InputField({
             aria-required="true"
           />
         </Tooltip>
+        <fieldset>
+          <input type="checkbox" name="rent-available" id="rent-available" />
+          <label htmlFor="rent-available">Available for rent</label>
+        </fieldset>
         <label htmlFor="age-groups">Age Group:</label>
         <select
           name="age-groups"

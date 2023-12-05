@@ -76,4 +76,5 @@ export interface ItemInfo {
   seller_id: string
   image_path: string
   postcode: string
+  rent_available: boolean
 }

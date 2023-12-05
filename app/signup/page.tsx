@@ -24,7 +24,7 @@ export default async function Login({
       email: z.string().email(),
       password: z.string(),
       firstName: z.string(),
-      lastName: z.string()
+      lastName: z.string(),
     })
     const emailUnverified = formData.get('email') as string
     const passwordUnverified = formData.get('password') as string
@@ -32,11 +32,11 @@ export default async function Login({
     const lastNameUnverified = formData.get('Last Name') as string
     const supabase = newClient() as unknown as any
 
-    const {email,password,firstName,lastName} = UserSchema.parse({
+    const { email, password, firstName, lastName } = UserSchema.parse({
       email: emailUnverified,
       password: passwordUnverified,
       firstName: firstNameUnverified,
-      lastName: lastNameUnverified
+      lastName: lastNameUnverified,
     })
 
     const { data, error } = await supabase.auth.signUp({
