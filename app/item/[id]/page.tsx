@@ -31,22 +31,6 @@ export default async function listing({
       throw new Error('Error fetching data')
     }
 
-    // const {
-    //   item_id,
-    //   name,
-    //   price,
-    //   description,
-    //   brand,
-    //   delivery,
-    //   collection,
-    //   age: { age_category: age },
-    //   conditions: { condition: condition, description: conditionDescription },
-    //   categories: { category_name: category },
-    //   seller_id,
-    //   users: { first_name},
-    //   image_path,
-    // } = data[0]
-
     const {
       item_id,
       name,

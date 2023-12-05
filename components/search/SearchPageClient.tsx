@@ -34,10 +34,7 @@ export default function ClientPage({
 
   return (
     <PageContainer justify="justify-start" className="gap-4 child:w-full">
-      <Search
-        placeholder={'Search all products'}
-        onSearch={handleSearch}
-      />{' '}
+      <Search placeholder={'Search all products'} onSearch={handleSearch} />{' '}
       {searchResults.length === 0 && (
         <div className="grid grid-cols-2 gap-4">
           {categories.map(category => (

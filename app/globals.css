@@ -49,8 +49,6 @@ body {
 @layer base {
   :root {
     --foundation: #27c8a0;
-    --background: #dff3ec;
-    --btn-background: #dff3ec;
     --btn-background-hover: 200 10% 89%;
     --foreground: 200 50% 3%;
   }

@@ -50,39 +50,38 @@ export default async function listing({
       item => item.sold === true,
     )
 
-    const imageStyle = {
-      borderRadius: '50%',
-      border: '1px solid #fff',
-    }
-
     return (
-      <PageContainer>
-        <div className="pb-2 gap-2">
-          <Image
-            src={image_path || ''}
-            alt={`${fullName}'s avatar photo`}
-            width={200}
-            height={200}
-            style={imageStyle}
-          />
-          <h1 className="text-xl">{fullName}</h1>
-          <p className="text-slate-500">
+      <PageContainer className="pb-2 gap-2 child:max-w-md ">
+        <Image
+          src={image_path || ''}
+          alt={`${fullName}'s profile picture`}
+          priority={true}
+          width={200}
+          height={200}
+          className="border rounded-full object-cover aspect-square"
+        />
+        <div className="w-full pb-6 leading-relaxed">
+          <h1 className="text-center">{fullName}</h1>
+          <p className="text-foundation text-center italic pb-6">
             {sale_history && sale_history.length} items sold
           </p>
-        </div>
-        <div>
-          <h2 className="text-xl"> About me </h2>
-          <p>{bio}</p>
-          <h2 className="text-xl"> Member Since </h2>
+          <h2 className="font-medium">About {first_name}</h2>
+          <p className="pb-6">
+            {bio || `${first_name} hasn't added an about me yet.`}
+          </p>
+          <h2 className="font-medium">Member Since</h2>
           <p>{created_at ? created_at.split('T')[0] : 'N/A'}</p>
-          <div className="flex flex-col w-40 gap-2 pt-2">
-            <WideBlueButton
-              buttonTitle={`See All ${first_name}'s Items`}
-              pageUrl={`${sellerID}/history`}
-            />
-            <WideBlueButton buttonTitle={`Message ${first_name}`} pageUrl="" />
-          </div>
         </div>
+        <WideBlueButton
+          buttonTitle={`See All ${first_name}'s Items`}
+          pageUrl={`${sellerID}/history`}
+          className="w-full"
+        />
+        <WideBlueButton
+          buttonTitle={`Message ${first_name}`}
+          pageUrl=""
+          className="w-full"
+        />
       </PageContainer>
     )
   } catch (error) {

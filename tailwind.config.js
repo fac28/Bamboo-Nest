@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         lightMauve: '#cdbdb5',
         foundation: '#27c8a0',
-        background: 'hsl(var(--background))',
+        background: '#F6F4F5',
         foreground: 'hsl(var(--foreground))',
         btn: {
           background: 'hsl(var(--btn-background))',

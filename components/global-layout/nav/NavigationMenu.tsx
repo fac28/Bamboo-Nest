@@ -25,7 +25,7 @@ export default function NavigationMenu() {
   }
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="w-min">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="w-min bg-inherit">
       <NavbarContent justify="end">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
