@@ -4,27 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* all */
 * {
   box-sizing: border-box;
 }
 
-.gradient-background {
-  /* background: rgb(234, 232, 220); */
-  background: radial-gradient(
-      circle,
-      rgba(234, 232, 220, 1) 0%,
-      rgba(151, 232, 181, 1) 100%
-    ),
-    url(/noise.svg);
+/* fonts */
+body {
+  font-family: 'DM Sans', sans-serif;
 }
 
-.global-background {
-  /* background-image: url('/icecream.jpg');
-  background-size: cover;
-  background-position: bottom; */
-  background-color: #dff3ec;
-}
-
+/* custom */
 .vh-without-nav {
   min-height: calc(100vh - 20rem);
 }
@@ -37,14 +27,10 @@
   border-bottom: 6px dotted #077467;
 }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-}
-
 @layer base {
   :root {
-    --background: #ffffff;
-    --btn-background: #ffffff;
+    --background: #dff3ec;
+    --btn-background: #dff3ec;
     --btn-background-hover: 200 10% 89%;
     --foreground: 200 50% 3%;
   }

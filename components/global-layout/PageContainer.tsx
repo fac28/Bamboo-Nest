@@ -9,7 +9,7 @@ export default function PageContainer({
   justify?: 'justify-center' | 'justify-start'
 }) {
   return (
-    <div className="global-background pb-16">
+    <div className="bg-background pb-16">
       <BackButton />
       <div
         className={`w-full vh-without-nav mx-auto flex flex-wrap flex-col px-6 lg:px-64 max-w-7xl ${justify} items-center`}
