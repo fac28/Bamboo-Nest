@@ -28,7 +28,7 @@ export default function DisplayReview({
 
   return averageScores ? (
     <div className="mb-2 flex flex-col gap-4">
-      <h2 className="font-medium text-center pb-2 text-foundation">
+      <h2 className="font-medium text-center pb-2">
         Average rating: {averageScores.toFixed(2)}/5
       </h2>
       {reviewData.map((review, index) => (

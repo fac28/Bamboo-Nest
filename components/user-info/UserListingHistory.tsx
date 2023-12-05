@@ -58,12 +58,12 @@ export default async function ListingHistory({ id = '' }) {
   const reviewData: Review[] = await fetchReviewBySeller(supabase, id)
 
   return itemDetails.length > 0 ? (
-    <div className="py-16 w-full">
+    <div className="py-4 w-full">
       <Accordion title="Reviews">
         <DisplayReview reviewData={reviewData} />
       </Accordion>
 
-      <Accordion title="All Listings" defaultOpen={true}>
+      <Accordion title="All Listings">
         <div className="grid grid-cols-2 gap-4">
           {itemDetails.map(item => (
             <div key={item.item_id}>

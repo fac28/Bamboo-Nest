@@ -50,7 +50,7 @@ export default async function listing({
             priority={true}
             width={200}
             height={200}
-            className="border pb-2 rounded-full object-cover aspect-square"
+            className="border mb-16 rounded-full object-cover aspect-square"
           />
           <h1>{fullName}'s Overview</h1>
           <ListingHistory id={sellerID} />
