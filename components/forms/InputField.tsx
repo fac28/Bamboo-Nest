@@ -57,13 +57,13 @@ export async function InputField({
       const postcode = formData.get('postcode') as string
       const rentValue: FormDataEntryValue | null =
         formData.get('rent-available')
-      const rent_available: boolean = rentValue === 'true'
+      const rent_available: boolean = rentValue === 'on'
       const collectionValue: FormDataEntryValue | null =
         formData.get('can-collect')
-      const collection: boolean = collectionValue === 'true'
+      const collection: boolean = collectionValue === 'on'
       const deliveryValue: FormDataEntryValue | null =
         formData.get('can-deliver')
-      const delivery: boolean = deliveryValue === 'true'
+      const delivery: boolean = deliveryValue === 'on'
       const supabase = newClient()
 
       await supabase.storage
@@ -91,6 +91,7 @@ export async function InputField({
         rent_available,
       }
       const validatedItemInfo = ItemSchema.parse(itemInfo)
+      console.log(rentValue,rent_available)
       console.log(validatedItemInfo)
       const { error } = await supabase.from('items').insert(itemInfo).select()
 
