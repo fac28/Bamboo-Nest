@@ -1,12 +1,11 @@
 import ContactForm from '@/components/forms/ContactForm'
 import emailHandler from '@/utils/emailHandler'
-// import { adminAuthClient } from '@/utils/supabase/admin'
 import { z } from 'zod'
 
 export default await function ContactSeller({
   sellerID,
   fullName,
-  sellerEmail
+  sellerEmail,
 }: {
   sellerID: string
   fullName: string
@@ -23,7 +22,9 @@ export default await function ContactSeller({
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
     console.log(sellerID)
-    if (sellerEmail) {emailHandler(sellerEmail, validatedMessage, validatedEmail)}
+    if (sellerEmail) {
+      emailHandler(sellerEmail, validatedMessage, validatedEmail)
+    }
   }
 
   return (
