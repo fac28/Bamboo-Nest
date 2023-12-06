@@ -1,27 +1,24 @@
 'use client'
 
-import React from 'react'
+import { useState} from 'react'
 import {
   Navbar,
-  // NavbarBrand,
   NavbarContent,
-  // NavbarItem,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
   Link,
-  // Button,
 } from '@nextui-org/react'
 
 export default function NavigationMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuLinks = {
     'Search Items': '/search',
     'Sell Item': '/upload',
-    Account: '/account',
-    Contact: '/contact',
-    FAQs: '/faq',
+    "Account": '/account',
+    "Contact": '/contact',
+    "FAQs": '/faq',
   }
 
   return (
@@ -35,9 +32,8 @@ export default function NavigationMenu() {
         {Object.entries(menuLinks).map(([item, route], index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="w-full justify-center text-black"
+              className="w-full justify-center text-black text-5xl"
               href={route}
-              size="lg"
             >
               {item}
             </Link>
