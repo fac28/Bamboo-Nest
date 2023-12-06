@@ -62,7 +62,7 @@ export default function ItemCard({
         ) : (
           <></>
         )}
-        <p className="text-md">{cardName}</p>
+        <p className="text-md min-h-[4rem]">{cardName}</p>
         <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
         <p className="text-sm">
           Rent:{' '}

@@ -16,6 +16,7 @@ export default function TextFields() {
           required
           aria-required="true"
           aria-label=""
+          maxLength={50}
         />
       </Tooltip>
       <label htmlFor="item-description">
@@ -29,6 +30,7 @@ export default function TextFields() {
           id="item-description"
           required
           aria-required="true"
+          maxLength={500}
         />
       </Tooltip>
       <label htmlFor="item-price">
@@ -42,7 +44,7 @@ export default function TextFields() {
           placeholder="0.00"
           type="number"
           min="0"
-          step="0.01"
+          step="0.10"
           required
           aria-required="true"
         />
