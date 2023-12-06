@@ -10,6 +10,7 @@ import { Review } from '@/utils/types'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 import { defaultProfileImage } from '@/utils/constants'
 import ProfilePic from '@/components/ProfilePic'
+import ContactSeller from '@/components/ContactSeller'
 
 export const metadata: Metadata = {
   title: 'Seller Overview - Bamboo Nest',
@@ -54,6 +55,18 @@ export default async function listing({
         </PageContainer>
       )
     }
+    if (params.slug[1] == 'contact') {
+      return (
+        <PageContainer>
+          <ProfilePic
+            image_path={image_path || defaultProfileImage}
+            fullName={fullName}
+          />
+          <h1>Get in touch with {fullName}</h1>
+          <ContactSeller sellerID={sellerID}/>
+        </PageContainer>
+      )
+    }
 
     const sale_history: Item[] = await items_for_sale.filter(
       item => item.sold === true,
@@ -87,7 +100,7 @@ export default async function listing({
         />
         <WideFoundationButton
           buttonTitle={`Message ${first_name}`}
-          pageUrl=""
+          pageUrl={`${sellerID}/contact`}
           className="w-full"
         />
       </PageContainer>
