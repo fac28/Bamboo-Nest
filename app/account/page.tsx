@@ -9,7 +9,7 @@ export default async function Login() {
   if (!user) {
     return (
       <PageContainer>
-        <h1> Please Login first </h1>
+        <h1> Please login first </h1>
       </PageContainer>
     )
   }
