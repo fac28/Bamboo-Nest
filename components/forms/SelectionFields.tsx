@@ -1,8 +1,10 @@
+'use client'
 import { Age, Category, Condition, SubCategory } from '@/utils/types'
 import SelectCategories from './CategoryDropDown'
 import { Tooltip } from '@nextui-org/react'
 import { defaultImage } from '@/utils/constants'
 import PreviewImage from '../UploadImage'
+import { useState } from 'react'
 
 export default function SelectionFields({
   ageGroups,
@@ -15,6 +17,13 @@ export default function SelectionFields({
   subCategories: SubCategory[]
   conditions: Condition[]
 }) {
+  const [selectedCategoryState, setSelectedCategoryState] = useState(
+    categories[0].id,
+  )
+  const [selectedSubCategoryState, setSelectedSubCategoryState] = useState(
+    subCategories[0].id,
+  )
+
   return (
     <>
       <label htmlFor="item-picture">
@@ -41,6 +50,10 @@ export default function SelectionFields({
         categories={categories}
         subCategories={subCategories}
         className={'custom-input'}
+        selectedCategoryState={selectedCategoryState}
+        setSelectedCategoryState={setSelectedCategoryState}
+        selectedSubCategoryState={selectedSubCategoryState}
+        setSelectedSubCategoryState={setSelectedSubCategoryState}
       />
       <label htmlFor="item-condition">Condition:</label>
       <select

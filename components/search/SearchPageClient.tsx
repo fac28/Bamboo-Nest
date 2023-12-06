@@ -4,10 +4,12 @@ import PageContainer from '@/components/global-layout/PageContainer'
 import fetchCategories from '@/utils/fetchCategories'
 import { useState, useEffect } from 'react'
 import searchItem from '@/utils/searchByName'
-import { Category, Item } from '@/utils/types'
+import { Category, Item, SubCategory } from '@/utils/types'
 import ShowCategories from '@/components/cards/ShowCategories'
 import Filter from '@/components/search/Filter'
 import FilteredResults from '@/components/search/ShowFilteredResults'
+import CategoryFilter from '@/components/search/CategoryFilter'
+import fetchSubCategories from '@/utils/fetchSubCategories'
 
 export default function ClientPage({
   favouriteItems,
@@ -18,9 +20,13 @@ export default function ClientPage({
 }) {
   const [searchResults, setSearchResults] = useState<Item[]>([])
   const [categories, setCategories] = useState<Category[]>([])
+  const [subCategories, setSubCategories] = useState<SubCategory[]>([])
   const [maxPrice, setMaxPrice] = useState(200)
   const [filterPrice, setFilterPrice] = useState<number[]>([0, 200])
   const [sortByPrice, setSortByPrice] = useState<string | null>(null)
+  const [selectedCategoryState, setSelectedCategoryState] = useState<number>(0)
+  const [selectedSubCategoryState, setSelectedSubCategoryState] =
+    useState<number>(0)
 
   useEffect(() => {
     const prices = searchResults.map(result => result.price)
@@ -37,8 +43,13 @@ export default function ClientPage({
   }
 
   async function fetchCategoriesData() {
-    const categoriesData = await fetchCategories()
+    const [categoriesData, subCategoriesData] = await Promise.all([
+      fetchCategories(),
+      fetchSubCategories(),
+    ])
+    categoriesData.unshift({ id: 0, category_name: 'All Categories' })
     setCategories(categoriesData)
+    setSubCategories(subCategoriesData)
   }
 
   useEffect(() => {
@@ -52,6 +63,14 @@ export default function ClientPage({
         <ShowCategories categories={categories} />
       ) : (
         <>
+          <CategoryFilter
+            categories={categories}
+            subCategories={subCategories}
+            selectedCategoryState={selectedCategoryState}
+            setSelectedCategoryState={setSelectedCategoryState}
+            selectedSubCategoryState={selectedSubCategoryState}
+            setSelectedSubCategoryState={setSelectedSubCategoryState}
+          />
           <Filter
             maxPrice={maxPrice}
             filterPrice={filterPrice}
@@ -65,6 +84,8 @@ export default function ClientPage({
             favouriteItems={favouriteItems}
             user={user}
             sortByPrice={sortByPrice}
+            category_id={selectedCategoryState}
+            sub_category_id={selectedSubCategoryState}
           />
         </>
       )}

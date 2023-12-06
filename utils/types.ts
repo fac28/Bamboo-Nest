@@ -1,4 +1,6 @@
 import { Database } from '@/database.types'
+import { Dispatch, SetStateAction } from 'react'
+
 export type User = {
   id: string
   aud: string
@@ -95,4 +97,16 @@ export interface FilteredResultsProps {
   favouriteItems: number[] | null
   user: string | null
   sortByPrice: string | null
+  category_id?: number | null | undefined
+  sub_category_id?: number | null | undefined
+}
+
+export interface CategoryFilterProps {
+  categories: Category[]
+  subCategories: SubCategory[]
+  selectedCategoryState: number
+  setSelectedCategoryState: Dispatch<SetStateAction<number>>
+  selectedSubCategoryState: number
+  setSelectedSubCategoryState: Dispatch<SetStateAction<number>>
+  className?: string
 }

@@ -1,20 +1,16 @@
 'use client'
 
-import { Category, SubCategory } from '@/utils/types'
-import { useState } from 'react'
+import { CategoryFilterProps } from '@/utils/types'
 
 export default function SelectCategories({
   categories,
   subCategories,
   className,
-}: {
-  categories: Category[]
-  subCategories: SubCategory[]
-  className: string
-}) {
-  const [selectedCategoryState, setSelectedCategoryState] = useState(
-    categories[0].id,
-  )
+  selectedCategoryState,
+  setSelectedCategoryState,
+  selectedSubCategoryState,
+  setSelectedSubCategoryState,
+}: CategoryFilterProps) {
   return (
     <>
       <label htmlFor="item-category">Category:</label>
@@ -32,7 +28,13 @@ export default function SelectCategories({
         ))}
       </select>
       <label htmlFor="sub-category">Sub-category:</label>
-      <select name="sub-category" id="sub-category" className={className}>
+      <select
+        name="sub-category"
+        id="sub-category"
+        className={className}
+        value={selectedSubCategoryState}
+        onChange={e => setSelectedSubCategoryState(parseInt(e.target.value))}
+      >
         {subCategories
           .filter(
             subCategory => subCategory.category_id === selectedCategoryState,

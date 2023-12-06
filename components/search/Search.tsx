@@ -1,7 +1,6 @@
 'use client'
 
-// import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import React, { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 
 export default function Search({
   placeholder,
@@ -12,7 +11,7 @@ export default function Search({
 }) {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSearchTerm(value)
     onSearch(value)
@@ -30,10 +29,6 @@ export default function Search({
         value={searchTerm}
         onChange={handleChange}
       />
-      {/* <MagnifyingGlassIcon
-        aria-label="magnifying class icon"
-        className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
-      /> */}
     </div>
   )
 }
