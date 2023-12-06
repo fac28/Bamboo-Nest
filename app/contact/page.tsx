@@ -1,9 +1,9 @@
+import ContactForm from '@/components/forms/ContactForm'
 import PageContainer from '@/components/global-layout/PageContainer'
 import nodemailer from 'nodemailer'
 import { z } from 'zod'
 
-const tailwindForInputs =
-  'rounded-full px-4 py-2 bg-white border border-foundation mb-6 text-center italic focus:outline-foundation'
+
 
 export default function ContactPage() {
   async function submit(formData: FormData) {
@@ -43,31 +43,9 @@ export default function ContactPage() {
   return (
     <PageContainer className="child:w-full child:max-w-md">
       <h1 className="text-center">Contact Page</h1>
-      <form className="grid grid-cols-1 gap-2 ">
-        <label htmlFor="contact-email">Email</label>
-        <input
-          placeholder="example@example.com"
-          className={tailwindForInputs}
-          type="email"
-          name="contact-email"
-          id="contact-email"
-          required
-        />
-        <label htmlFor="contact-message">Message</label>
-        <textarea
-          placeholder="How can we help?"
-          className={`rounded-xl min-h-[150px] ${tailwindForInputs}`}
-          name="contact-message"
-          id="contact-message"
-        />
-        <button
-          type="submit"
-          formAction={submit}
-          className="bg-foundation text-white px-4 py-2 border border-foundation rounded-full hover:opacity-80"
-        >
-          Submit
-        </button>
-      </form>
+      <ContactForm submit={submit}  />
     </PageContainer>
   )
 }
+
+  
