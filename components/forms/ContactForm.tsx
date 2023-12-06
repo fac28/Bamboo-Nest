@@ -6,7 +6,7 @@ export default function ContactForm({
   submit: (formData: FormData) => void
 }) {
   return (
-    <form className="grid grid-cols-1 gap-2 ">
+    <form className="grid grid-cols-1 gap-2 w-full">
       <label htmlFor="contact-email">Email</label>
       <input
         placeholder="example@example.com"
