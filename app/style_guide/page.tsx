@@ -33,9 +33,10 @@ export default function StyleGuide() {
             <p>A general paragraph will look like this.</p>
           </div>
           <p>
-            The site uses the google font DM Sans which is applied to all text
-            elements. The font is imported via next/font which imports all the
-            font varieties by default.
+            The site uses the google font{' '}
+            <span className="font-medium">DM Sans</span> which is applied to all
+            text elements. The font is imported via next/font which imports all
+            the font varieties by default.
           </p>
         </section>
         <section className="custom-dotted-border-bottom pb-4">
