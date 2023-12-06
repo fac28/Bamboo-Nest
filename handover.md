@@ -105,84 +105,70 @@
 - How did you plan a user experience?
     - We created a detail mockup on Figma with prototyping to mimic the user journey.
     - We also used Miro to help us think about our user stories, and the interactions between the front-end and back-end of our product.
-
-!!!!!!! Someone else answer the rest of this bit !!!!!!!!!
   
 - What technical decisions did you make?
-    - We decided to stick with Next13, Supabase, and React so that the product could be handed over easily to the product owner at the end of the project. 
+    - We decided to use Next14, Supabase, and Typescript to improve the readability and robustness of our codes.
 - Relational or non-relational or no DB
-    - We chose a relational database (postgres in Supabase) as the mostly predictable nature of the data fitted a relational model very well.
+    - We chose a relational database (postgres in Supabase) which is the standard choice for an e-commerce project.
 - Self-hosted or platform-as-a-service
      - We used Paas Supabase for Auth, DB, bucket storage.
 - Frontend first vs DB first
-    - We did database first so that we had the groundwork down before building.
- 
-!!!!!!! I HAVEN'T DONE BELOW !!!!!!!!
+    - We designed a schema for our database first, and started thinking about how we would query the database to retrieve information before working on the front-end. 
 
 # Technical Specification
 ### Supabase: 
-- Supabase is where we've stored out database. We've added Judy to the team and she will be able to access the project and be the owner.
-- how to find env variables on supabase: 
-- authentication happens via supabase and is only set up for email addresses at the moment with no third party providers
-- types are exported for typescript from supabase for the database and therefore there are two type files
+- Purpose and Contents: Supabase serves as our centralised storage for databases, user authentication details, and image assets (stored in a specific bucket).
+- Environment Variables: To access environment variables in Supabase, refer to the .env.example.
+- Authentication: Currently, authentication is integrated through Supabase, limited to email-based logins.
+- TypeScript Integration: Types are systematically exported for TypeScript usage directly from Supabase.
+
 ### Vercel: 
-- the site is deployed here: https://rent-shield.vercel.app/
-- We've added Judy to the team and she will be able to access the project and be the owner.
+- Deployment: The project is actively deployed at bamboo-nest.vercel.app, with continuous updates.
 
 ### CICD
-- prettier & lint are ran on pre-commit using husky. You'll find details in the lint-staged file and the husky file. 
-- cypress tests are ran via github actions on push from PR
+- Code Quality Assurance: We enforce code standards using Prettier & Lint, triggered on pre-commit hooks managed by Husky. Detailed configurations can be found in the Husky configuration file.
 
 ### env variables
-- there is a .env example file in the repo with example env variables
+- A .env.example file is provided in the repository for guidance on setting up necessary environment variables.
 
 ### Google Maps API
 - the product owner will need to set up their own google maps dev account to get new google Maps API credentials. The documentation for that is here: https://developers.google.com/maps
 - May need ££ if after a number of requests
 
 ### Design & CSS
-- we predominantly used a component library called flowbite and tailwind. We didn't use many global styles except for some buttons which are outlined in the globals.css file
-
+- Frameworks Used: Our UI is built using the Next UI component library, augmented with custom components crafted using Tailwind CSS for flexible styling.
 
 *Review methods of software design with reference to functional/technical specifications and apply a justified approach to software development (K11, S11, S12)*
 ## Implementation/Build 
 - How did you ensure your code was good?
-    - We ensured that two people reviewed every PR
-    - We installed and used Husky so that formatters/linters were used with every commit and that tests were run on every push.
-    - We also made it a rule that with large PRs and features that at least one test was written
-    - We made time to 'show and tell' our code during check-ins and stand ups and forced ourselves to talk through our code
+    - To maintain high code quality, we implemented peer review for all Pull Requests (PRs), along with the mandatory use of Husky for formatting and linting on every commit.
+    - Regular pair programming sessions were conducted to collaboratively solve complex problems and enhance code understanding.
 - Create logical and maintainable code to deliver project outcomes, explaining their choice of approach. (S1)
 - What interesting technical problems did you have to solve?
-    - Using the Google Maps API for autocomplete location and using the markers library to mark the properties on the map
+    - Responsiveness and UI Design: Tackling responsiveness across different devices using CSS breakpoints.
+    - Learning Curve: Mastering the complexities of Supabase for diverse backend needs.
 - Outline and apply the rationale and use of algorithms, logic and data structures. (K9, S16)
 - How did you debug issues that arose?
-    - We took time to pair on complex features
-    - We did a lot of rubber ducking and in-depth code reviews
+    - Collaborative Problem-Solving: Pair programming for complex feature implementation.
+    - Local Testing: Running builds locally to identify and resolve errors.
+    - Diagnostic Logging: Extensive use of console logging for real-time debugging.
 - Apply structured techniques to problem solving to identify and resolve issues and debug basic flaws in code (S7)
 ## Test 
 - How did you verify your project worked correctly?
-    - Cypress is installed as a dev-dependency and every developer is responsible for unit testing their own work. Tests for user stories are also updated as we progress and the entire test suite must pass before any new code is pushed into the repository.
+    - Quality Validation: The project was rigorously reviewed by mentors and peers, ensuring alignment with the project specification.
 - Identify and create test scenarios which satisfy the project specification (S6)
     - E2E testing checks for the following user stories:
-        - As a user I want to search properties by location, budget, number of bedrooms, and property type
-        - As a renter I want to login so that I can save/favourite properties
-        - As a landlord I want to be able to login and upload my property so that renters can see it
-- Did writing automated tests catch any bugs?
-    - No 
+        - t.b.a
+- Automated Testing: No significant bugs were identified through automated testing.
 - Analyse unit testing results and review the outcomes, correcting errors. (S4)
 ## Deploy 
 - Where/how did you deploy your application?
-    - The page is deployed on Vercel
-    - The main branch of the repository is continuously deployed and only working and tested features are added into the deployed product at any point. We did not employ a 'dev branch' approach and relied on strenuous testing & code reviews
+    - Deployment Platform and Strategy: The application is deployed on Vercel, with a continuous deployment setup from the main branch. This ensures that only tested and approved features are deployed.
 - Review and justify their contribution to building, managing and deploying code into the relevant environment in accordance with the project specification (S10)
-
-- What problems did you encounter during deployment?
-    - No problems have yet occured during deployment.
+    - Deployment Experience: To date, there have been no significant issues encountered during deployment.
 
 ## Maintain 
-- Is it easy for someone make changes to the codebase?
-    - yes
-- Could a new person quickly be onboarded to contribute?
-    - yes, as the product is an MVP there are limited routes
+- Codebase Accessibility: The codebase is structured for easy understanding and modification.
+- New Contributor Onboarding: New team members can be quickly integrated and start contributing effectively.
 - Establishes a logical thinking approach to areas of work which require valid reasoning and/or justified decision making (B2)
 - Describes how they have maintained a productive, professional and secure working environment throughout the project activity (B3)
