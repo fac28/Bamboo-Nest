@@ -62,8 +62,7 @@ export default async function listing({
             image_path={image_path || defaultProfileImage}
             fullName={fullName}
           />
-          <h1>Get in touch with {fullName}</h1>
-          <ContactSeller sellerID={sellerID}/>
+          <ContactSeller sellerID={sellerID} fullName={fullName}/>
         </PageContainer>
       )
     }

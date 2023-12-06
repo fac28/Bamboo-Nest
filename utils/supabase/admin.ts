@@ -6,8 +6,8 @@ const service_role_key = process.env.NEXT_ADMIN_SUPABASE_SERVICE_KEY!
 const supabase = createClient(supabase_url, service_role_key, {
   auth: {
     autoRefreshToken: false,
-    persistSession: false
-  }
+    persistSession: false,
+  },
 })
 
 // Access auth admin api
