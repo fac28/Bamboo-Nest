@@ -50,7 +50,7 @@ export default function ContactPage() {
         />
         <label htmlFor="contact-message">Message</label>
         <textarea
-          placeholder="What would you like to let us know"
+          placeholder="How can we help?"
           className={`rounded-xl min-h-[150px] ${tailwindForInputs}`}
           name="contact-message"
           id="contact-message"
