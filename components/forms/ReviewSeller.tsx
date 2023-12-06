@@ -55,6 +55,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
           name="seller-id"
           value={seller_id}
           className="hidden"
+          readOnly
         />
         <Star />
         <label htmlFor="review-comment">Comment</label>

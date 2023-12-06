@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { Item } from '@/utils/types'
 import WideBlueButton from '@/components/buttons/WideBlueButton'
@@ -9,6 +8,8 @@ import { Metadata } from 'next'
 import DisplayRatingSummary from '@/components/reviews/DisplayRatingSummary'
 import { Review } from '@/utils/types'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
+import { defaultProfileImage } from '@/utils/constants'
+import ProfilePic from '@/components/ProfilePic'
 
 export const metadata: Metadata = {
   title: 'Seller Overview - Bamboo Nest',
@@ -44,14 +45,7 @@ export default async function listing({
     if (params.slug[1] == 'history') {
       return (
         <PageContainer>
-          <Image
-            src={image_path || ''}
-            alt={`${fullName}'s profile picture`}
-            priority={true}
-            width={200}
-            height={200}
-            className="border mb-16 rounded-full object-cover aspect-square"
-          />
+          <ProfilePic image_path={image_path || defaultProfileImage} fullName={fullName} />
           <h1>{fullName}'s Overview</h1>
           <ListingHistory id={sellerID} />
         </PageContainer>
@@ -64,14 +58,7 @@ export default async function listing({
 
     return (
       <PageContainer className="pb-2 gap-2 child:max-w-md ">
-        <Image
-          src={image_path || ''}
-          alt={`${fullName}'s profile picture`}
-          priority={true}
-          width={200}
-          height={200}
-          className="border rounded-full object-cover aspect-square"
-        />
+        <ProfilePic image_path={image_path || defaultProfileImage} fullName={fullName} />
         <div className="w-full pb-6 leading-relaxed">
           <h1 className="text-center">{fullName}</h1>
           <div className="flex gap-2 justify-center">
