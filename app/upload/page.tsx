@@ -38,7 +38,7 @@ export default async function Page() {
           existsOnUsersTable={existsOnUsersTable}
         />
       ) : (
-        <h1> Please Log in first </h1>
+        <h1> Please login first </h1>
       )}
     </PageContainer>
   )
