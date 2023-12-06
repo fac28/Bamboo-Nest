@@ -23,7 +23,7 @@ export default async function Page({
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')
-    .eq('id', userID||'')
+    .eq('id', userID || '')
 
   const favouriteItems: number[] | null =
     favourites && favourites[0].favourite_items

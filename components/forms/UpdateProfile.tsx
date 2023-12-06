@@ -10,7 +10,7 @@ export default async function UpdateForm() {
   const { data: userInfo } = await supabase
     .from('users')
     .select()
-    .eq('id', userID||'')
+    .eq('id', userID || '')
 
   const firstName = userInfo?.[0]?.first_name || ''
   const lastName = userInfo?.[0]?.last_name || ''

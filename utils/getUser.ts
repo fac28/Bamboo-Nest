@@ -10,5 +10,4 @@ export default async function getUser() {
   const userID = user?.id
 
   return { user, supabase, userID }
-
 }

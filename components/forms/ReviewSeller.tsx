@@ -4,7 +4,6 @@ import Star from '@/components/reviews/Star'
 import { Button } from '@nextui-org/react'
 import getUser from '@/utils/getUser'
 
-
 export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   'use server'
   const supabase = newClient()
@@ -25,7 +24,6 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
     'use server'
 
     const { supabase, userID } = await getUser()
-
 
     const review_score = Number(formData.get('review-score'))
 

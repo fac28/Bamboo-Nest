@@ -23,7 +23,7 @@ export default async function Page() {
   const { data } = await supabase
     .from('users')
     .select('first_name,last_name,bio')
-    .eq('id', userID||'')
+    .eq('id', userID || '')
   const existsOnUsersTable = (data && data.length > 0 ? true : false) || false
 
   return (
@@ -34,7 +34,7 @@ export default async function Page() {
           categories={categories}
           subCategories={subCategories}
           conditions={conditions}
-          seller={userID||''}
+          seller={userID || ''}
           existsOnUsersTable={existsOnUsersTable}
         />
       ) : (
