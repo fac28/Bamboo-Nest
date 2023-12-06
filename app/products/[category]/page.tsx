@@ -15,7 +15,9 @@ export default async function Page({
 }) {
   // capitalize first letter of category
 
-  const categoryName = decodeURIComponent(params.category)[0].toUpperCase() + decodeURIComponent(params.category).slice(1)
+  const categoryName =
+    decodeURIComponent(params.category)[0].toUpperCase() +
+    decodeURIComponent(params.category).slice(1)
   const items = await fetchItemsByCategory(categoryName)
   const { user, supabase } = await getUser()
 
