@@ -4,11 +4,9 @@ import fetchSellerName from '@/utils/fetchSellerName'
 import getUser from '@/utils/getUser'
 
 export default async function Purchase() {
-  const { user, supabase } = await getUser()
+  const { supabase, userID } = await getUser()
 
-  const userID = user?.id || ''
-
-  const itemDetails = await getItemDetails(supabase, 'purchase_history', userID)
+  const itemDetails = await getItemDetails(supabase, 'purchase_history', userID || '')
   const seller_name = await fetchSellerName(
     supabase,
     (itemDetails[0] && itemDetails[0].seller_id) || '',

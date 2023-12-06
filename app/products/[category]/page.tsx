@@ -18,13 +18,12 @@ export default async function Page({
     decodeURIComponent(params.category).slice(1)
 
   const items = await fetchItemsByCategory(categoryName)
-  const { user, supabase } = await getUser()
+  const { supabase, userID } = await getUser()
 
-  const userID = user ? user.id : ''
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')
-    .eq('id', userID)
+    .eq('id', userID||'')
 
   const favouriteItems: number[] | null =
     favourites && favourites[0].favourite_items
