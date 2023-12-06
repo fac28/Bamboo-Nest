@@ -25,7 +25,7 @@ export default async function AuthButton() {
     return (
       <Link
         href="/login"
-        className="margin-left-auto py-2 px-3 flex border-2 border-solid border-foundation rounded-full no-underline bg-btn-background hover:bg-btn-background-hover"
+        className="margin-left-auto py-2 px-3 flex border-2 border-solid border-foundation rounded-full no-underline bg-white hover:bg-btn-background-hover"
       >
         Login
       </Link>
