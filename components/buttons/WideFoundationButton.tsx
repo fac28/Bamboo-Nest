@@ -1,7 +1,7 @@
 import { Button } from '@nextui-org/react'
 import Link from 'next/link'
 
-export default function WideBlueButton({
+export default function WideFoundationButton({
   buttonTitle,
   pageUrl,
   className,

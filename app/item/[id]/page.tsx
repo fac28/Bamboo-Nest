@@ -2,7 +2,7 @@ import FavouriteButton from '@/components/buttons/FavouriteButton'
 import PageContainer from '@/components/global-layout/PageContainer'
 import Image from 'next/image'
 import Link from 'next/link'
-import WideBlueButton from '@/components/buttons/WideBlueButton'
+import WideFoundationButton from '@/components/buttons/WideFoundationButton'
 import getUser from '@/utils/getUser'
 import { Metadata } from 'next'
 
@@ -98,7 +98,7 @@ export default async function listing({
           </div>
           <p>{description}</p>
           {userID === seller_id ? null : (
-            <WideBlueButton
+            <WideFoundationButton
               buttonTitle={`Request ${first_name}'s Contact Info`}
               pageUrl={`/seller/${seller_id}`}
             />
