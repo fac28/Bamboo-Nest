@@ -107,6 +107,6 @@ export interface CategoryFilterProps {
   selectedCategoryState: number
   setSelectedCategoryState: Dispatch<SetStateAction<number>>
   selectedSubCategoryState: number
-  setSelectedSubCategoryState:Dispatch<SetStateAction<number>>
+  setSelectedSubCategoryState: Dispatch<SetStateAction<number>>
   className?: string
 }

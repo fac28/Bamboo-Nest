@@ -25,7 +25,8 @@ export default function ClientPage({
   const [filterPrice, setFilterPrice] = useState<number[]>([0, 200])
   const [sortByPrice, setSortByPrice] = useState<string | null>(null)
   const [selectedCategoryState, setSelectedCategoryState] = useState<number>(0)
-  const [selectedSubCategoryState, setSelectedSubCategoryState] = useState<number>(0)
+  const [selectedSubCategoryState, setSelectedSubCategoryState] =
+    useState<number>(0)
 
   useEffect(() => {
     const prices = searchResults.map(result => result.price)
@@ -41,16 +42,15 @@ export default function ClientPage({
     setSearchResults(items)
   }
 
-  async function fetchCategoriesData(){
-    const [categoriesData,subCategoriesData] = await Promise.all([
+  async function fetchCategoriesData() {
+    const [categoriesData, subCategoriesData] = await Promise.all([
       fetchCategories(),
       fetchSubCategories(),
     ])
-    categoriesData.unshift({id:0,category_name:'All Categories'})
+    categoriesData.unshift({ id: 0, category_name: 'All Categories' })
     setCategories(categoriesData)
     setSubCategories(subCategoriesData)
   }
-
 
   useEffect(() => {
     fetchCategoriesData()

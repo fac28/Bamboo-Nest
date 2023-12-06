@@ -10,9 +10,7 @@ export default function SelectCategories({
   setSelectedCategoryState,
   selectedSubCategoryState,
   setSelectedSubCategoryState,
-
 }: CategoryFilterProps) {
-
   return (
     <>
       <label htmlFor="item-category">Category:</label>
@@ -36,7 +34,7 @@ export default function SelectCategories({
         className={className}
         value={selectedSubCategoryState}
         onChange={e => setSelectedSubCategoryState(parseInt(e.target.value))}
-        >
+      >
         {subCategories
           .filter(
             subCategory => subCategory.category_id === selectedCategoryState,

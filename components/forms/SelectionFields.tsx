@@ -17,7 +17,6 @@ export default function SelectionFields({
   subCategories: SubCategory[]
   conditions: Condition[]
 }) {
-
   const [selectedCategoryState, setSelectedCategoryState] = useState(
     categories[0].id,
   )
@@ -53,7 +52,6 @@ export default function SelectionFields({
         setSelectedCategoryState={setSelectedCategoryState}
         selectedSubCategoryState={selectedSubCategoryState}
         setSelectedSubCategoryState={setSelectedSubCategoryState}
-
       />
       <label htmlFor="item-condition">Condition:</label>
       <select
