@@ -6,9 +6,11 @@ import { z } from 'zod'
 export default await function ContactSeller({
   sellerID,
   fullName,
+  sellerEmail
 }: {
   sellerID: string
   fullName: string
+  sellerEmail: string
 }) {
   async function submit(formData: FormData) {
     'use server'
@@ -21,10 +23,6 @@ export default await function ContactSeller({
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
     console.log(sellerID)
-    // fetch seller address from auth users table
-    // const { data } = await adminAuthClient.getUserById(sellerID)
-    // const sellerEmail = data && data.user && data.user.email
-    const sellerEmail = 'bamboonesttfb@gmail.com'
     if (sellerEmail) {emailHandler(sellerEmail, validatedMessage, validatedEmail)}
   }
 

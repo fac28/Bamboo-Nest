@@ -29,17 +29,17 @@ export default async function listing({
   try {
     const { data, error } = await supabase
       .from('users')
-      .select('first_name, last_name, bio, image_path, created_at')
+      .select('first_name, last_name, bio, image_path, created_at, email')
       .eq('id', sellerID)
 
     if (error || !data || data.length === 0) {
       throw new Error('Error fetching data')
     }
-
+    
     const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
-
-    const { first_name, last_name, bio, image_path, created_at } = data[0]
-
+    
+    const { first_name, last_name, bio, image_path, created_at, email } = data[0]
+    const sellerEmail = email ? email : 'bamboonesttfb@gmail.com'
     const fullName = `${first_name} ${last_name}`
     const items_for_sale: Item[] = await fetchItemsBySeller(supabase, sellerID)
 
@@ -62,7 +62,7 @@ export default async function listing({
             image_path={image_path || defaultProfileImage}
             fullName={fullName}
           />
-          <ContactSeller sellerID={sellerID} fullName={fullName} />
+          <ContactSeller sellerID={sellerID} fullName={fullName} sellerEmail={sellerEmail} />
         </PageContainer>
       )
     }
