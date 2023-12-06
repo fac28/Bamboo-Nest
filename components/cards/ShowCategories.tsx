@@ -12,7 +12,7 @@ export default function ShowCategories(props: ShowCategoriesProps) {
       {categories.map(category => (
         <SearchPageCategoryCard
           cardKey={category.category_name}
-          linkHref={`/products/${category.category_name}`}
+          linkHref={`/products/${category.category_name.toLowerCase()}`}
           cardName={category.category_name}
         />
       ))}

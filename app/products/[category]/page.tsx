@@ -13,7 +13,10 @@ export default async function Page({
 }: {
   params: { category: string }
 }) {
-  const items = await fetchItemsByCategory(decodeURIComponent(params.category))
+  // capitalize first letter of category
+
+  const categoryName = decodeURIComponent(params.category)[0].toUpperCase() + decodeURIComponent(params.category).slice(1)
+  const items = await fetchItemsByCategory(categoryName)
   const { user, supabase } = await getUser()
 
   const userID = user ? user.id : ''
@@ -28,7 +31,7 @@ export default async function Page({
   return (
     <PageContainer justify="justify-start">
       <div className="flex flex-col gap-4 py-16">
-        <h1>{params.category}</h1>
+        <h1>{categoryName}</h1>
         <div className="grid grid-cols-2 gap-4">
           {items.map(item => (
             <div key={item.item_id}>
