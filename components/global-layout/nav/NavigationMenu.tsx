@@ -32,7 +32,7 @@ export default function NavigationMenu() {
         {Object.entries(menuLinks).map(([item, route], index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="w-full justify-center text-black text-5xl"
+              className="w-full justify-center text-black hover:text-foundation text-5xl"
               href={route}
             >
               {item}

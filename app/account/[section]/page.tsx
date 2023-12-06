@@ -37,7 +37,7 @@ export default async function listing({
     <PageContainer>
       <h1>Your Account</h1>
       <h2 className="text-xl">{sections[params.section].title}</h2>
-      <Link href={'/login'}>Log in to see your account details</Link>
+      <Link href={'/login'}>Login to see your account details</Link>
     </PageContainer>
   )
 }
