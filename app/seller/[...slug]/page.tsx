@@ -32,7 +32,10 @@ export default async function listing({
       .eq('id', sellerID)
 
     if (error || !data || data.length === 0) {
-      throw new Error('Error fetching data')
+      return (
+        <PageContainer>
+          <h1>Oops, seller not found</h1>
+          </PageContainer>)
     }
 
     const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)

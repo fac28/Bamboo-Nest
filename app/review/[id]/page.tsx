@@ -18,9 +18,7 @@ export default async function Review({ params }: { params: { id: string } }) {
     </PageContainer>
   ) : (
     <PageContainer>
-      <div>
-        <h1>Log in to leave a review</h1>
-      </div>
+      <h1>Log in to leave a review</h1>
     </PageContainer>
   )
 }

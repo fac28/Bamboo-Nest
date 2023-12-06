@@ -28,7 +28,11 @@ export default async function listing({
       .select(itemQuery)
       .eq('item_id', params.id)
     if (error || !data || data.length === 0) {
-      throw new Error('Error fetching data')
+      // throw new Error('Error fetching data')
+      return (
+      <PageContainer>
+        <h1>Oops, item not found</h1>
+        </PageContainer>)
     }
 
     const {
