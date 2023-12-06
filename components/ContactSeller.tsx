@@ -1,6 +1,6 @@
 import ContactForm from '@/components/forms/ContactForm'
 import emailHandler from '@/utils/emailHandler'
-import { adminAuthClient } from '@/utils/supabase/admin'
+// import { adminAuthClient } from '@/utils/supabase/admin'
 import { z } from 'zod'
 
 export default await function ContactSeller({
@@ -20,11 +20,12 @@ export default await function ContactSeller({
     const message = formData.get('contact-message') as string
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
-
+    console.log(sellerID)
     // fetch seller address from auth users table
-    const { data } = await adminAuthClient.getUserById(sellerID)
-    const sellerEmail = data && data.user && data.user.email
-    if (sellerEmail) emailHandler(sellerEmail, validatedMessage, validatedEmail)
+    // const { data } = await adminAuthClient.getUserById(sellerID)
+    // const sellerEmail = data && data.user && data.user.email
+    const sellerEmail = 'bamboonesttfb@gmail.com'
+    if (sellerEmail) {emailHandler(sellerEmail, validatedMessage, validatedEmail)}
   }
 
   return (
