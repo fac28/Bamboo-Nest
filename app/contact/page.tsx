@@ -14,7 +14,7 @@ export default function ContactPage() {
     const message = formData.get('contact-message') as string
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
-    emailHandler('bamboonesttfb@gmail.com',validatedMessage,validatedEmail)
+    emailHandler('bamboonesttfb@gmail.com', validatedMessage, validatedEmail)
   }
 
   return (
