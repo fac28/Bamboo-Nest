@@ -36,8 +36,8 @@ export default async function Index() {
 
       <section className="max-w-5xl mx-auto pb-6">
         <div className="flex justify-between px-8 pt-8 items-center">
-          <h3 className="text-xl font-medium">Categories</h3>
-          <Link href={'/search'} className="hover:opacity-30">
+          <h3 className="text-xl font-medium ">Categories</h3>
+          <Link href={'/search'} className="hover:opacity-30 text-foundation">
             Search all categories &#8594;
           </Link>
         </div>
@@ -48,7 +48,7 @@ export default async function Index() {
 
         <div className="flex justify-between px-8 pt-8 items-center">
           <h3 className="text-xl font-medium">Current Listings</h3>
-          <Link href={'/search'} className="hover:opacity-30">
+          <Link href={'/search'} className="hover:opacity-30 text-foundation">
             View more listings &#8594;
           </Link>
         </div>

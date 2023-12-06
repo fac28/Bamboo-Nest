@@ -3,6 +3,7 @@ import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
 import PreviewImage from '@/components/UploadImage'
 import { defaultProfileImage } from '@/utils/constants'
+import FormFieldAndLabel from './FormFieldAndLabel'
 
 export default async function UpdateForm() {
   const { user, supabase, userID } = await getUser()
@@ -73,21 +74,26 @@ export default async function UpdateForm() {
       <h1>Update your profile</h1>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-        <label htmlFor="First Name">First Name</label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="First Name"
-          placeholder={firstName?.length === 0 ? 'First Name' : firstName}
+        <FormFieldAndLabel
+          htmlForInput="First Name"
+          labelName="First Name"
+          inputType="text"
+          inputName="First Name"
+          inputPlaceholder={firstName?.length === 0 ? 'First Name' : firstName}
+          required
         />
-        <label htmlFor="Last Name">Last Name</label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="Last Name"
-          placeholder={lastName?.length === 0 ? 'Last Name' : lastName}
+        <FormFieldAndLabel
+          htmlForInput="Last Name"
+          labelName="Last Name"
+          inputType="text"
+          inputName="Last Name"
+          inputPlaceholder={lastName?.length === 0 ? 'Last Name' : lastName}
+          required
         />
+
         <label htmlFor="Bio">About Me</label>
         <textarea
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="bg-white rounded-md border border-foundation min-h-[150px] px-4 py-2 mb-6"
           name="Bio"
           placeholder={
             !bio || (bio && bio.length === 0) ? 'Tell us about yourself' : bio
@@ -97,7 +103,8 @@ export default async function UpdateForm() {
         <PreviewImage image_path={profilePicture || defaultProfileImage} />
         <button
           formAction={update}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
+          aria-label="Update your profile"
+          className="px-4 py-2 mb-6 mt-4 bg-foundation text-white rounded-full"
         >
           Update
         </button>
