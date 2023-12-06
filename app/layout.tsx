@@ -1,4 +1,4 @@
-import { GeistSans } from 'geist/font/sans'
+import { DM_Sans } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import 'normalize.css/normalize.css'
@@ -18,13 +18,18 @@ export const metadata = {
   },
 }
 
+const dm_sans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en" className={dm_sans.className}>
       <body className="text-foreground">
         <main className="bg-background min-h-screen flex flex-col">
           <Providers>
