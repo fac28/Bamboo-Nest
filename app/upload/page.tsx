@@ -19,12 +19,11 @@ export default async function Page() {
     fetchSubCategories(),
   ])
 
-  const { user, supabase } = await getUser()
-  const userId = user?.id || ''
+  const { user, supabase, userID } = await getUser()
   const { data } = await supabase
     .from('users')
     .select('first_name,last_name,bio')
-    .eq('id', userId)
+    .eq('id', userID || '')
   const existsOnUsersTable = (data && data.length > 0 ? true : false) || false
 
   return (
@@ -35,7 +34,7 @@ export default async function Page() {
           categories={categories}
           subCategories={subCategories}
           conditions={conditions}
-          seller={userId}
+          seller={userID || ''}
           existsOnUsersTable={existsOnUsersTable}
         />
       ) : (

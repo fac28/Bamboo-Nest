@@ -7,18 +7,17 @@ export const metadata: Metadata = {
 }
 
 export default async function page() {
-  const { user, supabase } = await getUser()
-  const userID = user ? user.id : ''
+  const { supabase, userID } = await getUser()
 
   const { data: favourites } = await supabase
     .from('users')
     .select('favourite_items')
-    .eq('id', userID)
+    .eq('id', userID || '')
 
   let favouriteItems: number[] | [] = []
   if (favourites && favourites[0]) {
     favouriteItems = favourites[0].favourite_items || []
   }
 
-  return <ClientPage favouriteItems={favouriteItems} user={userID} />
+  return <ClientPage favouriteItems={favouriteItems} user={userID || ''} />
 }

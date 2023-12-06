@@ -7,5 +7,7 @@ export default async function getUser() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  return { user, supabase }
+  const userID = user?.id
+
+  return { user, supabase, userID }
 }

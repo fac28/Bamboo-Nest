@@ -4,13 +4,12 @@ import getUser from '@/utils/getUser'
 import newClient from '@/utils/createNewClient'
 
 export default async function AuthButton() {
-  const { user, supabase } = await getUser()
-  const userID = user ? user.id : ''
+  const { user, supabase, userID } = await getUser()
 
   const { data } = await supabase
     .from('users')
     .select('first_name')
-    .eq('id', userID)
+    .eq('id', userID || '')
 
   const userName = (data && data[0] && data[0].first_name) || 'User'
 

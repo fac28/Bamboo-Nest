@@ -5,9 +5,7 @@ import getUser from '@/utils/getUser'
 import { Item } from '@/utils/types'
 
 export default async function Purchase() {
-  const { user, supabase } = await getUser()
-
-  const userID = user?.id || ''
+  const { supabase, userID } = await getUser()
 
   let itemDetails: Item[] = []
   if (userID) {
@@ -19,7 +17,6 @@ export default async function Purchase() {
     itemDetails = itemDetails.filter(item => item !== undefined)
   }
 
-  console.log(itemDetails)
   const seller_name = await fetchSellerName(
     supabase,
     itemDetails[0].seller_id || '',

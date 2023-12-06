@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import newClient from '@/utils/createNewClient'
 import Star from '@/components/reviews/Star'
 import { Button } from '@nextui-org/react'
+import getUser from '@/utils/getUser'
 
 export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   'use server'
@@ -22,9 +23,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
   const submit = async (formData: FormData) => {
     'use server'
 
-    const supabase = newClient()
-
-    const { data: userData } = await supabase.auth.getUser()
+    const { supabase, userID } = await getUser()
 
     const review_score = Number(formData.get('review-score'))
 
@@ -33,7 +32,7 @@ export async function ReviewSeller({ seller_id }: { seller_id: string }) {
 
     const { error } = await supabase.from('reviews').insert({
       seller_id: seller_id,
-      user_id: userData && userData.user?.id,
+      user_id: userID,
       review_score: review_score,
       comment: review_comment,
     })

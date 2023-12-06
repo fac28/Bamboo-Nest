@@ -5,13 +5,12 @@ import PreviewImage from '@/components/UploadImage'
 import { defaultProfileImage } from '@/utils/constants'
 
 export default async function UpdateForm() {
-  const { user, supabase } = await getUser()
-  const userID = user?.id || ''
+  const { user, supabase, userID } = await getUser()
 
   const { data: userInfo } = await supabase
     .from('users')
     .select()
-    .eq('id', userID)
+    .eq('id', userID || '')
 
   const firstName = userInfo?.[0]?.first_name || ''
   const lastName = userInfo?.[0]?.last_name || ''
