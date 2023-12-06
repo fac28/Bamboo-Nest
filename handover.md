@@ -131,10 +131,6 @@
 ### env variables
 - A .env.example file is provided in the repository for guidance on setting up necessary environment variables.
 
-### Google Maps API
-- the product owner will need to set up their own google maps dev account to get new google Maps API credentials. The documentation for that is here: https://developers.google.com/maps
-- May need ££ if after a number of requests
-
 ### Design & CSS
 - Frameworks Used: Our UI is built using the Next UI component library, augmented with custom components crafted using Tailwind CSS for flexible styling.
 
