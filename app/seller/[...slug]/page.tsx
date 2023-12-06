@@ -62,7 +62,7 @@ export default async function listing({
             image_path={image_path || defaultProfileImage}
             fullName={fullName}
           />
-          <ContactSeller sellerID={sellerID} fullName={fullName}/>
+          <ContactSeller sellerID={sellerID} fullName={fullName} />
         </PageContainer>
       )
     }

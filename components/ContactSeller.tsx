@@ -20,8 +20,7 @@ export default await function ContactSeller({
     const message = formData.get('contact-message') as string
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
-    
-    
+
     // fetch seller address from auth users table
     const { data } = await adminAuthClient.getUserById(sellerID)
     const sellerEmail = data && data.user && data.user.email
@@ -35,5 +34,3 @@ export default await function ContactSeller({
     </>
   )
 }
-
-
