@@ -62,16 +62,17 @@ export default function ItemCard({
         ) : (
           <></>
         )}
-        <p className="text-md">{cardName}</p>
-        <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
+        <p className="text-md min-h-[4rem] flex items-center">{cardName}</p>
         <p className="text-sm">
-          Rent:{' '}
+          Available to rent:{' '}
           {item && item.rent_available ? (
-            <span className="text-green-400">'✓'</span>
+            <span className="text-green-400 text-xl">✓</span>
           ) : (
-            <span className="text-red-500">'✗'</span>
+            <span className="text-red-500 text-xl">✗</span>
           )}
         </p>
+        <p className="text-sm">£{cardPrice?.toFixed(2)}</p>
+
         {seller_name && <p className="text-sm">Seller: {seller_name}</p>}
         {seller_id && <p className="text-sm">Leave a review</p>}
       </div>

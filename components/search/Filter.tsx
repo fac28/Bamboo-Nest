@@ -17,7 +17,7 @@ export default function Filter({
   }
 
   return (
-    <div>
+    <div className="flex flex-wrap justify-between items-center">
       <Slider
         label="Filter by price:"
         step={0.5}
