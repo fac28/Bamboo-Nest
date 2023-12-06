@@ -3,8 +3,6 @@ import PageContainer from '@/components/global-layout/PageContainer'
 import nodemailer from 'nodemailer'
 import { z } from 'zod'
 
-
-
 export default function ContactPage() {
   async function submit(formData: FormData) {
     'use server'
@@ -43,9 +41,7 @@ export default function ContactPage() {
   return (
     <PageContainer className="child:w-full child:max-w-md">
       <h1 className="text-center">Contact Page</h1>
-      <ContactForm submit={submit}  />
+      <ContactForm submit={submit} />
     </PageContainer>
   )
 }
-
-  
