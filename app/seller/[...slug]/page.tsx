@@ -45,7 +45,10 @@ export default async function listing({
     if (params.slug[1] == 'history') {
       return (
         <PageContainer>
-          <ProfilePic image_path={image_path || defaultProfileImage} fullName={fullName} />
+          <ProfilePic
+            image_path={image_path || defaultProfileImage}
+            fullName={fullName}
+          />
           <h1>{fullName}'s Overview</h1>
           <ListingHistory id={sellerID} />
         </PageContainer>
@@ -58,7 +61,10 @@ export default async function listing({
 
     return (
       <PageContainer className="pb-2 gap-2 child:max-w-md ">
-        <ProfilePic image_path={image_path || defaultProfileImage} fullName={fullName} />
+        <ProfilePic
+          image_path={image_path || defaultProfileImage}
+          fullName={fullName}
+        />
         <div className="w-full pb-6 leading-relaxed">
           <h1 className="text-center">{fullName}</h1>
           <div className="flex gap-2 justify-center">

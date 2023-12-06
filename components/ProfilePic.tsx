@@ -1,10 +1,14 @@
 'use client'
 import Image from 'next/image'
 
-export default function ProfilePic(
-  {image_path, fullName}:
-  {image_path: string, fullName: string}){
-  return(
+export default function ProfilePic({
+  image_path,
+  fullName,
+}: {
+  image_path: string
+  fullName: string
+}) {
+  return (
     <>
       <Image
         src={image_path}
