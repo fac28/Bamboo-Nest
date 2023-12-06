@@ -41,7 +41,7 @@ export default function TextFields() {
           className="custom-input"
           name="item-price"
           id="item-price"
-          placeholder="0.00"
+          placeholder="£0.00"
           type="number"
           min="0"
           step="0.10"
@@ -49,9 +49,11 @@ export default function TextFields() {
           aria-required="true"
         />
       </Tooltip>
-      <fieldset>
+      <fieldset className="child:p-2 pb-6 p-0">
         <input type="checkbox" name="rent-available" id="rent-available" />
-        <label htmlFor="rent-available">Available for rent</label>
+        <label htmlFor="rent-available" className="text-foundation text-lg">
+          Available for rent
+        </label>
       </fieldset>
     </>
   )

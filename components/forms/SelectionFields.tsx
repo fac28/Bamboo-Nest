@@ -27,7 +27,9 @@ export default function SelectionFields({
         <PreviewImage image_path={defaultImage} item_picture={true} />
       </Tooltip>
 
-      <label htmlFor="age-groups">Age Group:</label>
+      <label htmlFor="age-groups" className="mt-6">
+        Age Group:
+      </label>
       <select name="age-groups" id="age-groups" className="custom-input">
         {ageGroups.map(ageGroup => (
           <option key={ageGroup.id} value={ageGroup.id}>
