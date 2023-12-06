@@ -1,6 +1,6 @@
 'use client'
 
-import { useState} from 'react'
+import { useState } from 'react'
 import {
   Navbar,
   NavbarContent,
@@ -16,9 +16,9 @@ export default function NavigationMenu() {
   const menuLinks = {
     'Search Items': '/search',
     'Sell Item': '/upload',
-    "Account": '/account',
-    "Contact": '/contact',
-    "FAQs": '/faq',
+    Account: '/account',
+    Contact: '/contact',
+    FAQs: '/faq',
   }
 
   return (
