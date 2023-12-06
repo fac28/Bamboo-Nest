@@ -98,11 +98,11 @@ export interface Database {
           name: string
           postcode: string | null
           price: number
+          rent_available: boolean | null
           seller_id: string | null
           sold: boolean
           sold_at: string | null
           sub_category_id: number | null
-          rent_available: boolean | null
         }
         Insert: {
           age_category?: number | null
@@ -118,6 +118,7 @@ export interface Database {
           name: string
           postcode?: string | null
           price: number
+          rent_available?: boolean | null
           seller_id?: string | null
           sold?: boolean
           sold_at?: string | null
@@ -137,6 +138,7 @@ export interface Database {
           name?: string
           postcode?: string | null
           price?: number
+          rent_available?: boolean | null
           seller_id?: string | null
           sold?: boolean
           sold_at?: string | null
@@ -249,6 +251,7 @@ export interface Database {
         Row: {
           bio: string | null
           created_at: string | null
+          email: string | null
           favourite_items: number[] | null
           first_name: string | null
           id: string
@@ -261,6 +264,7 @@ export interface Database {
         Insert: {
           bio?: string | null
           created_at?: string | null
+          email?: string | null
           favourite_items?: number[] | null
           first_name?: string | null
           id: string
@@ -273,6 +277,7 @@ export interface Database {
         Update: {
           bio?: string | null
           created_at?: string | null
+          email?: string | null
           favourite_items?: number[] | null
           first_name?: string | null
           id?: string

@@ -1,9 +1,16 @@
 import ContactForm from '@/components/forms/ContactForm'
-import PageContainer from '@/components/global-layout/PageContainer'
 import emailHandler from '@/utils/emailHandler'
 import { z } from 'zod'
 
-export default function ContactPage() {
+export default await function ContactSeller({
+  sellerID,
+  fullName,
+  sellerEmail,
+}: {
+  sellerID: string
+  fullName: string
+  sellerEmail: string
+}) {
   async function submit(formData: FormData) {
     'use server'
     const ContactSchema = z.object({
@@ -14,13 +21,16 @@ export default function ContactPage() {
     const message = formData.get('contact-message') as string
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
-    emailHandler('bamboonesttfb@gmail.com', validatedMessage, validatedEmail)
+    console.log(sellerID)
+    if (sellerEmail) {
+      emailHandler(sellerEmail, validatedMessage, validatedEmail)
+    }
   }
 
   return (
-    <PageContainer className="child:w-full child:max-w-md">
-      <h1 className="text-center">Contact Page</h1>
+    <>
+      <h1>Get in touch with {fullName}</h1>
       <ContactForm submit={submit} />
-    </PageContainer>
+    </>
   )
 }

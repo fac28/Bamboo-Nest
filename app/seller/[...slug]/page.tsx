@@ -10,6 +10,7 @@ import { Review } from '@/utils/types'
 import fetchReviewBySeller from '@/utils/fetchReviewBySeller'
 import { defaultProfileImage } from '@/utils/constants'
 import ProfilePic from '@/components/ProfilePic'
+import ContactSeller from '@/components/ContactSeller'
 
 export const metadata: Metadata = {
   title: 'Seller Overview - Bamboo Nest',
@@ -28,7 +29,7 @@ export default async function listing({
   try {
     const { data, error } = await supabase
       .from('users')
-      .select('first_name, last_name, bio, image_path, created_at')
+      .select('first_name, last_name, bio, image_path, created_at, email')
       .eq('id', sellerID)
 
     if (error || !data || data.length === 0) {
@@ -41,8 +42,9 @@ export default async function listing({
 
     const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
 
-    const { first_name, last_name, bio, image_path, created_at } = data[0]
-
+    const { first_name, last_name, bio, image_path, created_at, email } =
+      data[0]
+    const sellerEmail = email ? email : 'bamboonesttfb@gmail.com'
     const fullName = `${first_name} ${last_name}`
     const items_for_sale: Item[] = await fetchItemsBySeller(supabase, sellerID)
 
@@ -55,6 +57,21 @@ export default async function listing({
           />
           <h1>{fullName}'s Overview</h1>
           <ListingHistory id={sellerID} />
+        </PageContainer>
+      )
+    }
+    if (params.slug[1] == 'contact') {
+      return (
+        <PageContainer>
+          <ProfilePic
+            image_path={image_path || defaultProfileImage}
+            fullName={fullName}
+          />
+          <ContactSeller
+            sellerID={sellerID}
+            fullName={fullName}
+            sellerEmail={sellerEmail}
+          />
         </PageContainer>
       )
     }
@@ -91,7 +108,7 @@ export default async function listing({
         />
         <WideFoundationButton
           buttonTitle={`Message ${first_name}`}
-          pageUrl=""
+          pageUrl={`${sellerID}/contact`}
           className="w-full"
         />
       </PageContainer>
