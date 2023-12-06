@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import PageContainer from '@/components/global-layout/PageContainer'
 
-
 export default function NotFound() {
   return (
     <PageContainer>

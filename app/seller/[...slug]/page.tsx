@@ -35,7 +35,8 @@ export default async function listing({
       return (
         <PageContainer>
           <h1>Oops, seller not found</h1>
-          </PageContainer>)
+        </PageContainer>
+      )
     }
 
     const reviewData: Review[] = await fetchReviewBySeller(supabase, sellerID)
