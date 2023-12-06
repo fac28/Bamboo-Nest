@@ -62,6 +62,7 @@ export default async function Login({
         first_name: firstName,
         last_name: lastName,
         created_at: new Date(),
+        email: email
       })
       .select()
 
