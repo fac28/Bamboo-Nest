@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import fetchItemsBySeller from '@/utils/fetchItemsBySeller'
 import { Item } from '@/utils/types'
-import WideBlueButton from '@/components/buttons/WideBlueButton'
+import WideFoundationButton from '@/components/buttons/WideFoundationButton'
 import PageContainer from '@/components/global-layout/PageContainer'
 import ListingHistory from '@/components/user-info/UserListingHistory'
 import getUser from '@/utils/getUser'
@@ -87,12 +87,12 @@ export default async function listing({
           <h2 className="font-medium">Member Since</h2>
           <p>{created_at ? created_at.split('T')[0] : 'N/A'}</p>
         </div>
-        <WideBlueButton
+        <WideFoundationButton
           buttonTitle={`See All ${first_name}'s Items`}
           pageUrl={`${sellerID}/history`}
           className="w-full"
         />
-        <WideBlueButton
+        <WideFoundationButton
           buttonTitle={`Message ${first_name}`}
           pageUrl=""
           className="w-full"
