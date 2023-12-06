@@ -14,6 +14,7 @@
 ## Introduction
 Bamboo Nest is an app designed to connect parents, creating an easy platform for them to buy and sell second hand items.  
 You can find the deployed site [here](https://bamboo-nest.vercel.app/)
+You can find our handover documentation [here](https://github.com/fac28/Bamboo-Nest/blob/main/handover.md) with a more detailed breakdown of our project
 
 ## Installation
 To get started with Bamboo Nest on your own machine follow these installation instructions:  
