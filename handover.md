@@ -152,10 +152,12 @@
 ## Test 
 - How did you verify your project worked correctly?
     - Quality Validation: The project was rigorously reviewed by mentors and peers, ensuring alignment with the project specification.
+    - Jest and Playwright were used for testing.
 - Identify and create test scenarios which satisfy the project specification (S6)
     - E2E testing checks for the following user stories:
-        - t.b.a
+        - "As a user I would like to be able to use the navbar so that I can navigate where I want within the site."
 - Automated Testing: No significant bugs were identified through automated testing.
+    - They did catch a few small breaking changes, which were quickly fixed though.
 - Analyse unit testing results and review the outcomes, correcting errors. (S4)
 ## Deploy 
 - Where/how did you deploy your application?
