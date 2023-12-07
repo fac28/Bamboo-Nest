@@ -122,6 +122,10 @@
 - Authentication: Currently, authentication is integrated through Supabase, limited to email-based logins.
 - TypeScript Integration: Types are systematically exported for TypeScript usage directly from Supabase.
 
+#### Supabase Schema:
+
+![image](https://hackmd.io/_uploads/SJBJ8V8Sp.png)
+
 ### Vercel: 
 - Deployment: The project is actively deployed at bamboo-nest.vercel.app, with continuous updates.
 
