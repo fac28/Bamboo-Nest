@@ -2,24 +2,19 @@ import getItemDetails from '@/utils/fetchItemDetails'
 import ItemCard from '@/components/cards/ItemCard'
 import fetchSellerName from '@/utils/fetchSellerName'
 import getUser from '@/utils/getUser'
-import { Item } from '@/utils/types'
 
 export default async function Purchase() {
   const { supabase, userID } = await getUser()
 
-  let itemDetails: Item[] = []
-  if (userID) {
-    itemDetails = (await getItemDetails(
-      supabase,
-      'favourite_items',
-      userID,
-    )) as Item[]
-    itemDetails = itemDetails.filter(item => item !== undefined)
+  if (!userID) {
+    return null
   }
+
+  const itemDetails = await getItemDetails(supabase, 'favourite_items', userID)
 
   const seller_name = await fetchSellerName(
     supabase,
-    itemDetails[0].seller_id || '',
+    itemDetails?.[0]?.seller_id || '',
   )
 
   return (

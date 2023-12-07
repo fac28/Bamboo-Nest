@@ -1,4 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
+import { Item } from '@/utils/types'
 
 export default async function getItemDetails(
   supabase: ReturnType<typeof createClient>,
@@ -10,20 +11,24 @@ export default async function getItemDetails(
     .select(column_name as '*')
     .eq('id', user_id)
 
-  const itemIds: number[] = data?.[0][`${column_name}`] ?? []
-
-  if (itemIds) {
-    const itemDetails = await Promise.all(
-      itemIds &&
-        itemIds.map(async item_id => {
-          const { data } = await supabase
-            .from('items')
-            .select('*')
-            .eq('item_id', item_id)
-          return data && data[0]
-        }),
-    )
-    return itemDetails
+  if (!data || data.length === 0) {
+    return []
   }
-  return []
+
+  const itemIds = data[0][`${column_name}`] ?? []
+
+  const fetchedItems = await Promise.all(
+    itemIds.map(async item_id => {
+      const { data } = await supabase
+        .from('items')
+        .select('*')
+        .eq('item_id', item_id)
+      return data?.[0]
+    }),
+  )
+
+  const items = fetchedItems.filter(
+    (item: Item | undefined): item is Item => item !== undefined,
+  )
+  return items
 }
