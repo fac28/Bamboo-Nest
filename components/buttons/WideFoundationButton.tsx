@@ -11,10 +11,17 @@ export default function WideFoundationButton({
   className?: string
 }) {
   return (
-    <Button
-      className={`bg-foundation text-white rounded-full ${className || ''}`}
+    <Link
+      href={pageUrl}
+      className={`bg-foundation text-white text-center rounded-full ${
+        className || ''
+      }`}
     >
-      <Link href={pageUrl}>{buttonTitle}</Link>
-    </Button>
+      <Button
+        className={`bg-foundation text-white rounded-full ${className || ''}`}
+      >
+        {buttonTitle}
+      </Button>
+    </Link>
   )
 }

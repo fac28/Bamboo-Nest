@@ -61,8 +61,7 @@ export default async function listing({
       .from('users')
       .select('favourite_items')
       .eq('id', userID)
-    const favouriteItems: number[] | null =
-      favourites && favourites[0].favourite_items
+    const favouriteItems = favourites && favourites[0].favourite_items
 
     return (
       <PageContainer>
