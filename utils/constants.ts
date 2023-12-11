@@ -43,3 +43,5 @@ export const ItemSchema = z.object({
 
 export const tailwindForInputs =
   'rounded-full px-4 py-2 bg-white border border-foundation mb-6 text-center italic focus:outline-foundation'
+
+export const contactEmail = 'paula@bamboo-nest.com'

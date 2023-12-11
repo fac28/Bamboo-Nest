@@ -1,6 +1,8 @@
 import ContactForm from '@/components/forms/ContactForm'
 import PageContainer from '@/components/global-layout/PageContainer'
+import { contactEmail } from '@/utils/constants'
 import emailHandler from '@/utils/emailHandler'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 export default function ContactPage() {
@@ -14,7 +16,8 @@ export default function ContactPage() {
     const message = formData.get('contact-message') as string
     const { email: validatedEmail, message: validatedMessage } =
       ContactSchema.parse({ email, message })
-    emailHandler('bamboonesttfb@gmail.com', validatedMessage, validatedEmail)
+    emailHandler(contactEmail, validatedMessage, validatedEmail)
+    redirect('/')
   }
 
   return (
