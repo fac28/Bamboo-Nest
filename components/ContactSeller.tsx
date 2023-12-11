@@ -1,5 +1,6 @@
 import ContactForm from '@/components/forms/ContactForm'
 import emailHandler from '@/utils/emailHandler'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 export default await function ContactSeller({
@@ -25,6 +26,7 @@ export default await function ContactSeller({
     if (sellerEmail) {
       emailHandler(sellerEmail, validatedMessage, validatedEmail)
     }
+    redirect('/')
   }
 
   return (
